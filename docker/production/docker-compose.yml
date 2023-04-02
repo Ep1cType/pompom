@@ -2,6 +2,7 @@ version: '3.8'
 
 networks:
   proxy:
+    driver: overlay
     attachable: true
     internal: false
     name: proxy
