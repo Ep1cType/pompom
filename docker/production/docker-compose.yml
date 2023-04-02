@@ -13,6 +13,8 @@ services:
       dockerfile: docker/production/Dockerfile
     image: with-docker-multi-env-production
     restart: always
+    networks:
+      - proxy
     healthcheck:
       disable: true
     expose:
