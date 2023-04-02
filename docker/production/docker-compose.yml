@@ -29,3 +29,5 @@ services:
       - traefik.http.routers.with-docker-multi-env-production.tls=true
       - traefik.http.routers.with-docker-multi-env-production.service=with-docker-multi-env-production_service
       - traefik.http.services.with-docker-multi-env-production_service.loadbalancer.server.port=3000
+      - traefik.http.middlewares.with-docker-multi-env-production.redirectscheme.scheme=https
+      - traefik.http.middlewares.with-docker-multi-env-production.redirectscheme.permanent=true
