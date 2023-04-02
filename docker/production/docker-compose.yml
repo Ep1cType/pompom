@@ -1,0 +1,24 @@
+version: '3.8'
+
+networks:
+  proxy:
+    attachable: true
+    internal: false
+    name: proxy
+
+services:
+  with-docker-multi-env-production:
+    build:
+      context: ../../
+      dockerfile: docker/production/Dockerfile
+    image: with-docker-multi-env-production
+    restart: always
+    healthcheck:
+      disable: true
+    expose:
+      - 3000
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=proxy
+      - traefik.http.routers.main_client.entrypoints=websecure
+      - traefik.http.routers.main_client.tls.certresolver=letsencrypt
