@@ -24,7 +24,7 @@ export default function HomePage() {
 	return (
 		<>
 			<h1 className='text-red-600'>
-				Hello world !
+				{process.env.NEXT_PUBLIC_API_URL}
 			</h1>
 			<div className='flex flex-col space-y-5'>
 				<label>
