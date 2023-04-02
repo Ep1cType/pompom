@@ -20,5 +20,9 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=proxy
-      - traefik.http.routers.main_client.entrypoints=websecure
-      - traefik.http.routers.main_client.tls.certresolver=letsencrypt
+      - traefik.http.routers.with-docker-multi-env-production.entrypoints=websecure
+      - traefik.http.routers.with-docker-multi-env-production.tls.certresolver=letsencrypt
+      - traefik.http.routers.with-docker-multi-env-production.rule=Host(`www.epic-type.ru`,`epic-type.ru`)
+      - traefik.http.routers.with-docker-multi-env-production.tls=true
+      - traefik.http.routers.with-docker-multi-env-production.service=with-docker-multi-env-production_service
+      - traefik.http.services.with-docker-multi-env-production_service.loadbalancer.server.port=3000
