@@ -2,17 +2,16 @@ version: '3.8'
 
 networks:
   proxy:
-    driver: overlay
     attachable: true
     internal: false
     name: proxy
 
 services:
-  with-docker-multi-env-production:
+  production_client:
     build:
       context: ../../
       dockerfile: docker/production/Dockerfile
-    image: with-docker-multi-env-production
+    image: production_client
     restart: always
     networks:
       - proxy
@@ -23,11 +22,9 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=proxy
-      - traefik.http.routers.with-docker-multi-env-production.entrypoints=websecure
-      - traefik.http.routers.with-docker-multi-env-production.tls.certresolver=letsencrypt
-      - traefik.http.routers.with-docker-multi-env-production.rule=Host(`www.epic-type.ru`,`epic-type.ru`)
-      - traefik.http.routers.with-docker-multi-env-production.tls=true
-      - traefik.http.routers.with-docker-multi-env-production.service=with-docker-multi-env-production_service
-      - traefik.http.services.with-docker-multi-env-production_service.loadbalancer.server.port=3000
-      - traefik.http.middlewares.with-docker-multi-env-production.redirectscheme.scheme=https
-      - traefik.http.middlewares.with-docker-multi-env-production.redirectscheme.permanent=true
+      - traefik.http.routers.production_client.entrypoints=websecure
+      - traefik.http.routers.production_client.rule=Host(`www.epic-type.ru`,`epic-type.ru`)
+      - traefik.http.routers.production_client.tls=true
+      - traefik.http.routers.production_client.tls.certresolver=letsencrypt
+      - traefik.http.routers.production_client.service=production_client_service
+      - traefik.http.services.production_client_service.loadbalancer.server.port=3000
