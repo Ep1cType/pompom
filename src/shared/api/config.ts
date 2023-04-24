@@ -43,8 +43,8 @@ function setupInterceptorsTo(axiosInstance: AxiosInstance): AxiosInstance {
 
 
 const options: CreateAxiosDefaults = {
-	baseURL: 'http://localhost:8080/api/',
+	baseURL: `${process.env.NEXT_PUBLIC_API_URL}/api`,
 };
 
 const instance = axios.create(options);
-export const apiReq = setupInterceptorsTo(instance)
+export const apiReq = (instance)

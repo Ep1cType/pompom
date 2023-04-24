@@ -21,7 +21,10 @@
       "styles/*": ["src/styles/*"],
       "features/*": ["src/features/*"],
       "entities/*": ["src/entities/*"],
-      "widgets/*": ["src/widgets/*"]
+      "widgets/*": ["src/widgets/*"],
+      "atoms/*": ["src/atoms/*"],
+      "molecules/*": ["src/molecules/*"],
+      "organisms/*": ["src/organisms/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

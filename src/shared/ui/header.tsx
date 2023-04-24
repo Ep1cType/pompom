@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const Header = () => {
 	return (
-		<header className="navbar bg-emerald-200">
+		<header className="navbar bg-blue-900">
 			<div className="navbar-start">
 				<div className="dropdown">
 					<label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -60,6 +60,10 @@ export const Header = () => {
 };
 
 const headerItems = [
+	{
+		title: "Персонажи",
+		link: "/characters"
+	},
 	{
 		title: "Турниры",
 		link: "/tournament"

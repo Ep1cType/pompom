@@ -2,6 +2,10 @@ export interface MetaDataResponse {
 	pagination: PaginationDataResponse;
 }
 
+export interface LocaleParams {
+	locale?: string;
+}
+
 export interface PaginationDataResponse {
 	page: number;
 	pageCount: number;
@@ -26,4 +30,35 @@ export interface ApiSingleResponse<Y> {
 
 export interface CreateBody<T> {
 	data: T
+}
+
+export interface ImageDataResponse {
+	name: string;
+	alternativeText: string;
+	caption: null;
+	width: number;
+	height: number;
+	formats: ThumbnailFormat;
+	hash: string;
+	ext: string;
+	mime: string;
+	size: number;
+	url: string;
+	previewUrl: null | string;
+	provider: string;
+	provider_metadata: null;
+	createdAt: string;
+	updatedAt: string;
+}
+
+export interface ThumbnailFormat {
+	ext: string;
+	url: string;
+	hash: string;
+	mime: string;
+	name: string;
+	path: null;
+	size: number;
+	width: number;
+	height: number;
 }

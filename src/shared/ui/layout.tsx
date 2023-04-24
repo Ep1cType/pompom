@@ -7,15 +7,15 @@ type Props = {
 }
 export const Layout = ({children}: Props) => {
 	return (
-		<>
+		<div className="flex flex-col min-h-screen h-full text-white w-screen">
 			<Header />
-			<main>
+			<main className="flex-grow bg-blue-950">
 				{children}
 			</main>
-			<footer>
-
+			<footer className="flex-shrink-0 ">
+				hello
 			</footer>
 			<AuthModal />
-		</>
+		</div>
 	);
 };
