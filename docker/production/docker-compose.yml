@@ -11,7 +11,7 @@ services:
     build:
       context: ../../
       dockerfile: docker/production/Dockerfile
-    image: production_client
+    image: billiard-client
     restart: always
     networks:
       - proxy
