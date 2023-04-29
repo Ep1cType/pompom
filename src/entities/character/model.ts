@@ -10,4 +10,4 @@ export const fetchCharactersListFx = createEffect(async ({locale}: LocaleParams)
 });
 
 export const $charactersList = createStore<ResponseDataItem<Character>[]>([])
-	.on(fetchCharactersListFx.doneData, (_, payload) => [...payload.data.data, ...payload.data.data, ...payload.data.data, ...payload.data.data, ...payload.data.data]);
+	.on(fetchCharactersListFx.doneData, (_, payload) => payload.data.data);
