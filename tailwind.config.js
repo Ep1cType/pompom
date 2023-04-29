@@ -1,10 +1,16 @@
 /** @type {import('tailwindcss').Config} */
+
+const { fontFamily } = require("tailwindcss/defaultTheme");
+
 module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
+      fontFamily: {
+        outfit: ["var(--font-sans)", ...fontFamily.sans],
+      },
       colors: {
         gold: "#D6AD76",
         violet: "#75459F",
@@ -15,5 +21,5 @@ module.exports = {
   future: {
     hoverOnlyWhenSupported: true
   },
-  plugins: [require("@tailwindcss/typography"), require("daisyui")],
+  plugins: [require("daisyui"), require("@tailwindcss/typography")],
 }

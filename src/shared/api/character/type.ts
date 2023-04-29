@@ -12,3 +12,26 @@ export interface Character {
 }
 
 export type CharacterElementList = "fire" | "ice" | "lightning" | "wind" | "physical" | "quantum";
+
+export type CharacterSexList = "male" | "female";
+
+export interface CharacterExtend extends Character {
+	info: {
+		id: number;
+		sex: CharacterSexList;
+		main_skill: CharacterMainSkill[];
+		image: {
+			data: ResponseDataItem<ImageDataResponse>
+		};
+		story: string;
+	}
+}
+
+export interface CharacterMainSkill {
+	description: {};
+	icon: CreateBody<ResponseDataItem<ImageDataResponse>>;
+	id: number;
+	name: string;
+	text_color: string;
+	type: string;
+}

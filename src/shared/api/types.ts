@@ -38,7 +38,7 @@ export interface ImageDataResponse {
 	caption: null;
 	width: number;
 	height: number;
-	formats: ThumbnailFormat;
+	formats: ImageFormatList;
 	hash: string;
 	ext: string;
 	mime: string;
@@ -49,6 +49,13 @@ export interface ImageDataResponse {
 	provider_metadata: null;
 	createdAt: string;
 	updatedAt: string;
+}
+
+export type ImageFormatList = {
+	large: ThumbnailFormat;
+	medium: ThumbnailFormat;
+	small: ThumbnailFormat;
+	thumbnail: ThumbnailFormat;
 }
 
 export interface ThumbnailFormat {
