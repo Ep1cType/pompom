@@ -3,11 +3,11 @@ kind: pipeline
 type: docker
 name: build_production
 
-#trigger:
-#  event:
-#    -push
-#  branch:
-#    -main
+trigger:
+  event:
+    -push
+  branch:
+    -main
 
 steps:
   - name: notify_about_start
