@@ -1,0 +1,42 @@
+# build project
+kind: pipeline
+type: docker
+name: build_production
+
+trigger:
+  event:
+    -push
+  branch:
+    -main
+
+steps:
+  - name: build_production
+    image: appleboy/drone-ssh
+    volumes:
+      - name: docker_sock
+        path: /var/run/docker.sock
+    settings:
+      host:
+        from_secret: HOST_DOMAIN
+      username:
+        from_secret: HOST_USERNAME
+      port: 22
+      script:
+        - cd services/billiard
+        - make build-production
+
+
+  - name: start_production
+    image: appleboy/drone-ssh
+    volumes:
+      - name: docker_sock
+        path: /var/run/docker.sock
+    settings:
+      host:
+        from_secret: HOST_DOMAIN
+      username:
+        from_secret: HOST_USERNAME
+      port: 22
+      script:
+        - cd services/billiard
+        - make start-production
