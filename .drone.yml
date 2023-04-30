@@ -44,5 +44,6 @@ steps:
       script:
         - cd services/billiard
         - make stop-production
+        - git pull
         - make build-production
         - make start-production
