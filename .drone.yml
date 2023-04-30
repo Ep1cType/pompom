@@ -30,6 +30,8 @@ steps:
         from_secret: HOST_DOMAIN
       username:
         from_secret: HOST_USERNAME
+      password:
+        from_secret: HOST_PASSWORD
       port: 22
       script:
         - cd services/billiard
