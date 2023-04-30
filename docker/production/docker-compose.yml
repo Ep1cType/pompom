@@ -18,7 +18,7 @@ services:
     healthcheck:
       disable: true
     expose:
-      - 3000
+      - 4000
     labels:
       - traefik.enable=true
       - traefik.docker.network=proxy
@@ -27,4 +27,4 @@ services:
       - traefik.http.routers.production_client.tls=true
       - traefik.http.routers.production_client.tls.certresolver=letsencrypt
       - traefik.http.routers.production_client.service=production_client_service
-      - traefik.http.services.production_client_service.loadbalancer.server.port=3000
+      - traefik.http.services.production_client_service.loadbalancer.server.port=4000
