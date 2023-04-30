@@ -31,6 +31,7 @@ export default function HomePage() {
 		fetchCharactersListFx({locale: router.locale})
 	}, [])
 
+
 	return (
 		<div className="container mx-auto px-4">
 			<h1 className='text-red-600'>
