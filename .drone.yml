@@ -10,6 +10,16 @@ trigger:
     -main
 
 steps:
+  - name: notify_about_start
+    image: appleboy/drone-discord
+    settings:
+      webhook_id:
+        from_secret: DISCORD_WEBHOOK_ID
+      webhook_token:
+        from_secret: DISCORD_WEBHOOK_TOKEN
+      username: billiard_bot
+      message: >
+        ⚙️ Production [deploy](<{{ build.link }}>) of `build ${DRONE_BUILD_PARENT}` of `{{repo.name}}`:`{{commit.branch}}`.
   - name: build_production
     image: appleboy/drone-ssh
     volumes:
