@@ -11,7 +11,6 @@ type Props = {
 	starCount: 'four' | 'five';
 	element: CharacterElementList;
 }
-
 export const CharacterCard = ({ img, name, starCount, element }: Props) => {
 	return (
 		<Link href={`/characters/${name}`} className='card relative group '>
