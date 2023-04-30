@@ -3,6 +3,14 @@ kind: pipeline
 type: docker
 name: build_production
 
+trigger:
+  event:
+    include:
+      - push
+  branch:
+    include:
+      - main
+
 #trigger:
 #  event:
 #    -push
