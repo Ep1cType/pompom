@@ -35,5 +35,6 @@ steps:
       port: 22
       script:
         - cd services/billiard
+        - make stop-production
         - make build-production
         - make start-production
