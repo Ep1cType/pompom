@@ -39,6 +39,7 @@ export default function HomePage() {
 				DRONE CHANGE WELCOME
 			</h1>
 			<h2>CHECK AUTO DEPLOY !!!</h2>
+			<h2>HMM</h2>
 			<div className="grid grid-cols-4 gap-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-10">
 				{charactersList.map((character) => (
 					<CharacterCard
