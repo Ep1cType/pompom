@@ -53,11 +53,11 @@ const tierListColors: TierColors = {
 	d: "#81C784"
 }
 
-export const getStaticProps: GetStaticProps<{ tierList: TierList | null }> = async () => {
+export const getStaticProps: GetStaticProps<{ tierList: TierList | null }> = async (context) => {
 	const Api = new TierListApi();
 
 	try {
-		const response = await Api.getTierList();
+		const response = await Api.getTierList({locale: context.locale});
 
 		return {
 			props: {
