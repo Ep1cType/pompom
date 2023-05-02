@@ -5,7 +5,6 @@ import { TierListApi } from 'shared/api/tier-list';
 import { CharacterCard } from 'molecules/character-card';
 
 const TierListPage = ({ tierList }: InferGetStaticPropsType<typeof getStaticProps>) => {
-
 	if (!tierList) {
 		return (
 			<h2>Ошибка сервера</h2>
@@ -20,7 +19,7 @@ const TierListPage = ({ tierList }: InferGetStaticPropsType<typeof getStaticProp
 						<div style={{backgroundColor: tierListColors[letter]}} className='w-24 rounded-l text-blue-950 flex justify-center items-center font-medium text-3xl/none'>
 							{letter}
 						</div>
-						<div className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-12 gap-5 bg-blue-900 py-4 px-2 w-full'>
+						<div className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-12 gap-5 bg-blue-900 py-4 px-4 w-full'>
 							{tierList[letter].data.map((tier) => (
 								<CharacterCard
 									key={tier.id}
@@ -54,9 +53,7 @@ const tierListColors: TierColors = {
 	d: "#81C784"
 }
 
-export const getStaticProps: GetStaticProps<{ tierList: TierList | null }> = async (
-	context,
-) => {
+export const getStaticProps: GetStaticProps<{ tierList: TierList | null }> = async () => {
 	const Api = new TierListApi();
 
 	try {
