@@ -6,7 +6,8 @@ export class AuthApi {
 		return apiReq.post<SignInResponse>("auth/local", {
 			identifier: payload.identifier,
 			password: payload.password
-		});
+		}).then((response) => response)
+			.catch((response) => Promise.reject(response.response.data))
 
 	}
 }

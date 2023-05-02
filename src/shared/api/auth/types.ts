@@ -23,3 +23,15 @@ export interface SignInResponse {
 	jwt: string;
 	user: User;
 }
+
+export interface SignInError {
+	data: {};
+	error: Error
+}
+
+interface Error {
+	status: number;
+	name: string;
+	message: string;
+	details: {}
+}
