@@ -73,9 +73,7 @@ export const getStaticProps: GetStaticProps<{ tierList: TierList | null }> = asy
 			props: {
 				tierList: null,
 			},
-			redirect: {
-				destination: '/404',
-			},
+			notFound: true,
 			revalidate: 120,
 		};
 	}
