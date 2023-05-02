@@ -9,7 +9,6 @@ import {
 } from 'features/login-by-email/model';
 import { useStore, useUnit } from 'effector-react';
 import clsx from 'clsx';
-import { debug } from 'patronum';
 
 export const AuthModal = () => {
 	const [isPending, submit] = useUnit([$loginByEmailPending, loginByEmailFormSubmitted]);
@@ -56,10 +55,6 @@ export const AuthModal = () => {
 
 function ErrorView() {
 	const error = useStore($loginByEmailError);
-	debug($loginByEmailError);
-	console.log(error);
-
-
 	return (
 		<p className="text-error mb-2">
 			{error?.error.message}
