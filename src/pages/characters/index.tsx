@@ -16,7 +16,7 @@ const CharactersPage = () => {
 	return (
 		<div className="container mx-auto px-4 py-8">
 			<div className="grid grid-cols-4 gap-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-10">
-				{charactersList.map((character) => (
+				{charactersList.map((character, index) => (
 					<CharacterCard
 						key={character.id}
 						name={character.attributes.name}

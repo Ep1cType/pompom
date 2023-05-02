@@ -65,6 +65,10 @@ const headerItems = [
 		link: "/characters"
 	},
 	{
+		title: "Тир-лист",
+		link: "/tier-list"
+	},
+	{
 		title: "Турниры",
 		link: "/tournament"
 	},

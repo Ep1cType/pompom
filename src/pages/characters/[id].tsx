@@ -1,6 +1,6 @@
 import React from 'react';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import { ApiCollectionResponse, ResponseDataItem } from 'shared/api/types';
+import { ResponseDataItem } from 'shared/api/types';
 import { Character, CharacterExtend } from 'shared/api/character/type';
 import { CharacterApi } from 'shared/api/character';
 import { useRouter } from 'next/router';
