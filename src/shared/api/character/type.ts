@@ -26,6 +26,9 @@ export interface CharacterExtend extends Character {
 		image: {
 			data: ResponseDataItem<ImageDataResponse>
 		};
+		meta_img: {
+			data: ResponseDataItem<ImageDataResponse>
+		};
 		story: string;
 	}
 }

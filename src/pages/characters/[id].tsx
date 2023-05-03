@@ -22,8 +22,7 @@ const CharacterPage = ({ characterInfo }: InferGetStaticPropsType<typeof getStat
 
 
 	if (characterInfo) {
-		const currentImageFormat = characterInfo.attributes.info?.image?.data?.attributes ? checkImageFormat(characterInfo.attributes.info?.image?.data?.attributes?.formats) : "thumbnail";
-		const imageFormat = currentImageFormat === "large" ? "medium" : currentImageFormat;
+		const imageFormat = characterInfo.attributes.info?.meta_img?.data?.attributes ? checkImageFormat(characterInfo.attributes.info?.meta_img?.data?.attributes?.formats) : "thumbnail";
 
 		return (
 			<>
@@ -34,9 +33,9 @@ const CharacterPage = ({ characterInfo }: InferGetStaticPropsType<typeof getStat
 					<meta property="og:url" content={`${process.env.NEXT_PUBLIC_DOMAIN}/characters/${characterInfo.attributes.name}`} />
 					<meta property="og:type" content="profile"/>
 					<meta property="og:locale" content={router.locale} />
-					{characterInfo.attributes.info?.image && (
+					{characterInfo.attributes.info?.meta_img?.data && (
 						<meta property='og:image'
-									content={`${process.env.NEXT_PUBLIC_API_URL}${characterInfo.attributes.info.image?.data?.attributes?.formats?.[imageFormat]?.url}`} />
+									content={`${process.env.NEXT_PUBLIC_API_URL}${characterInfo.attributes.info.meta_img?.data?.attributes?.formats?.[imageFormat]?.url}`} />
 					)}
 				</Head>
 				<CharacterInfo characterInfo={characterInfo} />
