@@ -74,7 +74,7 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
 			</section>
 			<section className="mb-6">
 				<h2 className='text-2xl font-medium mb-4'>Навыки</h2>
-				<div className="flex flex-col gap-4">
+				<div className="flex flex-col lg:grid lg:grid-cols-2 gap-4">
 					{characterInfo.attributes.info?.main_skill?.map((skill) => (
 						<CharacterSkill key={skill.id} skill={skill} />
 					))}
