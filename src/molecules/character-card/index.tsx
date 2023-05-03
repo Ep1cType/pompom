@@ -34,7 +34,7 @@ export const CharacterCard = ({ img, name, starCount, element, className }: Prop
 			</div>
 			<div
 				className='aspect-square w-6 h-6 absolute right-0 top-0 flex justify-center items-center bg-black rounded-full translate-x-1/2 -translate-y-1/2'>
-				<img
+				<Image
 					className='w-5 h-5'
 					src={`/icons/elements/${element}.webp`}
 					width={256}
@@ -47,10 +47,3 @@ export const CharacterCard = ({ img, name, starCount, element, className }: Prop
 		</Link>
 	);
 };
-
-function getElementImageUrl(element: CharacterElementList) {
-	switch (element) {
-		case 'ice':
-			return '';
-	}
-}

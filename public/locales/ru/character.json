@@ -1,0 +1,21 @@
+{
+  "path": {
+    "title": "Путь",
+    "destruction": "Разрушение",
+    "hunt": "Охота",
+    "erudition": "Эрудиция",
+    "harmony": "Гармония",
+    "nihility": "Небытие",
+    "preservation": "Сохранение",
+    "abundance": "Изобилие"
+  },
+  "element": {
+    "title": "Тип",
+    "fire": "Огненный",
+    "ice": "Ледяной",
+    "imaginary": "Мнимый",
+    "lightning": "Электрический",
+    "quantum": "Квантовый",
+    "wind": "Ветряной"
+  }
+}

@@ -29,7 +29,7 @@ export const Header = () => {
 						{/*<li><a>Спортсмены</a></li>*/}
 					</ul>
 				</div>
-				<Link href={"/"} className="btn btn-ghost normal-case text-xl">Billiard</Link>
+				<Link href={"/"} className="btn btn-ghost normal-case text-xl">HSR</Link>
 			</div>
 			<div className="navbar-center hidden lg:flex">
 				<ul className="menu menu-horizontal px-1">
@@ -67,13 +67,5 @@ const headerItems = [
 	{
 		title: "Тир-лист",
 		link: "/tier-list"
-	},
-	{
-		title: "Турниры",
-		link: "/tournament"
-	},
-	{
-		title: "Спортсмены",
-		link: "/players"
 	}
 ]

@@ -9,11 +9,14 @@ export interface Character {
 	icon: CreateBody<ResponseDataItem<ImageDataResponse>>;
 	star: "four" | "five";
 	element: CharacterElementList;
+	path: CharacterPathList
 }
 
 export type CharacterElementList = "fire" | "ice" | "lightning" | "wind" | "physical" | "quantum";
 
 export type CharacterSexList = "male" | "female";
+
+export type CharacterPathList = "abundance" | "destruction" | "erudition" | "harmony" | "hunt" | "nihility" | "preservation"
 
 export interface CharacterExtend extends Character {
 	info: {

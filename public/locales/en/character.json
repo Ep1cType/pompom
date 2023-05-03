@@ -1,0 +1,21 @@
+{
+  "path": {
+    "title": "Path",
+    "destruction": "The Destruction",
+    "hunt": "The Hunt",
+    "erudition": "The Erudition",
+    "harmony": "The Harmony",
+    "nihility": "The Nihility",
+    "preservation": "The Preservation",
+    "abundance": "The Abundance"
+  },
+  "element": {
+    "title": "Combat type",
+    "fire": "Fire",
+    "ice": "Ice",
+    "imaginary": "Imaginary",
+    "lightning": "Lightning",
+    "quantum": "Quantum",
+    "wind": "Wind"
+  }
+}
