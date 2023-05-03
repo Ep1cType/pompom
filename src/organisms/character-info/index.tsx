@@ -67,6 +67,7 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
 						width={splashImage?.width}
 						height={splashImage?.height}
 						quality={100}
+						priority
 						alt={characterInfo.attributes.info.image.data.attributes.name}
 					/>
 				)}

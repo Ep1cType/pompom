@@ -20,6 +20,7 @@ const CharacterPage = ({ characterInfo }: InferGetStaticPropsType<typeof getStat
 		);
 	}
 
+	console.log(characterInfo)
 
 	if (characterInfo) {
 		const imageFormat = characterInfo.attributes.info?.meta_img?.data?.attributes ? checkImageFormat(characterInfo.attributes.info?.meta_img?.data?.attributes?.formats) : "thumbnail";
@@ -27,9 +28,10 @@ const CharacterPage = ({ characterInfo }: InferGetStaticPropsType<typeof getStat
 		return (
 			<>
 				<Head>
-					<title>{characterInfo.attributes.name}</title>
-					<meta property='og:title' content={characterInfo.attributes.name} />
+					<title>{characterInfo.attributes.name} | pom-pom.pro</title>
+					<meta property='og:title' content={`${characterInfo.attributes.name} | pom-pom.pro`} />
 					<meta property='og:description' content={characterInfo.attributes?.info?.story} />
+					<meta name="description" content={characterInfo.attributes?.info?.story} />
 					<meta property="og:url" content={`${process.env.NEXT_PUBLIC_DOMAIN}/characters/${characterInfo.attributes.name}`} />
 					<meta property="og:type" content="profile"/>
 					<meta property="og:locale" content={router.locale} />
