@@ -16,7 +16,7 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
 
 	const starCount = characterInfo.attributes.star === 'five' ? 5 : 4;
 	const imageFormat = characterInfo.attributes.info?.image ? checkImageFormat(characterInfo.attributes.info.image.data.attributes.formats) : "thumbnail";
-	const splashImage = characterInfo.attributes.info.image.data?.attributes?.formats?.[imageFormat]
+	const splashImage = characterInfo.attributes.info?.image?.data?.attributes?.formats?.[imageFormat]
 
 	return (
 		<div className='container mx-auto px-4 py-8'>
@@ -60,7 +60,7 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
 					</p>
 					<p className='text-lg/tight'>{characterInfo.attributes.info?.story}</p>
 				</div>
-				{characterInfo.attributes.info?.image && (
+				{splashImage && (
 					<ImageWithDomain
 						className='md:max-w-[50%]'
 						src={splashImage?.url}
