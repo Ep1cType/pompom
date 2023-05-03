@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 const { i18n } = require('./next-i18next.config')
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   output: "standalone",
   images: {
-    domains: ['localhost', 'api.epic-type.ru']
+    domains: ['localhost', 'api.pom-pom.pro']
   },
   i18n
 }
