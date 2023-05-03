@@ -22,7 +22,8 @@ const CharacterPage = ({ characterInfo }: InferGetStaticPropsType<typeof getStat
 
 
 	if (characterInfo) {
-		const imageFormat = characterInfo.attributes.info?.image?.data?.attributes ? checkImageFormat(characterInfo.attributes.info?.image?.data?.attributes?.formats) : "thumbnail";
+		const currentImageFormat = characterInfo.attributes.info?.image?.data?.attributes ? checkImageFormat(characterInfo.attributes.info?.image?.data?.attributes?.formats) : "thumbnail";
+		const imageFormat = currentImageFormat === "large" ? "medium" : currentImageFormat;
 
 		return (
 			<>
