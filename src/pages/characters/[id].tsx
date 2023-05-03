@@ -5,6 +5,8 @@ import { Character, CharacterExtend } from 'shared/api/character/type';
 import { CharacterApi } from 'shared/api/character';
 import { useRouter } from 'next/router';
 import { CharacterInfo } from 'organisms/character-info';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Head from 'next/head';
 
 const Api = new CharacterApi();
 
@@ -19,7 +21,14 @@ const CharacterPage = ({ characterInfo }: InferGetStaticPropsType<typeof getStat
 
 	if (characterInfo) {
 		return (
-			<CharacterInfo characterInfo={characterInfo} />
+			<>
+				<Head>
+					<title>{characterInfo.attributes.name}</title>
+					<meta property="og:title" content={characterInfo.attributes.name} />
+					<meta property="og:image" content={`${process.env.NEXT_PUBLIC_API_URL}${characterInfo.attributes.info.image.data.attributes.formats.large.url}`} />
+				</Head>
+				<CharacterInfo characterInfo={characterInfo} />
+			</>
 		);
 	}
 };
@@ -49,7 +58,7 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 export const getStaticProps: GetStaticProps<{ characterInfo: ResponseDataItem<CharacterExtend> | null }> = async (
 	context,
 ) => {
-	const locale = context.locale;
+	const locale = context.locale as string;
 	const name = context.params!.id as string;
 
 
@@ -60,6 +69,7 @@ export const getStaticProps: GetStaticProps<{ characterInfo: ResponseDataItem<Ch
 			return {
 				props: {
 					characterInfo: response.data.data[0] ?? null,
+					...(await serverSideTranslations(locale, ['common', 'character'])),
 				},
 				revalidate: 60,
 			};
@@ -68,6 +78,7 @@ export const getStaticProps: GetStaticProps<{ characterInfo: ResponseDataItem<Ch
 		return {
 			props: {
 				characterInfo: null,
+				...(await serverSideTranslations(locale, ['common', 'character'])),
 			},
 			redirect: {
 				destination: '/404',
@@ -78,6 +89,7 @@ export const getStaticProps: GetStaticProps<{ characterInfo: ResponseDataItem<Ch
 		return {
 			props: {
 				characterInfo: null,
+				...(await serverSideTranslations(locale, ['common', 'character'])),
 			},
 			redirect: {
 				destination: '/404',
