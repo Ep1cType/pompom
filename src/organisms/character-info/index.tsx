@@ -60,9 +60,9 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
 				{characterInfo.attributes.info?.image && (
 					<ImageWithDomain
 						className='md:max-w-[50%]'
-						src={characterInfo.attributes.info.image.data.attributes.formats.large.url}
-						width={characterInfo.attributes.info.image.data.attributes.formats.large.width}
-						height={characterInfo.attributes.info.image.data.attributes.formats.large.height}
+						src={characterInfo.attributes.info.image.data?.attributes?.formats?.large?.url}
+						width={characterInfo.attributes.info.image.data?.attributes?.formats?.large?.width}
+						height={characterInfo.attributes.info.image.data?.attributes?.formats?.large?.height}
 						quality={100}
 						alt={characterInfo.attributes.info.image.data.attributes.name}
 					/>
