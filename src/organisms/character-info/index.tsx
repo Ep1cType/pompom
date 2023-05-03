@@ -5,6 +5,7 @@ import { ImageWithDomain } from 'shared/ui/image-with-domain';
 import { CharacterSkill } from 'molecules/character-skill';
 import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
+import { checkImageFormat } from 'shared/api/model';
 
 type Props = {
 	characterInfo: ResponseDataItem<CharacterExtend>
@@ -14,6 +15,8 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
 	const { t } = useTranslation(['character']);
 
 	const starCount = characterInfo.attributes.star === 'five' ? 5 : 4;
+	const imageFormat = characterInfo.attributes.info?.image ? checkImageFormat(characterInfo.attributes.info.image.data.attributes.formats) : "thumbnail";
+	const splashImage = characterInfo.attributes.info.image.data?.attributes?.formats?.[imageFormat]
 
 	return (
 		<div className='container mx-auto px-4 py-8'>
@@ -60,9 +63,9 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
 				{characterInfo.attributes.info?.image && (
 					<ImageWithDomain
 						className='md:max-w-[50%]'
-						src={characterInfo.attributes.info.image.data?.attributes?.formats?.large?.url}
-						width={characterInfo.attributes.info.image.data?.attributes?.formats?.large?.width}
-						height={characterInfo.attributes.info.image.data?.attributes?.formats?.large?.height}
+						src={splashImage?.url}
+						width={splashImage?.width}
+						height={splashImage?.height}
 						quality={100}
 						alt={characterInfo.attributes.info.image.data.attributes.name}
 					/>

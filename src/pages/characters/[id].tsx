@@ -1,12 +1,13 @@
 import React from 'react';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import { ResponseDataItem } from 'shared/api/types';
+import { ImageFormatList, ResponseDataItem } from 'shared/api/types';
 import { Character, CharacterExtend } from 'shared/api/character/type';
 import { CharacterApi } from 'shared/api/character';
 import { useRouter } from 'next/router';
 import { CharacterInfo } from 'organisms/character-info';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
+import { checkImageFormat } from 'shared/api/model';
 
 const Api = new CharacterApi();
 
@@ -19,16 +20,19 @@ const CharacterPage = ({ characterInfo }: InferGetStaticPropsType<typeof getStat
 		);
 	}
 
+
 	if (characterInfo) {
+		const imageFormat = characterInfo.attributes.info?.image ? checkImageFormat(characterInfo.attributes.info.image.data.attributes.formats) : "thumbnail";
+
 		return (
 			<>
 				<Head>
 					<title>{characterInfo.attributes.name}</title>
-					<meta property="og:title" content={characterInfo.attributes.name} />
+					<meta property='og:title' content={characterInfo.attributes.name} />
 					{characterInfo.attributes.info?.image && (
-						<meta property="og:image" content={`${process.env.NEXT_PUBLIC_API_URL}${characterInfo.attributes.info.image?.data?.attributes?.formats?.large?.url}`} />
+						<meta property='og:image'
+									content={`${process.env.NEXT_PUBLIC_API_URL}${characterInfo.attributes.info.image?.data?.attributes?.formats?.[imageFormat]?.url}`} />
 					)}
-
 				</Head>
 				<CharacterInfo characterInfo={characterInfo} />
 			</>
