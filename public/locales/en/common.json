@@ -1,5 +1,9 @@
 {
   "header": {
     "home": "Home"
+  },
+  "footer": {
+    "title": "pom-pom.pro is not affiliated with HoYoverse.",
+    "desc": "Honkai: Star Rail, game content and materials are trademarks and copyrights of HoYoverse."
   }
 }
