@@ -7,7 +7,8 @@ export class CharacterApi {
 		return apiReq.get<ApiCollectionResponse<Character>>("characters", {
 			params: {
 				populate: "icon",
-				locale
+				locale,
+				"sort[0]": "name"
 			}
 		})
 	}
