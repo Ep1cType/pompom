@@ -25,7 +25,10 @@ const CharacterPage = ({ characterInfo }: InferGetStaticPropsType<typeof getStat
 				<Head>
 					<title>{characterInfo.attributes.name}</title>
 					<meta property="og:title" content={characterInfo.attributes.name} />
-					<meta property="og:image" content={`${process.env.NEXT_PUBLIC_API_URL}${characterInfo.attributes.info.image.data.attributes.formats.large.url}`} />
+					{characterInfo.attributes.info?.image && (
+						<meta property="og:image" content={`${process.env.NEXT_PUBLIC_API_URL}${characterInfo.attributes.info.image.data.attributes.formats.large.url}`} />
+					)}
+
 				</Head>
 				<CharacterInfo characterInfo={characterInfo} />
 			</>
