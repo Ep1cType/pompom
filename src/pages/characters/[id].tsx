@@ -84,6 +84,7 @@ export const getStaticProps: GetStaticProps<{ characterInfo: ResponseDataItem<Ch
 				...(await serverSideTranslations(locale, ['common', 'character'])),
 			},
 			redirect: {
+				revalidate: 60,
 				destination: '/404',
 			},
 		};
@@ -95,6 +96,7 @@ export const getStaticProps: GetStaticProps<{ characterInfo: ResponseDataItem<Ch
 				...(await serverSideTranslations(locale, ['common', 'character'])),
 			},
 			redirect: {
+				revalidate: 60,
 				destination: '/404',
 			},
 		};
