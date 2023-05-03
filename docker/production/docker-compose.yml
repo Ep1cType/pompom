@@ -23,7 +23,7 @@ services:
       - traefik.enable=true
       - traefik.docker.network=proxy
       - traefik.http.routers.production_client.entrypoints=websecure
-      - traefik.http.routers.production_client.rule=Host(`www.epic-type.ru`,`epic-type.ru`)
+      - traefik.http.routers.production_client.rule=Host(`pom-pom.pro`)
       - traefik.http.routers.production_client.tls=true
       - traefik.http.routers.production_client.tls.certresolver=letsencrypt
       - traefik.http.routers.production_client.service=production_client_service
