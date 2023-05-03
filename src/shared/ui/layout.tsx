@@ -17,7 +17,7 @@ export const Layout = ({ children, className }: Props) => {
 			<footer className='flex-shrink-0 '>
 				hello
 			</footer>
-			<AuthModal />
+			{/*<AuthModal />*/}
 		</div>
 	);
 };

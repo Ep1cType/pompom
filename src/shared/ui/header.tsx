@@ -52,9 +52,9 @@ export const Header = () => {
 					{/*<li><a>Item 3</a></li>*/}
 				</ul>
 			</div>
-			<div className="navbar-end">
-				<label htmlFor="auth-modal" className="btn">Login</label>
-			</div>
+			{/*<div className="navbar-end">*/}
+			{/*	<label htmlFor="auth-modal" className="btn">Login</label>*/}
+			{/*</div>*/}
 		</header>
 	);
 };
