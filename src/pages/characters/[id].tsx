@@ -22,7 +22,7 @@ const CharacterPage = ({ characterInfo }: InferGetStaticPropsType<typeof getStat
 
 
 	if (characterInfo) {
-		const imageFormat = characterInfo.attributes.info?.image ? checkImageFormat(characterInfo.attributes.info.image.data.attributes.formats) : "thumbnail";
+		const imageFormat = characterInfo.attributes.info?.image?.data?.attributes ? checkImageFormat(characterInfo.attributes.info?.image?.data?.attributes?.formats) : "thumbnail";
 
 		return (
 			<>

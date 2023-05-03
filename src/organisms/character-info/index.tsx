@@ -15,7 +15,7 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
 	const { t } = useTranslation(['character']);
 
 	const starCount = characterInfo.attributes.star === 'five' ? 5 : 4;
-	const imageFormat = characterInfo.attributes.info?.image ? checkImageFormat(characterInfo.attributes.info.image.data.attributes.formats) : "thumbnail";
+	const imageFormat = characterInfo.attributes.info?.image?.data?.attributes ? checkImageFormat(characterInfo.attributes.info.image.data.attributes.formats) : "thumbnail";
 	const splashImage = characterInfo.attributes.info?.image?.data?.attributes?.formats?.[imageFormat]
 
 	return (
