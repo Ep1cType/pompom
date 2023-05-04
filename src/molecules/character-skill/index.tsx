@@ -12,10 +12,10 @@ export const CharacterSkill = ({ skill }: Props) => {
 	const skillLevelList = Object.values(skill.description) as string[];
 
 	return (
-		<div className='py-4 px-4 bg-blue-900 rounded-2xl'>
+		<div className='py-4 px-4 bg-blue-900 rounded-2xl flex flex-col'>
 			<h3 className='font-bold text-base mb-1'>{skill.name}</h3>
 			<p className='font-medium text-sm mb-2 text-orange-300'>{skill.type}</p>
-			<p className='[&>span]:font-bold' dangerouslySetInnerHTML={{ __html: skillLevelList[initialSkill] }} />
+			<p className='[&>span]:font-bold flex-grow text-base/snug' dangerouslySetInnerHTML={{ __html: skillLevelList[initialSkill] }} />
 
 			{skillLevelList.length > 1 && (
 				<div className='mt-4'>
