@@ -17,7 +17,7 @@ const CharactersPage = () => {
 	return (
 		<>
 			<Head>
-				<title>{router.locale === "ru" ? "Персонажи" : "Characters"} | pom-pom.pro</title>
+				<title>{`${router.locale === "ru" ? "Персонажи" : "Characters"} | pom-pom.pro`}</title>
 				<meta property='og:title' content={`${router.locale === "ru" ? "Персонажи" : "Characters"} | pom-pom.pro`} />
 				<meta property='og:description' content={router.locale === "ru" ? "Список персонажей" : "Characters List"} />
 				<meta name="description" content={router.locale === "ru" ? "Список персонажей" : "Characters List"} />
