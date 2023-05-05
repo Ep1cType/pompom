@@ -10,7 +10,7 @@ export const Header = ({ className }: Props) => {
 	return (
 		<header className={clsx('navbar bg-blue-900', className)}>
 			<div className="container mx-auto px-4">
-				<div className='navbar-start'>
+				<div className='navbar-start flex items-center'>
 					<div className='dropdown'>
 						<label tabIndex={0} className='btn btn-ghost lg:hidden'>
 							<svg xmlns='http://www.w3.org/2000/svg' className='h-5 w-5' fill='none' viewBox='0 0 24 24'
@@ -38,7 +38,7 @@ export const Header = ({ className }: Props) => {
 							{/*<li><a>Спортсмены</a></li>*/}
 						</ul>
 					</div>
-					<Link href={'/'} className='btn btn-ghost normal-case text-xl'>HSR</Link>
+					<Link href={'/'} className='btn btn-ghost normal-case text-lg md:text-xl'>pom-pom.pro</Link>
 				</div>
 				<div className='navbar-center hidden lg:flex'>
 					<ul className='menu menu-horizontal px-1'>
