@@ -9,7 +9,7 @@ type Props = {
 export const Header = ({ className }: Props) => {
 	return (
 		<header className={clsx('navbar bg-blue-900', className)}>
-			<div className="container mx-auto px-4">
+			<div className='container mx-auto px-4'>
 				<div className='navbar-start flex items-center'>
 					<div className='dropdown'>
 						<label tabIndex={0} className='btn btn-ghost lg:hidden'>
@@ -18,7 +18,8 @@ export const Header = ({ className }: Props) => {
 								<path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M4 6h16M4 12h8m-8 6h16' />
 							</svg>
 						</label>
-						<ul tabIndex={0} className='menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 bg-blue-900 rounded-box w-52'>
+						<ul tabIndex={0}
+								className='menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 bg-blue-900 rounded-box w-52'>
 							{headerItems.map((item, index) => (
 								<li key={index}>
 									<Link href={item.link}>{item.title}</Link>
@@ -77,5 +78,9 @@ const headerItems = [
 	{
 		title: 'Тир-лист',
 		link: '/tier-list',
+	},
+	{
+		title: 'warp',
+		link: '/warp',
 	},
 ];

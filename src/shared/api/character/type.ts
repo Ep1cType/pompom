@@ -9,7 +9,8 @@ export interface Character {
 	icon: CreateBody<ResponseDataItem<ImageDataResponse>>;
 	star: "four" | "five";
 	element: CharacterElementList;
-	path: CharacterPathList
+	path: CharacterPathList;
+	meta_desc: string;
 }
 
 export type CharacterElementList = "fire" | "ice" | "lightning" | "wind" | "physical" | "quantum";
