@@ -27,4 +27,4 @@ services:
       - traefik.http.routers.production_stage.tls=true
       - traefik.http.routers.production_stage.tls.certresolver=letsencrypt
       - traefik.http.routers.production_stage.service=production_stage_service
-      - traefik.http.services.production_stage_service.loadbalancer.server.port=4000
+      - traefik.http.services.production_stage_service.loadbalancer.server.port=5000
