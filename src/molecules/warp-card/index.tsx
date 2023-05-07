@@ -26,10 +26,13 @@ export const WarpCard = ({warp, count}: Props) => {
 			{count}
 			{showImage && (
 				<Image
-					className="aspect-square rounded-full w-12 object-cover"
+					className={clsx(
+						"aspect-square  w-12 ",
+						warp.item_type === "Персонажи" ? "object-cover rounded-full" : "object-contain"
+					)}
 					width={256}
 					height={256}
-					src={`/characters/${warp.name}.webp`}
+					src={`/${warp.item_type === "Персонажи" ? "characters" : "cones"}/${warp.name}.webp`}
 					onError={() => setShowImage(false)}
 					alt={warp.name}
 				/>
