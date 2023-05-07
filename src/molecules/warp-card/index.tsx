@@ -32,7 +32,7 @@ export const WarpCard = ({warp, count}: Props) => {
 					)}
 					width={256}
 					height={256}
-					src={`/${warp.item_type === "Персонажи" ? "characters" : "cones"}/${warp.name}.webp`}
+					src={`/${warp.item_type === "Персонажи" ? `characters/${warp.name}.webp` : `cones/${warp.item_id}.webp`}`}
 					onError={() => setShowImage(false)}
 					alt={warp.name}
 				/>
