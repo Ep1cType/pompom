@@ -21,6 +21,12 @@ function generateSiteMap(charactersList: ApiCollectionResponse<Character>) {
        <priority>0.5</priority>
        <lastmod>2023-05-05</lastmod>
      </url>
+     <url>
+       <loc>${DOMAIN_HOST}/warp</loc>
+       <changefreq>monthly</changefreq>
+       <priority>0.9</priority>
+       <lastmod>2023-05-08</lastmod>
+     </url>
      ${charactersList.data
 		.map((char) => {
 			return `
