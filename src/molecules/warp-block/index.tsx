@@ -33,7 +33,7 @@ export const WarpBlock = ({gachaType}: Props) => {
 			</div>
 			<div className='flex flex-col gap-2 px-2 py-2 max-h-[500px] overflow-y-auto scrollBar'>
 				{warpData[gachaType].map((warpItem, index) => (
-					<WarpCard key={index} warp={warpItem} count={index + 1} />
+					<WarpCard key={index} warp={warpItem} count={warpData[gachaType].length - index} />
 				))}
 			</div>
 		</div>

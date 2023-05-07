@@ -94,14 +94,6 @@ const WarpPage = () => {
 						</li>
 					</ul>
 				</section>
-				<section className=''>
-
-
-				</section>
-				<section>
-
-
-				</section>
 				<WarpInfo />
 			</div>
 		</>
