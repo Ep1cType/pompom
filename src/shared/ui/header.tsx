@@ -80,7 +80,7 @@ const headerItems = [
 		link: '/tier-list',
 	},
 	{
-		title: 'warp',
+		title: 'Прыжки',
 		link: '/warp',
 	},
 ];
