@@ -43,3 +43,20 @@
   top: 525px;
   left: 30px;
 }
+
+*::-webkit-scrollbar-thumb {
+  background-color: blue;
+}
+
+.scrollBar::-webkit-scrollbar {
+  width: 3px;
+}
+.scrollBar::-webkit-scrollbar-track {
+  background: #1E3A8A;
+  border-radius: 3px;
+}
+.scrollBar::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  /*border: 1px solid grey;*/
+  background-color: #FFFFFF;
+}
