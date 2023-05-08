@@ -1,6 +1,6 @@
 import React from 'react';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import { ImageFormatList, ResponseDataItem } from 'shared/api/types';
+import { ResponseDataItem } from 'shared/api/types';
 import { Character, CharacterExtend } from 'shared/api/character/type';
 import { CharacterApi } from 'shared/api/character';
 import { useRouter } from 'next/router';
@@ -109,8 +109,6 @@ export const getStaticProps: GetStaticProps<{ characterInfo: ResponseDataItem<Ch
 			},
 		};
 	}
-
-
 };
 
 export default CharacterPage;
