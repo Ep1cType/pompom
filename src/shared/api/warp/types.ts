@@ -15,11 +15,16 @@ export interface WarpItem {
 	name: string;
 	rank_type: string;
 	time: string;
-	uid: string
+	uid: string;
 }
 
-export type GachaTypeList = '1' | '2' | '11' | '12';
 //1 - Стандартный баннер
 //2 - баннер новичка
 //11 - Эвентовый персонаж
 //12 - Эвентовый конус
+export interface GachaType {
+	'1': 'Стандартный прыжок';
+	'2': 'Отправной прыжок';
+	'11': 'Прыжок события: Персонаж';
+	'12': 'Прыжок события: Световой конус'
+}

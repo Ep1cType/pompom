@@ -1,13 +1,13 @@
 import React from 'react';
 import { useUnit } from 'effector-react';
 import { $warpFilter, setWarpFilter } from 'features/filter-warps/model';
-import { GachaTypeList } from 'shared/api/warp/types';
+import { GachaType } from 'shared/api/warp/types';
 import clsx from 'clsx';
 
 export const FilterWarps = () => {
 	const [currentWarpFilter] = useUnit([$warpFilter]);
 
-	function onChangeFilter(key: GachaTypeList) {
+	function onChangeFilter(key: keyof GachaType) {
 		return () => {
 			setWarpFilter(key);
 		};
@@ -31,7 +31,7 @@ export const FilterWarps = () => {
 	);
 };
 
-const filterList: { key: GachaTypeList, value: string }[] = [
+const filterList: { key: keyof GachaType, value: GachaType[keyof GachaType] }[] = [
 	{
 		key: '2',
 		value: 'Отправной прыжок',

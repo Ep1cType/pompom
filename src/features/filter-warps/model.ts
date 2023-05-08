@@ -1,8 +1,8 @@
 import { createEvent, createStore } from 'effector';
-import { GachaTypeList } from 'shared/api/warp/types';
+import { GachaType } from 'shared/api/warp/types';
 
-export const setWarpFilter = createEvent<GachaTypeList>();
+export const setWarpFilter = createEvent<keyof GachaType>();
 
-export const $warpFilter = createStore<GachaTypeList>('2');
+export const $warpFilter = createStore<keyof GachaType>('2');
 
 $warpFilter.on(setWarpFilter, (_, filter) => filter);

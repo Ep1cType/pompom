@@ -1,17 +1,15 @@
 import { createEffect } from 'effector';
-import axios from 'axios';
-import { GachaResponse, GachaTypeList, WarpItem } from 'shared/api/warp/types';
+import { GachaType, WarpItem } from 'shared/api/warp/types';
 import { WarpApi } from 'shared/api/warp/index';
 
-const PAGE_SIZE = 20;
-export const gachaTypeList: Array<GachaTypeList> = ['1', '2', '11', '12'];
+export const gachaTypeList: Array<keyof GachaType> = ['1', '2', '11', '12'];
 
 const Api = new WarpApi();
 
 export const loadWarpListFx = createEffect<string, any, any>(async (link) => {
 	try {
 		const url = new URL(link);
-		const data: { [key in GachaTypeList]: WarpItem[] } = {
+		const data: { [key in keyof GachaType]: WarpItem[] } = {
 			'1': [],
 			'2': [],
 			'11': [],
@@ -74,29 +72,29 @@ export const loadWarpListFx = createEffect<string, any, any>(async (link) => {
 // });
 
 
-type GetWarpLog = {
-	link: string;
-	pageNumber: number;
-	gachaType: string;
-	lastID?: string;
-}
+// type GetWarpLog = {
+// 	link: string;
+// 	pageNumber: number;
+// 	gachaType: string;
+// 	lastID?: string;
+// }
 
-async function getWarpLog({ link, pageNumber, gachaType, lastID = '' }: GetWarpLog) {
-	try {
-		const response = await axios.get<GachaResponse>(link, {
-			params: {
-				// gacha_type: gachaType,
-				// page: pageNumber,
-				// end_id: lastID,
-				// size: PAGE_SIZE,
-			},
-		});
-
-		console.log('RESPONSE FROM getWarpLog', response.data);
-		if (!!response.data.data) {
-			return response.data.data;
-		}
-	} catch (e) {
-		console.error(e);
-	}
-}
+// async function getWarpLog({ link, pageNumber, gachaType, lastID = '' }: GetWarpLog) {
+// 	try {
+// 		const response = await axios.get<GachaResponse>(link, {
+// 			params: {
+// 				// gacha_type: gachaType,
+// 				// page: pageNumber,
+// 				// end_id: lastID,
+// 				// size: PAGE_SIZE,
+// 			},
+// 		});
+//
+// 		console.log('RESPONSE FROM getWarpLog', response.data);
+// 		if (!!response.data.data) {
+// 			return response.data.data;
+// 		}
+// 	} catch (e) {
+// 		console.error(e);
+// 	}
+// }
