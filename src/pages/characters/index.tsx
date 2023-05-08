@@ -4,6 +4,7 @@ import { $charactersList, fetchCharactersListFx } from 'entities/character/model
 import { useRouter } from 'next/router';
 import { CharacterCard } from 'molecules/character-card';
 import Head from 'next/head';
+import { PageTitle } from 'shared/ui/page-title';
 
 const CharactersPage = () => {
 	const charactersList = useStore($charactersList);
@@ -26,6 +27,7 @@ const CharactersPage = () => {
 				<meta property="og:locale" content={router.locale} />
 			</Head>
 			<div className='container mx-auto px-4 py-8'>
+				<PageTitle className="mb-8 md:mb-16" text={"Персонажи"} />
 				<div className='grid grid-cols-4 gap-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-10'>
 					{charactersList.map((character) => (
 						<CharacterCard
