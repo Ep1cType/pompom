@@ -75,10 +75,10 @@ const headerItems = [
 		title: 'Персонажи',
 		link: '/characters',
 	},
-	{
-		title: 'Тир-лист',
-		link: '/tier-list',
-	},
+	// {
+	// 	title: 'Тир-лист',
+	// 	link: '/tier-list',
+	// },
 	{
 		title: 'Прыжки',
 		link: '/warp',

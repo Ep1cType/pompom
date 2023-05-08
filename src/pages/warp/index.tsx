@@ -11,6 +11,7 @@ import clsx from 'clsx';
 import { copyToClipboard } from 'shared/utils/copy-to-clipboard';
 import Head from 'next/head';
 import { FilterWarps } from 'features/filter-warps/ui';
+import { PageTitle } from 'shared/ui/page-title';
 
 const WarpInfo = dynamic(() =>
 		import('organisms/warp-info').then((mod) => mod.WarpInfo),
@@ -32,14 +33,16 @@ const WarpPage = () => {
 			<Head>
 				<title>{`Счётчик прыжков | pom-pom.pro`}</title>
 				<meta property='og:title' content={`Счётчик прыжков | pom-pom.pro`} />
-				<meta property='og:description' content={"Здесь Вы можете импортировать из игры ваши прыжки и посмотреть статистику по баннерам."} />
-				<meta name="description" content={"Здесь Вы можете импортировать из игры ваши прыжки и посмотреть статистику по баннерам."} />
-				<meta property="og:url" content={`${process.env.NEXT_PUBLIC_DOMAIN}/warp`} />
-				<meta property="og:type" content="website"/>
-				<meta property="og:locale" content={"ru"} />
+				<meta property='og:description'
+							content={'Здесь Вы можете импортировать из игры ваши прыжки и посмотреть статистику по баннерам.'} />
+				<meta name='description'
+							content={'Здесь Вы можете импортировать из игры ваши прыжки и посмотреть статистику по баннерам.'} />
+				<meta property='og:url' content={`${process.env.NEXT_PUBLIC_DOMAIN}/warp`} />
+				<meta property='og:type' content='website' />
+				<meta property='og:locale' content={'ru'} />
 			</Head>
 			<div className='container mx-auto px-4 py-8'>
-				<h1 className="text-4xl md:text-5xl">Счётчик прыжков</h1>
+				<PageTitle text={"Счётчик прыжков"} />
 				<section>
 					<ul className='steps steps-vertical text-base'>
 						<li className='step step-primary'>
@@ -51,7 +54,7 @@ const WarpPage = () => {
 						</li>
 						<li className='step step-primary'>
 							<div className='flex flex-col items-start gap-2'>
-								<p>Скопируйте данный скрипт и вставьте его в PowerShell</p>
+								<p>Скопируйте данный скрипт и вставьте его в PowerShell. При нажатии на скрипт он скопируется авоматически.</p>
 
 								<pre
 									className='break-words max-w-[500px] whitespace-break-spaces bg-blue-900 p-2 rounded-xl text-start'
@@ -69,7 +72,7 @@ const WarpPage = () => {
 						<li className='step step-primary'>
 							<div className='flex flex-col items-start gap-2'>
 								<p>Результат выполнения скрипта должен автоматически скопироваться в буфер обмена. Вставьте результат
-									выполнения в поле ниже и нажмите кнопку <span className="text-orange-300">Импорт</span>:</p>
+									выполнения в поле ниже и нажмите кнопку <span className='text-orange-300'>Импорт</span>:</p>
 								<input
 									type='text'
 									placeholder='Type here'
@@ -81,8 +84,8 @@ const WarpPage = () => {
 								<button
 									className={clsx(
 										'btn bg-gradient-to-t from-five-from to-five-to px-6 h-10 rounded-xl text-white',
-										"hover:opacity-80",
-										disabled && 'loading'
+										'hover:opacity-80',
+										disabled && 'loading',
 									)}
 									onClick={submit}
 									disabled={disabled}
@@ -93,7 +96,7 @@ const WarpPage = () => {
 						</li>
 					</ul>
 				</section>
-				<div className="flex flex-col lg:flex-row mt-5">
+				<div className='flex flex-col lg:flex-row mt-5'>
 					<aside>
 						<FilterWarps />
 					</aside>
