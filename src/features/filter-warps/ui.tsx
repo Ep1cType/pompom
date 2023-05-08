@@ -38,11 +38,11 @@ const filterList: { key: GachaTypeList, value: string }[] = [
 	},
 	{
 		key: '1',
-		value: 'Прыжок события: Персонаж',
+		value: 'Стандартный прыжок',
 	},
 	{
 		key: '11',
-		value: 'Стандартный прыжок',
+		value: 'Прыжок события: Персонаж',
 	},
 	{
 		key: '12',
