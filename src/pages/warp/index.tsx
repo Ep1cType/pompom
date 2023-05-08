@@ -1,17 +1,16 @@
 import React, { useRef } from 'react';
 import dynamic from 'next/dynamic';
-import { useStore, useUnit } from 'effector-react';
+import { useUnit } from 'effector-react';
 import {
 	$formDisabled,
 	$warpLink,
-	$warpLinkSubmittedError,
 	warpChanged,
 	warpLinkSubmitted,
 } from 'features/fetch-warps/model';
 import clsx from 'clsx';
 import { copyToClipboard } from 'shared/utils/copy-to-clipboard';
-import Image from 'next/image';
 import Head from 'next/head';
+import { FilterWarps } from 'features/filter-warps/ui';
 
 const WarpInfo = dynamic(() =>
 		import('organisms/warp-info').then((mod) => mod.WarpInfo),
@@ -20,8 +19,7 @@ const WarpInfo = dynamic(() =>
 
 const WarpPage = () => {
 	const gistRef = useRef<HTMLPreElement>(null);
-	const [warpLink, submit, disabled, error] = useUnit([$warpLink, warpLinkSubmitted, $formDisabled, $warpLinkSubmittedError]);
-	const gistValue = '';
+	const [warpLink, submit, disabled] = useUnit([$warpLink, warpLinkSubmitted, $formDisabled]);
 
 	function onClick() {
 		if (gistRef.current) {
@@ -41,6 +39,7 @@ const WarpPage = () => {
 				<meta property="og:locale" content={"ru"} />
 			</Head>
 			<div className='container mx-auto px-4 py-8'>
+				<h1 className="text-4xl md:text-5xl">Счётчик прыжков</h1>
 				<section>
 					<ul className='steps steps-vertical text-base'>
 						<li className='step step-primary'>
@@ -94,7 +93,12 @@ const WarpPage = () => {
 						</li>
 					</ul>
 				</section>
-				<WarpInfo />
+				<div className="flex flex-col lg:flex-row mt-5">
+					<aside>
+						<FilterWarps />
+					</aside>
+					<WarpInfo />
+				</div>
 			</div>
 		</>
 	);
