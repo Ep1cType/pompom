@@ -31,8 +31,8 @@ const WarpPage = () => {
 	return (
 		<>
 			<Head>
-				<title>{`Счётчик прыжков | pom-pom.pro`}</title>
-				<meta property='og:title' content={`Счётчик прыжков | pom-pom.pro`} />
+				<title>{`История прыжков | pom-pom.pro`}</title>
+				<meta property='og:title' content={`История прыжков | pom-pom.pro`} />
 				<meta property='og:description'
 							content={'Здесь Вы можете импортировать из игры ваши прыжки и посмотреть статистику по баннерам.'} />
 				<meta name='description'
@@ -42,7 +42,7 @@ const WarpPage = () => {
 				<meta property='og:locale' content={'ru'} />
 			</Head>
 			<div className='container mx-auto px-4 py-8'>
-				<PageTitle text={"Счётчик прыжков"} />
+				<PageTitle text={"История прыжков"} />
 				<section>
 					<ul className='steps steps-vertical text-base'>
 						<li className='step step-primary'>
