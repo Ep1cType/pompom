@@ -23,6 +23,7 @@ type Props = {
 	dataSet?: HTMLAttributes<HTMLDivElement>;
 	tooltip?: string;
 	image?: ImageDataResponse;
+	link?: string;
 }
 
 // $height: $react-timelines-track-height - 2 * $react-timelines-element-spacing; 60 -
@@ -43,7 +44,7 @@ type Props = {
 // transform: translateX(-50%) scale(0);
 // pointer-events: none;
 
-export const BasicElement = ({ title, start, end, style, classes, dataSet, tooltip, image }: Props) => {
+export const BasicElement = ({ title, start, end, style, classes, dataSet, tooltip, image, link }: Props) => {
 	return (
 		<div
 			className={createClasses(

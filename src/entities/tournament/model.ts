@@ -547,7 +547,6 @@ export const calcFirstFx = createEffect(async (playersList: any[]) => {
 						el.start[1] = firstPlayer;
 					}
 				});
-				console.log('PPPLLL', item);
 			}
 
 		});
@@ -689,11 +688,7 @@ export const calculateTournamentGridFx = createEffect(async (playersList: any[])
 		});
 	});
 
-	console.log(grid[0]);
-
 	const heapst = new ReverseBinaryHeap(15);
-	console.log([heapst.getHeap()]);
-
 
 	return grid;
 
