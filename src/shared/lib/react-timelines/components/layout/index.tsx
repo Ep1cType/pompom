@@ -76,6 +76,23 @@ export const Layout = (
 		}
 	}
 
+	useEffect(() => {
+		function wheelEvent(event: WheelEvent) {
+			event.preventDefault();
+			timelineRef.current?.scrollBy({
+				left: event.deltaY < 0 ? -50 : 50
+			})
+		}
+
+		if (timelineRef.current) {
+			timelineRef.current.addEventListener("wheel", wheelEvent)
+		}
+
+		return () => {
+			timelineRef.current && timelineRef.current.removeEventListener("wheel", wheelEvent)
+		}
+	}, [timelineRef])
+
 	function calculateSidebarWidth() {
 		if (sidebarRef.current) {
 			return sidebarRef.current.offsetWidth + getNumericPropertyValue(layoutRef.current as Element, 'margin-left');

@@ -31,7 +31,6 @@ export const createTournamentFx = createEffect(async (data: CreateTournamentForm
 	};
 
 	const response = await Api.postTournament(body);
-	console.log("POST TOURNAMENT RESPONSE", response.data)
 
 	return response;
 });

@@ -8,11 +8,26 @@ interface Props extends TimeBarCell {
 }
 
 export const Cell = ({ time, ...props }: Props) => {
+
+	if (props.id.toString().includes("m")) {
+		return (
+			<div className={clsx(
+				"absolute text-white border-l px-2.5  rt-timebar__cell "
+			)} style={time.toStyleLeftAndWidth(props.start,  props.end)}>
+				{/*<div className="relative whitespace-nowrap text-start">*/}
+				{/*	<div>*/}
+						<span className="sticky left-2.5">{props.title}</span>
+					{/*</div>*/}
+				{/*</div>*/}
+			</div>
+		)
+	}
+
+
 	return (
 		<div
 			className={clsx(
-				"absolute text-white text-center border-l  rt-timebar__cell",
-				props.id.toString().includes("m") ? "border-l-white" : "border-l-transparent"
+				"absolute text-white text-center border-l border-l-transparent rt-timebar__cell",
 			)} style={time.toStyleLeftAndWidth(props.start,  props.end)}>
 			<span className="sticky left-0">{props.title}</span>
 		</div>

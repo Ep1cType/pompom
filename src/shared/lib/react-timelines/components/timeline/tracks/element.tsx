@@ -11,10 +11,10 @@ interface Props extends TrackItem {
 	classes?: string[]
 	dataSet?: HTMLAttributes<HTMLDivElement>;
 	image?: ImageDataResponse;
-
+	link?: string;
 }
 export const Element = (props: Props) => {
-	const { time, style, title, start, end, classes, dataSet, tooltip, clickElement, image } = props
+	const { time, style, title, start, end, classes, dataSet, tooltip, clickElement, image, link } = props
 	const handleClick = () => {
 		if (clickElement) {
 			clickElement(props)
@@ -37,6 +37,7 @@ export const Element = (props: Props) => {
 				dataSet={dataSet}
 				tooltip={tooltip}
 				image={image}
+				link={link}
 			/>
 		</div>
 	)

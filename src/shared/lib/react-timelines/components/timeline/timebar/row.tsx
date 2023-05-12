@@ -11,10 +11,9 @@ type Props = {
 }
 
 export const Row = ({ time, cells, style }: Props) => {
-	console.log("CELLS", cells)
-
 	return (
-		<div className="relative overflow-hidden h-[25px] rt-timebar__row" style={style}>
+		// <div className="relative overflow-hidden h-[25px] rt-timebar__row" style={style}>
+		<div className="relative h-[25px] rt-timebar__row" style={style}>
 			{cells.map(cell => (
 				<Cell key={cell.id} time={time} {...cell} />
 			))}

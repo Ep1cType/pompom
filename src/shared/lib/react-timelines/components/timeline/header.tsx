@@ -58,7 +58,8 @@ export const TimelineHeader = ({ time, timebar: rows, onMove, onEnter, onLeave, 
 				className={`rt-timeline__header ${isSticky ? 'rt-is-sticky' : ''}`}
 				style={isSticky ? { width: viewportWidth, height: headerHeight } : {}}
 			>
-				<div className='overflow-x-auto rt-timeline__header-scroll' ref={scrollRef} onScroll={isSticky ? handleScroll : undefined}>
+				{/*<div className='overflow-x-auto rt-timeline__header-scroll' ref={scrollRef} onScroll={isSticky ? handleScroll : undefined}>*/}
+				<div className='rt-timeline__header-scroll' ref={scrollRef} onScroll={isSticky ? handleScroll : undefined}>
 					<div ref={timebarRef} style={isSticky ? { width } : {}}>
 						<Timebar time={time} rows={rows} />
 					</div>

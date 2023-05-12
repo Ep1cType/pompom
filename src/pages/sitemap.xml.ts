@@ -27,6 +27,12 @@ function generateSiteMap(charactersList: ApiCollectionResponse<Character>) {
        <priority>0.9</priority>
        <lastmod>2023-05-08</lastmod>
      </url>
+     <url>
+       <loc>${DOMAIN_HOST}/timeline</loc>
+       <changefreq>monthly</changefreq>
+       <priority>0.9</priority>
+       <lastmod>2023-05-12</lastmod>
+     </url>
      ${charactersList.data
 		.map((char) => {
 			return `
@@ -49,7 +55,7 @@ function SiteMap() {
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 	// We make an API call to gather the URLs for our site
-	const charactersListRequest = await Api.getCharactersList({})
+	const charactersListRequest = await Api.getCharactersList({});
 
 	// We generate the XML sitemap with the posts data
 	const sitemap = generateSiteMap(charactersListRequest.data);
@@ -62,6 +68,6 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 	return {
 		props: {},
 	};
-}
+};
 
 export default SiteMap;
