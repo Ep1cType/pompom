@@ -50,6 +50,7 @@
 
 .scrollBar::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
 }
 .scrollBar::-webkit-scrollbar-track {
   background: #1E3A8A;

@@ -33,8 +33,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 		locale: char.attributes.locale,
 	}));
 
-	console.log("PATHS", paths)
-
 
 	return {
 		fallback: true,

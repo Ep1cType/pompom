@@ -1,12 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
+import { useRouter } from 'next/router';
 
 type Props = {
 	className?: string;
 }
 
 export const Header = ({ className }: Props) => {
+	const router = useRouter();
 	return (
 		<header className={clsx('navbar bg-blue-900', className)}>
 			<div className='container mx-auto px-4'>
@@ -22,7 +24,7 @@ export const Header = ({ className }: Props) => {
 								className='menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 bg-blue-900 rounded-box w-52'>
 							{headerItems.map((item, index) => (
 								<li key={index}>
-									<Link href={item.link}>{item.title}</Link>
+									<Link  href={item.link}>{item.title}</Link>
 								</li>
 							))}
 							{/*<li><a>Турниры</a></li>*/}
@@ -45,7 +47,7 @@ export const Header = ({ className }: Props) => {
 					<ul className='menu menu-horizontal px-1'>
 						{headerItems.map((item, index) => (
 							<li key={index}>
-								<Link href={item.link}>{item.title}</Link>
+								<Link className={clsx(item.link === router.pathname && "bg-blue-950/60")} href={item.link}>{item.title}</Link>
 							</li>
 						))}
 						{/*<li><a>Item 1</a></li>*/}
@@ -82,5 +84,9 @@ const headerItems = [
 	{
 		title: 'История прыжков',
 		link: '/warp',
+	},
+	{
+		title: 'Лента событий',
+		link: '/timeline'
 	},
 ];
