@@ -13,15 +13,15 @@ import clsx from 'clsx';
 export const AuthModal = () => {
 	const [isPending, submit] = useUnit([$loginByEmailPending, loginByEmailFormSubmitted]);
 
-	useEffect(() => {
-		document.getElementById('auth-modal')?.addEventListener('change', (event) => {
-			// @ts-ignore
-			if (event.target?.checked as boolean) {
-				authModalMounted();
-				// authModalMounted()
-			}
-		});
-	}, []);
+	// useEffect(() => {
+	// 	document.getElementById('auth-modal')?.addEventListener('change', (event) => {
+	// 		// @ts-ignore
+	// 		if (event.target?.checked as boolean) {
+	// 			authModalMounted();
+	// 			// authModalMounted()
+	// 		}
+	// 	});
+	// }, []);
 
 	function onSubmit(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
