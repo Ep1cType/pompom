@@ -62,7 +62,7 @@ const WarpPage = () => {
 									ref={gistRef}
 								>
 					{'Invoke-Expression (New-Object Net.WebClient).DownloadString' +
-						'("https://gist.githubusercontent.com/Ep1cType/464a0a2d2ed9502d19f1f4d2adb54ddc/raw/6a968776e9ba02df61c69f879368362e8cd3310d/warp_link_from_browser")'}
+						'("https://gist.githubusercontent.com/Ep1cType/464a0a2d2ed9502d19f1f4d2adb54ddc/raw/9137c00da75656089e844256737f36fdbe2f177c/warp_link_from_browser")'}
 				</pre>
 							</div>
 
