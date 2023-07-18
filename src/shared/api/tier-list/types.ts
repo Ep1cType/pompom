@@ -6,18 +6,18 @@ export interface TierList {
 	updatedAt: string;
 	publishedAt: string;
 	s: {
-		data: ResponseDataItem<Character>[]
+		data: ResponseDataItem<Character>[];
 	};
 	a: {
-		data: ResponseDataItem<Character>[]
+		data: ResponseDataItem<Character>[];
 	};
 	b: {
-		data: ResponseDataItem<Character>[]
+		data: ResponseDataItem<Character>[];
 	};
 	c: {
-		data: ResponseDataItem<Character>[]
+		data: ResponseDataItem<Character>[];
 	};
 	d: {
-		data: ResponseDataItem<Character>[]
+		data: ResponseDataItem<Character>[];
 	};
 }

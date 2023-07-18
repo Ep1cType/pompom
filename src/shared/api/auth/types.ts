@@ -26,12 +26,12 @@ export interface SignInResponse {
 
 export interface SignInError {
 	data: {};
-	error: Error
+	error: Error;
 }
 
 interface Error {
 	status: number;
 	name: string;
 	message: string;
-	details: {}
+	details: {};
 }

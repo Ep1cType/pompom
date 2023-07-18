@@ -3,9 +3,7 @@
 const { fontFamily } = require('tailwindcss/defaultTheme');
 
 module.exports = {
-	content: [
-		'./src/**/*.{js,ts,jsx,tsx}',
-	],
+	content: ['./src/**/*.{js,ts,jsx,tsx}'],
 	theme: {
 		extend: {
 			fontFamily: {
@@ -36,9 +34,10 @@ module.exports = {
 	plugins: [require('daisyui'), require('@tailwindcss/typography')],
 	daisyui: {
 		themes: [
-			'dark', {
+			'dark',
+			{
 				main: {
-					accent: "#002554"
+					accent: '#002554',
 				},
 			},
 		],
