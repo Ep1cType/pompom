@@ -3,6 +3,7 @@ import Image, { ImageProps } from 'next/image';
 
 export const ImageWithDomain = ({ src, ...props }: ImageProps) => {
 	return (
+		// eslint-disable-next-line jsx-a11y/alt-text
 		<Image src={`${process.env.NEXT_PUBLIC_API_URL}${src}`} {...props} />
 	);
 };

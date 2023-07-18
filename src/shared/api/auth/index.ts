@@ -15,7 +15,7 @@ export class AuthApi {
 export const TokenAttach = {
 	accessToken: async () => {
 		if (typeof document === "undefined") return "";
-		let token = document.cookie
+		const token = document.cookie
 			.split(";")
 			.filter((cookie) => cookie.startsWith("token"))[0];
 
