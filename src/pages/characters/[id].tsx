@@ -11,31 +11,50 @@ import { checkImageFormat } from 'shared/api/model';
 
 const Api = new CharacterApi();
 
-const CharacterPage = ({ characterInfo }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const CharacterPage = ({
+	characterInfo,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
 	const router = useRouter();
 
 	if (router.isFallback) {
-		return (
-			<h1>Loading...</h1>
-		);
+		return <h1>Loading...</h1>;
 	}
 
 	if (characterInfo) {
-		const imageFormat = characterInfo.attributes.info?.meta_img?.data?.attributes ? checkImageFormat(characterInfo.attributes.info?.meta_img?.data?.attributes?.formats) : "thumbnail";
+		const imageFormat = characterInfo.attributes.info?.meta_img?.data
+			?.attributes
+			? checkImageFormat(
+					characterInfo.attributes.info?.meta_img?.data?.attributes?.formats
+			  )
+			: 'thumbnail';
 
 		return (
 			<>
 				<Head>
 					<title>{`${characterInfo.attributes.name} | pom-pom.pro`}</title>
-					<meta property='og:title' content={`${characterInfo.attributes.name} | pom-pom.pro`} />
-					<meta property='og:description' content={characterInfo.attributes?.info?.story} />
-					<meta name="description" content={characterInfo.attributes?.info?.story} />
-					<meta property="og:url" content={`${process.env.NEXT_PUBLIC_DOMAIN}/characters/${characterInfo.attributes.name}`} />
-					<meta property="og:type" content="profile"/>
+					<meta
+						property="og:title"
+						content={`${characterInfo.attributes.name} | pom-pom.pro`}
+					/>
+					<meta
+						property="og:description"
+						content={characterInfo.attributes?.info?.story}
+					/>
+					<meta
+						name="description"
+						content={characterInfo.attributes?.info?.story}
+					/>
+					<meta
+						property="og:url"
+						content={`${process.env.NEXT_PUBLIC_DOMAIN}/characters/${characterInfo.attributes.name}`}
+					/>
+					<meta property="og:type" content="profile" />
 					<meta property="og:locale" content={router.locale} />
 					{characterInfo.attributes.info?.meta_img?.data && (
-						<meta property='og:image'
-									content={`${process.env.NEXT_PUBLIC_API_URL}${characterInfo.attributes.info.meta_img?.data?.attributes?.formats?.[imageFormat]?.url}`} />
+						<meta
+							property="og:image"
+							content={`${process.env.NEXT_PUBLIC_API_URL}${characterInfo.attributes.info.meta_img?.data?.attributes?.formats?.[imageFormat]?.url}`}
+						/>
 					)}
 				</Head>
 				<CharacterInfo characterInfo={characterInfo} />
@@ -59,19 +78,17 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 		locale: char.attributes.locale,
 	}));
 
-
 	return {
 		fallback: true,
 		paths,
 	};
 };
 
-export const getStaticProps: GetStaticProps<{ characterInfo: ResponseDataItem<CharacterExtend> | null }> = async (
-	context,
-) => {
+export const getStaticProps: GetStaticProps<{
+	characterInfo: ResponseDataItem<CharacterExtend> | null;
+}> = async (context) => {
 	const locale = context.locale as string;
 	const name = context.params!.id as string;
-
 
 	try {
 		const response = await Api.getCharacter({ name, locale });
@@ -96,7 +113,6 @@ export const getStaticProps: GetStaticProps<{ characterInfo: ResponseDataItem<Ch
 				destination: '/404',
 			},
 		};
-
 	} catch (e) {
 		return {
 			props: {

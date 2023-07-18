@@ -6,9 +6,9 @@ export const getPlayersListController = new AbortController();
 
 export class PlayerApi {
 	getPlayersList() {
-		return apiReq.get<ApiCollectionResponse<Player>>("players")
+		return apiReq.get<ApiCollectionResponse<Player>>('players');
 	}
 	getPlayer(id: number) {
-		return apiReq.get<ApiSingleResponse<Player>>(`players/${id}`)
+		return apiReq.get<ApiSingleResponse<Player>>(`players/${id}`);
 	}
 }

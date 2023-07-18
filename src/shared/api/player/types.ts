@@ -4,6 +4,5 @@ export interface Player {
 	country: string;
 	name: string;
 	rank: string;
-	surname: string
-
+	surname: string;
 }

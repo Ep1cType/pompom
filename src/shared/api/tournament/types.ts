@@ -14,7 +14,7 @@ export interface Tournament {
 
 export interface TournamentExtend extends Tournament {
 	players: {
-		data: ResponseDataItem<Player>[]
+		data: ResponseDataItem<Player>[];
 	};
 }
 

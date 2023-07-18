@@ -19,15 +19,19 @@ export const YandexMetrika = () => {
 	return (
 		<>
 			<Script
-				id='yandex-metrika'
-				type='text/javascript'
-				strategy='lazyOnload'
+				id="yandex-metrika"
+				type="text/javascript"
+				strategy="lazyOnload"
 				dangerouslySetInnerHTML={{ __html: script }}
 			/>
 			<noscript>
 				<div>
 					{/* eslint-disable-next-line @next/next/no-img-element */}
-					<img src='https://mc.yandex.ru/watch/93462991' style={{ position: 'absolute', left: '-9999px' }} alt='' />
+					<img
+						src="https://mc.yandex.ru/watch/93462991"
+						style={{ position: 'absolute', left: '-9999px' }}
+						alt=""
+					/>
 				</div>
 			</noscript>
 		</>

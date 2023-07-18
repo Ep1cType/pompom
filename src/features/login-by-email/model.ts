@@ -37,26 +37,25 @@ $password.on(passwordChanged, (_, password) => password);
 
 $loginByEmailError.reset(loginByEmailFormSubmitted);
 
-
 sample({
 	clock: loginByEmailFormSubmitted,
 	source: $email,
 	fn: (email) => {
-		if (isEmpty(email)) return "empty"
-		return null
+		if (isEmpty(email)) return 'empty';
+		return null;
 	},
-	target: $emailError
-})
+	target: $emailError,
+});
 
 sample({
 	clock: loginByEmailFormSubmitted,
 	source: $password,
 	fn: (password) => {
-		if (isEmpty(password)) return "empty"
-		return null
+		if (isEmpty(password)) return 'empty';
+		return null;
 	},
-	target: $passwordError
-})
+	target: $passwordError,
+});
 
 sample({
 	clock: loginByEmailFormSubmitted,
@@ -65,8 +64,8 @@ sample({
 	target: signInFx,
 });
 
-$loginByEmailError.on(signInFx.failData, (_, error) => error)
+$loginByEmailError.on(signInFx.failData, (_, error) => error);
 
 function isEmpty(string: string) {
-	return string.length < 5
+	return string.length < 5;
 }

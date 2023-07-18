@@ -3,9 +3,7 @@
 const { fontFamily } = require('tailwindcss/defaultTheme');
 
 module.exports = {
-	content: [
-		'./src/**/*.{js,ts,jsx,tsx}',
-	],
+	content: ['./src/**/*.{js,ts,jsx,tsx}'],
 	theme: {
 		extend: {
 			fontFamily: {
@@ -16,17 +14,17 @@ module.exports = {
 				violet: '#75459F',
 				imaginary: '#F3DF32',
 				three: {
-					from: "#4981C6",
-					to: "#3D3E69"
+					from: '#4981C6',
+					to: '#3D3E69',
 				},
 				four: {
-					from: "#9C65D7",
-					to: "#3F4064"
+					from: '#9C65D7',
+					to: '#3F4064',
 				},
 				five: {
-					from: "#D0AA6E",
-					to: "#A35D55"
-				}
+					from: '#D0AA6E',
+					to: '#A35D55',
+				},
 			},
 		},
 	},
@@ -36,9 +34,10 @@ module.exports = {
 	plugins: [require('daisyui'), require('@tailwindcss/typography')],
 	daisyui: {
 		themes: [
-			'dark', {
+			'dark',
+			{
 				main: {
-					accent: "#002554"
+					accent: '#002554',
 				},
 			},
 		],

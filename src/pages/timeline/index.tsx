@@ -12,11 +12,27 @@ import { PageTitle } from 'shared/ui/page-title';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-const TimeLine = dynamic(() => import('shared/lib/react-timelines').then(res => res.TimeLine), {
-	ssr: false,
-});
+const TimeLine = dynamic(
+	() => import('shared/lib/react-timelines').then((res) => res.TimeLine),
+	{
+		ssr: false,
+	}
+);
 
-const MONTH_NAMES = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+const MONTH_NAMES = [
+	'Январь',
+	'Февраль',
+	'Март',
+	'Апрель',
+	'Май',
+	'Июнь',
+	'Июль',
+	'Август',
+	'Сентябрь',
+	'Октябрь',
+	'Ноябрь',
+	'Декабрь',
+];
 
 const MIN_ZOOM = 2;
 const MAX_ZOOM = 50;
@@ -27,20 +43,19 @@ function getMonthDate(year: number, month: number) {
 
 const now = new Date();
 
-
 // const clickElement = (element: Element) => alert(`Clicked element\n${JSON.stringify(element, null, 2)}`);
 const clickElement = (element: TrackElement) => {
 	setTimelineModalData(element);
 };
 
-
 function createTask(eventList: ResponseDataItem<EventItem>[]) {
-	return [...new Set(eventList.map((event) => event.attributes.type))]
-		.map((item, index) => (
-			{
-				id: `track-${index + 1}`,
-				title: item,
-				elements: eventList.filter(s => s.attributes.type === item).map((t, ind) => ({
+	return [...new Set(eventList.map((event) => event.attributes.type))].map(
+		(item, index) => ({
+			id: `track-${index + 1}`,
+			title: item,
+			elements: eventList
+				.filter((s) => s.attributes.type === item)
+				.map((t, ind) => ({
 					id: `t-${index + 1}-el-${ind + 1}`,
 					title: t.attributes.name,
 					start: new Date(t.attributes.start_date),
@@ -55,22 +70,22 @@ function createTask(eventList: ResponseDataItem<EventItem>[]) {
 					image: t.attributes.image.data?.attributes,
 					link: t.attributes.link,
 				})),
-				isOpen: false,
-			}
-		));
+			isOpen: false,
+		})
+	);
 }
 
-
-const LinePage = ({ eventList }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const LinePage = ({
+	eventList,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
 	const [open, setOpen] = useState(false);
 	const [zoom] = useState(30);
 	const [tracksById, setTracksById] = useState();
 	const [tracks, setTracks] = useState(createTask(eventList));
 	const router = useRouter();
 	const handleToggleOpen = () => {
-		setOpen(prev => !prev);
+		setOpen((prev) => !prev);
 	};
-
 
 	const handleToggleTrackOpen = (track: any) => {
 		setTracksById((prev: any) => {
@@ -86,7 +101,6 @@ const LinePage = ({ eventList }: InferGetStaticPropsType<typeof getStaticProps>)
 			return newState;
 		});
 	};
-
 
 	const currentDate = new Date();
 
@@ -126,13 +140,15 @@ const LinePage = ({ eventList }: InferGetStaticPropsType<typeof getStaticProps>)
 			date.setDate(date.getDate() + 1);
 		}
 
-		return datesList.filter((value, index, self) => (
-			index === self.findIndex((t) => (
-				t.year === value.year && t.month === value.month
-			))
-		)).map((item) => (
-			new Date(item.year, item.month)
-		));
+		return datesList
+			.filter(
+				(value, index, self) =>
+					index ===
+					self.findIndex(
+						(t) => t.year === value.year && t.month === value.month
+					)
+			)
+			.map((item) => new Date(item.year, item.month));
 	}
 
 	function getDaysInRange(startDate: Date, endDate: Date) {
@@ -145,18 +161,15 @@ const LinePage = ({ eventList }: InferGetStaticPropsType<typeof getStaticProps>)
 		}
 
 		return datesList;
-
 	}
 
 	function buildMonthsCells(dateRange: Date[]) {
-		return dateRange.map((date, index) => (
-			{
-				id: `m${index}`,
-				title: MONTH_NAMES[date.getMonth() % 12],
-				start: getFirstDayOfMonth(date),
-				end: getMonthDate(date.getFullYear(), date.getMonth() + 1),
-			}
-		));
+		return dateRange.map((date, index) => ({
+			id: `m${index}`,
+			title: MONTH_NAMES[date.getMonth() % 12],
+			start: getFirstDayOfMonth(date),
+			end: getMonthDate(date.getFullYear(), date.getMonth() + 1),
+		}));
 	}
 
 	// console.log('currentDate', currentDate); //11 may
@@ -178,7 +191,12 @@ const LinePage = ({ eventList }: InferGetStaticPropsType<typeof getStaticProps>)
 				id: `d${item.getMonth()}${index}`,
 				title: item.getDate(),
 				start: item,
-				end: new Date(item.getFullYear(), item.getMonth(), item.getDate() + 1, 0),
+				end: new Date(
+					item.getFullYear(),
+					item.getMonth(),
+					item.getDate() + 1,
+					0
+				),
 			};
 		});
 	};
@@ -206,15 +224,24 @@ const LinePage = ({ eventList }: InferGetStaticPropsType<typeof getStaticProps>)
 		<>
 			<Head>
 				<title>Лента событий | pom-pom.pro</title>
-				<meta property='og:title' content={`Лента событий | pom-pom.pro`} />
-				<meta property='og:description' content={'Здесь вы можете посмотреть ленту игровых событий.'} />
-				<meta name='description' content={'Здесь вы можете посмотреть ленту игровых событий.'} />
-				<meta property='og:url' content={`${process.env.NEXT_PUBLIC_DOMAIN}/timeline`} />
-				<meta property='og:type' content='list' />
-				<meta property='og:locale' content={router.locale} />
+				<meta property="og:title" content={`Лента событий | pom-pom.pro`} />
+				<meta
+					property="og:description"
+					content={'Здесь вы можете посмотреть ленту игровых событий.'}
+				/>
+				<meta
+					name="description"
+					content={'Здесь вы можете посмотреть ленту игровых событий.'}
+				/>
+				<meta
+					property="og:url"
+					content={`${process.env.NEXT_PUBLIC_DOMAIN}/timeline`}
+				/>
+				<meta property="og:type" content="list" />
+				<meta property="og:locale" content={router.locale} />
 			</Head>
-			<div className='container mx-auto px-4 py-8 md:py-16'>
-				<PageTitle className='mb-8 md:mb-16' text={'Лента событий'} />
+			<div className="container mx-auto px-4 py-8 md:py-16">
+				<PageTitle className="mb-8 md:mb-16" text={'Лента событий'} />
 				<TimeLine
 					scale={{
 						start: startDate,
@@ -238,7 +265,6 @@ const LinePage = ({ eventList }: InferGetStaticPropsType<typeof getStaticProps>)
 					toggleTrackOpen={handleToggleTrackOpen as any}
 					enableSticky
 					scrollToNow
-
 				/>
 				<TimelineModal />
 			</div>
@@ -246,9 +272,9 @@ const LinePage = ({ eventList }: InferGetStaticPropsType<typeof getStaticProps>)
 	);
 };
 
-export const getStaticProps: GetStaticProps<{ eventList: ResponseDataItem<EventItem>[] }> = async (
-	context,
-) => {
+export const getStaticProps: GetStaticProps<{
+	eventList: ResponseDataItem<EventItem>[];
+}> = async (context) => {
 	const Api = new EventApi();
 
 	const locale = context.locale as string;
@@ -263,7 +289,6 @@ export const getStaticProps: GetStaticProps<{ eventList: ResponseDataItem<EventI
 			},
 			revalidate: 60,
 		};
-
 	} catch (e) {
 		return {
 			props: {
@@ -275,5 +300,3 @@ export const getStaticProps: GetStaticProps<{ eventList: ResponseDataItem<EventI
 };
 
 export default LinePage;
-
-

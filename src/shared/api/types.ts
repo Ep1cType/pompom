@@ -25,11 +25,11 @@ export interface ApiCollectionResponse<Y> {
 
 export interface ApiSingleResponse<Y> {
 	data: ResponseDataItem<Y>;
-	meta: {}
+	meta: {};
 }
 
 export interface CreateBody<T> {
-	data: T
+	data: T;
 }
 
 export interface ImageDataResponse {
@@ -56,7 +56,7 @@ export type ImageFormatList = {
 	medium: ThumbnailFormat;
 	small: ThumbnailFormat;
 	thumbnail: ThumbnailFormat;
-}
+};
 
 export interface ThumbnailFormat {
 	ext: string;
