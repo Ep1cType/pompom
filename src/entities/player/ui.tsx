@@ -18,16 +18,18 @@ export const PlayerList = () => {
 
 type PlayerRowPros = {
 	player: ResponseDataItem<Player>;
-}
-export const PlayerRow = ({player}: PlayerRowPros) => {
-	const birth = player.attributes.birth?.slice(0, 4)
+};
+export const PlayerRow = ({ player }: PlayerRowPros) => {
+	const birth = player.attributes.birth?.slice(0, 4);
 
 	return (
 		<tr className="cursor-pointer hover:opacity-50 [&>td]:border [&>td]:border-amber-300 [&>td]:p-1">
-			<td>{player.attributes.surname} {player.attributes.name}</td>
+			<td>
+				{player.attributes.surname} {player.attributes.name}
+			</td>
 			<td>{birth}</td>
 			<td>{player.attributes.rank}</td>
 			<td>{player.attributes.city}</td>
 		</tr>
-	)
-}
+	);
+};
