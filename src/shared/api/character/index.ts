@@ -19,7 +19,7 @@ export class CharacterApi {
         locale: "ru",
         "populate[0]": "info",
         "sort[0]": "name",
-        "populate[1]": "info.main_skill",
+        "populate[1]": "info.main_skill,info.image,info.meta_img",
       },
     });
   }
