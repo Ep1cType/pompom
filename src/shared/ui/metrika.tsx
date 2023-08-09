@@ -1,8 +1,8 @@
-import React from 'react';
-import Script from 'next/script';
+import React from "react";
+import Script from "next/script";
 
 export const YandexMetrika = () => {
-	const script = `
+  const script = `
 	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
    m[i].l=1*new Date();
    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
@@ -16,24 +16,24 @@ export const YandexMetrika = () => {
    });
 	`;
 
-	return (
-		<>
-			<Script
-				id="yandex-metrika"
-				type="text/javascript"
-				strategy="lazyOnload"
-				dangerouslySetInnerHTML={{ __html: script }}
-			/>
-			<noscript>
-				<div>
-					{/* eslint-disable-next-line @next/next/no-img-element */}
-					<img
-						src="https://mc.yandex.ru/watch/93462991"
-						style={{ position: 'absolute', left: '-9999px' }}
-						alt=""
-					/>
-				</div>
-			</noscript>
-		</>
-	);
+  return (
+    <>
+      <Script
+        id="yandex-metrika"
+        type="text/javascript"
+        strategy="lazyOnload"
+        dangerouslySetInnerHTML={{ __html: script }}
+      />
+      <noscript>
+        <div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://mc.yandex.ru/watch/93462991"
+            style={{ position: "absolute", left: "-9999px" }}
+            alt=""
+          />
+        </div>
+      </noscript>
+    </>
+  );
 };
