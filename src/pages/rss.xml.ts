@@ -92,9 +92,6 @@ function generateRssFeed(
                             </div>
                           </section>
                           <br />
-                          ${
-                            char.attributes.info?.main_skill
-                              ? `
                             <section>
                             <h2>Навыки</h2>
                             ${char.attributes.info?.main_skill?.map((skill) => {
@@ -107,9 +104,6 @@ function generateRssFeed(
                               `;
                             })}
                           </section>
-                          `
-                              : ""
-                          }
                       ]]> 
                     </turbo:content>
               </item>
