@@ -3,6 +3,7 @@ import { CharacterApi } from "shared/api/character";
 import { ApiCollectionResponse } from "shared/api/types";
 import { CharacterExtend } from "shared/api/character/type";
 import { checkImageFormat } from "shared/api/model";
+import React from "react";
 
 const DOMAIN_HOST = process.env.NEXT_PUBLIC_DOMAIN as string;
 const SERVER_DOMAIN_HOST = process.env.NEXT_PUBLIC_API_URL as string;
@@ -56,6 +57,8 @@ function generateRssFeed(
                   imageFormat
                 ];
 
+              console.log(char.attributes.info?.main_skill);
+
               return `
               <item turbo="true">
                 <turbo:extendedHtml>true</turbo:extendedHtml>
@@ -68,7 +71,7 @@ function generateRssFeed(
                           <header>
                             <h1>${char.attributes.name}</h1>
                           </header>
-                          <section class="mb-4 flex flex-col-reverse items-center justify-between gap-3 md:mb-8 md:flex-row">
+                          <section>
                             <div>
                               <figure>
                                 <img src="${SERVER_DOMAIN_HOST}${
@@ -91,9 +94,25 @@ function generateRssFeed(
                               </p>
                             </div>
                           </section>
-                          <section>
+                          <br />
+                          ${
+                            char.attributes.info?.main_skill
+                              ? `
+                            <section>
                             <h2>Навыки</h2>
+                            ${char.attributes.info?.main_skill?.map((skill) => {
+                              return `
+                                <div>
+                                  <h3>${skill.name}</h3>
+                                  <p>${skill.type}</p>
+                                  <p>${Object.values(skill.description)[0]}</p>
+                                </div>
+                              `;
+                            })}
                           </section>
+                          `
+                              : ""
+                          }
                       ]]> 
                     </turbo:content>
               </item>
