@@ -94,15 +94,16 @@ function generateRssFeed(
                           <br />
                             <section>
                             <h2>Навыки</h2>
-                            ${char.attributes.info?.main_skill?.map((skill) => {
-                              return `
-                                <div>
+                            ${char.attributes.info?.main_skill
+                              ?.map((skill) => {
+                                return `<div>
                                   <h3>${skill.name}</h3>
                                   <p>${skill.type}</p>
                                   <p>${Object.values(skill.description)[0]}</p>
                                 </div>
                               `;
-                            })}
+                              })
+                              .join("")}
                           </section>
                       ]]> 
                     </turbo:content>
