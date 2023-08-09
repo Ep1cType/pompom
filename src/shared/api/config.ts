@@ -12,7 +12,7 @@ const onRequest = async (
 ): Promise<InternalAxiosRequestConfig> => {
 	const accessToken = await TokenAttach.accessToken();
 	if (accessToken && config.headers) {
-		config.headers["Authorization"] = accessToken;
+		config.headers['Authorization'] = accessToken;
 	}
 	return config;
 };
@@ -21,11 +21,9 @@ const onRequestError = (error: AxiosError): Promise<AxiosError> => {
 	return Promise.reject(error);
 };
 
-const onResponse = <T>(
-	response: AxiosResponse
-): Promise<AxiosResponse> => {
-	if (response.headers["Content-Type"] === "text/html") {
-		return Promise.reject("GOT HTML RESPONSE");
+const onResponse = <T>(response: AxiosResponse): Promise<AxiosResponse> => {
+	if (response.headers['Content-Type'] === 'text/html') {
+		return Promise.reject('GOT HTML RESPONSE');
 	}
 
 	return Promise.resolve(response);
@@ -41,10 +39,9 @@ function setupInterceptorsTo(axiosInstance: AxiosInstance): AxiosInstance {
 	return axiosInstance;
 }
 
-
 const options: CreateAxiosDefaults = {
 	baseURL: `${process.env.NEXT_PUBLIC_API_URL}/api`,
 };
 
 const instance = axios.create(options);
-export const apiReq = (instance)
+export const apiReq = instance;

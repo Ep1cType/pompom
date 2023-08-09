@@ -34,8 +34,8 @@ function generateSiteMap(charactersList: ApiCollectionResponse<Character>) {
        <lastmod>2023-05-12</lastmod>
      </url>
      ${charactersList.data
-		.map((char) => {
-			return `
+				.map((char) => {
+					return `
        <url>
            <loc>${`${DOMAIN_HOST}/characters/${char.attributes.name}`}</loc>
            <changefreq>monthly</changefreq>
@@ -43,8 +43,8 @@ function generateSiteMap(charactersList: ApiCollectionResponse<Character>) {
            <lastmod>${char.attributes.updatedAt}</lastmod>
        </url>
      `;
-		})
-		.join('')}
+				})
+				.join('')}
    </urlset>
  `;
 }

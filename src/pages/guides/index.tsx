@@ -6,10 +6,12 @@ import { Guide } from 'shared/api/guide/type';
 import { GuideApi } from 'shared/api/guide';
 import { GuideCard } from 'molecules/guide-card';
 
-const GuidesPage = ({ guidesList }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const GuidesPage = ({
+	guidesList,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
 	return (
-		<div className='container mx-auto px-4 py-8'>
-			<section className='grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8'>
+		<div className="container mx-auto px-4 py-8">
+			<section className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
 				{guidesList.map((guide) => (
 					<GuideCard key={guide.id} guide={guide} />
 				))}
@@ -18,9 +20,9 @@ const GuidesPage = ({ guidesList }: InferGetStaticPropsType<typeof getStaticProp
 	);
 };
 
-export const getStaticProps: GetStaticProps<{ guidesList: ResponseDataItem<Guide>[] }> = async (
-	context,
-) => {
+export const getStaticProps: GetStaticProps<{
+	guidesList: ResponseDataItem<Guide>[];
+}> = async (context) => {
 	const Api = new GuideApi();
 
 	const locale = context.locale as string;
@@ -35,7 +37,6 @@ export const getStaticProps: GetStaticProps<{ guidesList: ResponseDataItem<Guide
 			},
 			revalidate: 60,
 		};
-
 	} catch (e) {
 		return {
 			props: {

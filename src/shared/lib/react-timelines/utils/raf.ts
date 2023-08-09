@@ -1,1 +1,2 @@
-export const raf = (cb: FrameRequestCallback) => window.requestAnimationFrame(cb)
+export const raf = (cb: FrameRequestCallback) =>
+  window.requestAnimationFrame(cb);

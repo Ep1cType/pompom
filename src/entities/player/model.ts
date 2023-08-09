@@ -11,10 +11,13 @@ export const fetchPlayersListFx = createEffect(async () => {
 	return await Api.getPlayersList();
 });
 
-export const $playerListPagination = createStore<PaginationDataResponse>(paginationInitialData)
-	.on(fetchPlayersListFx.doneData, (_, payload) => payload.data.meta.pagination);
-export const $playersList = createStore<ResponseDataItem<Player>[]>([])
-	.on(fetchPlayersListFx.doneData, (_, payload) => payload.data.data)
+export const $playerListPagination = createStore<PaginationDataResponse>(
+	paginationInitialData
+).on(fetchPlayersListFx.doneData, (_, payload) => payload.data.meta.pagination);
+export const $playersList = createStore<ResponseDataItem<Player>[]>([]).on(
+	fetchPlayersListFx.doneData,
+	(_, payload) => payload.data.data
+);
 
 export const PlayersListGate = createGate();
 

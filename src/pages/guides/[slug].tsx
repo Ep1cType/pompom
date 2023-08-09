@@ -9,30 +9,27 @@ import { GuideInfo } from 'organisms/guide-info';
 
 const Api = new GuideApi();
 
-const GuidePage = ({guidePage}: InferGetStaticPropsType<typeof getStaticProps>) => {
+const GuidePage = ({
+	guidePage,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
 	const router = useRouter();
 
 	if (router.isFallback) {
-		return (
-			<h1>Loading...</h1>
-		);
+		return <h1>Loading...</h1>;
 	}
 
 	if (guidePage) {
-		return (
-			<GuideInfo guidePage={guidePage} />
-		);
+		return <GuideInfo guidePage={guidePage} />;
 	}
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const response = await Api.getGuideList()
+	const response = await Api.getGuideList();
 
 	const paths = response.data.data.map((char) => ({
 		params: { slug: char.attributes.slug },
 		locale: char.attributes.locale,
 	}));
-
 
 	return {
 		fallback: true,
@@ -40,15 +37,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	};
 };
 
-export const getStaticProps: GetStaticProps<{ guidePage: ResponseDataItem<Guide> | null }> = async (
-	context,
-) => {
+export const getStaticProps: GetStaticProps<{
+	guidePage: ResponseDataItem<Guide> | null;
+}> = async (context) => {
 	const locale = context.locale as string;
 	const slug = context.params!.slug as string;
 
-
 	try {
-		const response = await Api.getGuidePage({slug})
+		const response = await Api.getGuidePage({ slug });
 
 		if (response.data.data.length > 0) {
 			return {
@@ -70,7 +66,6 @@ export const getStaticProps: GetStaticProps<{ guidePage: ResponseDataItem<Guide>
 				destination: '/404',
 			},
 		};
-
 	} catch (e) {
 		return {
 			props: {

@@ -14,9 +14,7 @@ const sans = Open_Sans({
 function App({ Component, pageProps }: AppProps) {
 	return (
 		<>
-			{process.env.NEXT_PUBLIC_ENV === "production" && (
-				<YandexMetrika />
-			)}
+			{process.env.NEXT_PUBLIC_ENV === 'production' && <YandexMetrika />}
 			<Layout className={`${sans.variable} font-sans`}>
 				<Component {...pageProps} />
 			</Layout>
