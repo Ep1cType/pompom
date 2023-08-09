@@ -22,7 +22,7 @@ export const Track = ({
 }: Props) => {
   return (
     <div className="tr-track">
-      <div className="rt-track__elements relative h-[70px] bg-blue-950">
+      <div className="rt-track__elements relative h-[50px] bg-blue-950">
         {elements
           .filter(({ start, end }) => end > start)
           .map((element) => (
