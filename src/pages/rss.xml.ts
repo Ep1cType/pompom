@@ -33,7 +33,7 @@ function generateRssFeed(
                     <turbo:content>
                       <![CDATA[
                           <header>
-                          
+                            <h1>${char.attributes.name}</h1>
                           </header>
                           <section class="mb-4 flex flex-col-reverse items-center justify-between gap-3 md:mb-8 md:flex-row">
                             <div class="md:max-w-[50%]">
