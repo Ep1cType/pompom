@@ -3,7 +3,6 @@ import { CharacterApi } from "shared/api/character";
 import { ApiCollectionResponse } from "shared/api/types";
 import { CharacterExtend } from "shared/api/character/type";
 import { checkImageFormat } from "shared/api/model";
-import React from "react";
 
 const DOMAIN_HOST = process.env.NEXT_PUBLIC_DOMAIN as string;
 const SERVER_DOMAIN_HOST = process.env.NEXT_PUBLIC_API_URL as string;
