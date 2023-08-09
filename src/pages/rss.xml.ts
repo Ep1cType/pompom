@@ -56,8 +56,6 @@ function generateRssFeed(
                   imageFormat
                 ];
 
-              console.log(char.attributes.info?.main_skill);
-
               return `
               <item turbo="true">
                 <turbo:extendedHtml>true</turbo:extendedHtml>
