@@ -9,7 +9,7 @@ export interface Guide {
 	body: GuideBody[];
 	slug: string;
 	cover: {
-		data: ResponseDataItem<ImageDataResponse>
+		data: ResponseDataItem<ImageDataResponse>;
 	};
 }
 
@@ -19,8 +19,8 @@ export interface GuideBody {
 	text: string | null;
 	__component: GuideComponentList;
 	images: {
-		data: ResponseDataItem<ImageDataResponse>[] | null
+		data: ResponseDataItem<ImageDataResponse>[] | null;
 	};
 }
 
-export type GuideComponentList = 'guide.section'
+export type GuideComponentList = 'guide.section';

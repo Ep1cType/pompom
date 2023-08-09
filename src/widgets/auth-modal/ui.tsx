@@ -3,25 +3,23 @@ import {
 	$email,
 	$emailError,
 	$formDisabled,
-	$loginByEmailError, $loginByEmailPending, $password, $passwordError,
+	$loginByEmailError,
+	$loginByEmailPending,
+	$password,
+	$passwordError,
 	authModalMounted,
-	emailChanged, loginByEmailFormSubmitted, passwordChanged,
+	emailChanged,
+	loginByEmailFormSubmitted,
+	passwordChanged,
 } from 'features/login-by-email/model';
 import { useStore, useUnit } from 'effector-react';
 import clsx from 'clsx';
 
 export const AuthModal = () => {
-	const [isPending, submit] = useUnit([$loginByEmailPending, loginByEmailFormSubmitted]);
-
-	// useEffect(() => {
-	// 	document.getElementById('auth-modal')?.addEventListener('change', (event) => {
-	// 		// @ts-ignore
-	// 		if (event.target?.checked as boolean) {
-	// 			authModalMounted();
-	// 			// authModalMounted()
-	// 		}
-	// 	});
-	// }, []);
+	const [isPending, submit] = useUnit([
+		$loginByEmailPending,
+		loginByEmailFormSubmitted,
+	]);
 
 	function onSubmit(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
@@ -30,23 +28,24 @@ export const AuthModal = () => {
 
 	return (
 		<>
-			<input type='checkbox' id='auth-modal' className='modal-toggle' />
-			<label htmlFor='auth-modal' className='modal text-black cursor-pointer'>
-				<label className='modal-box relative' htmlFor=''>
-					<form onSubmit={onSubmit} className='form-control'>
-						<h3 className='text-lg font-bold'>Congratulations random Internet user!</h3>
+			<input type="checkbox" id="auth-modal" className="modal-toggle" />
+			<label htmlFor="auth-modal" className="modal text-black cursor-pointer">
+				<label className="modal-box relative" htmlFor="">
+					<form onSubmit={onSubmit} className="form-control">
+						<h3 className="text-lg font-bold">
+							Congratulations random Internet user!
+						</h3>
 						<Email />
 						<Password />
 						<ErrorView />
 						<button
 							className={clsx('btn btn-outline w-full', isPending && 'loading')}
 							disabled={isPending}
-							type='submit'
+							type="submit"
 						>
 							Отправить
 						</button>
 					</form>
-
 				</label>
 			</label>
 		</>
@@ -55,11 +54,7 @@ export const AuthModal = () => {
 
 function ErrorView() {
 	const error = useStore($loginByEmailError);
-	return (
-		<p className="text-error mb-2">
-			{error?.error.message}
-		</p>
-	);
+	return <p className="text-error mb-2">{error?.error.message}</p>;
 }
 
 const emailErrorText = {
@@ -68,23 +63,32 @@ const emailErrorText = {
 };
 
 const Email = () => {
-	const [email, emailError, formDisabled] = useUnit([$email, $emailError, $formDisabled]);
+	const [email, emailError, formDisabled] = useUnit([
+		$email,
+		$emailError,
+		$formDisabled,
+	]);
 
 	return (
 		<>
-			<label className='label'>
-				<span className='label-text'>Email</span>
+			<label className="label">
+				<span className="label-text">Email</span>
 			</label>
 			<input
-				type='text'
-				placeholder='ex@example.com'
-				className={clsx('input input-bordered w-full', emailError && 'input-error')}
+				type="text"
+				placeholder="ex@example.com"
+				className={clsx(
+					'input input-bordered w-full',
+					emailError && 'input-error'
+				)}
 				disabled={formDisabled}
 				value={email}
-				onChange={event => emailChanged(event.target.value)}
+				onChange={(event) => emailChanged(event.target.value)}
 			/>
-			<label className='label'>
-				<span className='label-text-alt text-error'>{emailError && emailErrorText[emailError]}</span>
+			<label className="label">
+				<span className="label-text-alt text-error">
+					{emailError && emailErrorText[emailError]}
+				</span>
 			</label>
 		</>
 	);
@@ -96,23 +100,32 @@ const passwordErrorText = {
 };
 
 const Password = () => {
-	const [password, passwordError, formDisabled] = useUnit([$password, $passwordError, $formDisabled]);
+	const [password, passwordError, formDisabled] = useUnit([
+		$password,
+		$passwordError,
+		$formDisabled,
+	]);
 
 	return (
 		<>
-			<label className='label'>
-				<span className='label-text'>Пароль</span>
+			<label className="label">
+				<span className="label-text">Пароль</span>
 			</label>
 			<input
-				type='password'
-				placeholder='123456'
-				className={clsx('input input-bordered w-full', passwordError && 'input-error')}
+				type="password"
+				placeholder="123456"
+				className={clsx(
+					'input input-bordered w-full',
+					passwordError && 'input-error'
+				)}
 				disabled={formDisabled}
 				value={password}
-				onChange={event => passwordChanged(event.target.value)}
+				onChange={(event) => passwordChanged(event.target.value)}
 			/>
-			<label className='label'>
-				<span className='label-text-alt text-error'>{passwordError && passwordErrorText[passwordError]}</span>
+			<label className="label">
+				<span className="label-text-alt text-error">
+					{passwordError && passwordErrorText[passwordError]}
+				</span>
 			</label>
 		</>
 	);

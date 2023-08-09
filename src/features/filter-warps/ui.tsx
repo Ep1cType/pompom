@@ -14,13 +14,13 @@ export const FilterWarps = () => {
 	}
 
 	return (
-		<ul className='flex flex-col gap-3'>
+		<ul className="flex flex-col gap-3">
 			{filterList.map((item) => (
 				<li
 					key={item.key}
 					className={clsx(
 						'btn hover:bg-blue-900/75 bg-blue-900 px-2 py-1 rounded-r-2xl cursor-pointer hover:opacity-80',
-						currentWarpFilter === item.key && 'btn-disabled',
+						currentWarpFilter === item.key && 'btn-disabled'
 					)}
 					onClick={onChangeFilter(item.key)}
 				>
@@ -31,7 +31,10 @@ export const FilterWarps = () => {
 	);
 };
 
-const filterList: { key: keyof GachaType, value: GachaType[keyof GachaType] }[] = [
+const filterList: {
+	key: keyof GachaType;
+	value: GachaType[keyof GachaType];
+}[] = [
 	{
 		key: '2',
 		value: 'Отправной прыжок',

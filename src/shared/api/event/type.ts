@@ -11,8 +11,13 @@ export interface EventItem {
 	publishedAt: string;
 	type: EventTypeList;
 	image: {
-		data: ResponseDataItem<ImageDataResponse> | null
-	}
+		data: ResponseDataItem<ImageDataResponse> | null;
+	};
 }
 
-export type EventTypeList = "char_banner" | "cone_banner" | "battle_pass" | "shop" | "oblivion"
+export type EventTypeList =
+	| 'char_banner'
+	| 'cone_banner'
+	| 'battle_pass'
+	| 'shop'
+	| 'oblivion';

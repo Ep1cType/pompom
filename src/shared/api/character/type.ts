@@ -1,4 +1,8 @@
-import { CreateBody, ImageDataResponse, ResponseDataItem } from 'shared/api/types';
+import {
+	CreateBody,
+	ImageDataResponse,
+	ResponseDataItem,
+} from 'shared/api/types';
 
 export interface Character {
 	name: string;
@@ -7,17 +11,30 @@ export interface Character {
 	publishedAt: string;
 	locale: string;
 	icon: CreateBody<ResponseDataItem<ImageDataResponse>>;
-	star: "four" | "five";
+	star: 'four' | 'five';
 	element: CharacterElementList;
 	path: CharacterPathList;
 	meta_desc: string;
 }
 
-export type CharacterElementList = "fire" | "ice" | "lightning" | "wind" | "physical" | "quantum";
+export type CharacterElementList =
+	| 'fire'
+	| 'ice'
+	| 'lightning'
+	| 'wind'
+	| 'physical'
+	| 'quantum';
 
-export type CharacterSexList = "male" | "female";
+export type CharacterSexList = 'male' | 'female';
 
-export type CharacterPathList = "abundance" | "destruction" | "erudition" | "harmony" | "hunt" | "nihility" | "preservation"
+export type CharacterPathList =
+	| 'abundance'
+	| 'destruction'
+	| 'erudition'
+	| 'harmony'
+	| 'hunt'
+	| 'nihility'
+	| 'preservation';
 
 export interface CharacterExtend extends Character {
 	info: {
@@ -25,13 +42,13 @@ export interface CharacterExtend extends Character {
 		sex: CharacterSexList;
 		main_skill: CharacterMainSkill[];
 		image: {
-			data: ResponseDataItem<ImageDataResponse>
+			data: ResponseDataItem<ImageDataResponse>;
 		};
 		meta_img: {
-			data: ResponseDataItem<ImageDataResponse>
+			data: ResponseDataItem<ImageDataResponse>;
 		};
 		story: string;
-	}
+	};
 }
 
 export interface CharacterMainSkill {
