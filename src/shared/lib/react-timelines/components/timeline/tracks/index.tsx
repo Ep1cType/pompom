@@ -10,7 +10,7 @@ type Props = {
 };
 
 export const Tracks = ({ time, tracks, clickElement }: Props) => (
-  <div className="">
+  <div className="bg-blue-950 pb-4">
     {tracks.map(({ id, elements, isOpen, tracks: children }) => (
       <Track
         key={id}
