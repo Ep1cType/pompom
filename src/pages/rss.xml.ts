@@ -8,6 +8,27 @@ const DOMAIN_HOST = process.env.NEXT_PUBLIC_DOMAIN as string;
 const SERVER_DOMAIN_HOST = process.env.NEXT_PUBLIC_API_URL as string;
 const Api = new CharacterApi();
 
+const pathList = {
+  destruction: "Разрушение",
+  hunt: "Охота",
+  erudition: "Эрудиция",
+  harmony: "Гармония",
+  nihility: "Небытие",
+  preservation: "Сохранение",
+  abundance: "Изобилие",
+};
+
+const elementList = {
+  title: "Тип",
+  fire: "Огненный",
+  ice: "Ледяной",
+  imaginary: "Мнимый",
+  lightning: "Электрический",
+  quantum: "Квантовый",
+  wind: "Ветряной",
+  physical: "Физический",
+};
+
 function generateRssFeed(
   charactersList: ApiCollectionResponse<CharacterExtend>,
 ) {
@@ -50,16 +71,20 @@ function generateRssFeed(
                           <section class="mb-4 flex flex-col-reverse items-center justify-between gap-3 md:mb-8 md:flex-row">
                             <div>
                               <figure>
-                                <img src="${SERVER_DOMAIN_HOST}${splashImage?.url}">
-                                <figcaption>${char.attributes.info?.image?.data?.attributes?.name}</figcaption>
+                                <img src="${SERVER_DOMAIN_HOST}${
+                splashImage?.url
+              }">
+                                <figcaption>${char.attributes.name}</figcaption>
                               </figure> 
                               <p>
                                 <span>Путь:</span>
-                                <span>${char.attributes.path}</span>
+                                <span>${pathList[char.attributes.path]}</span>
                               </p>
                               <p>
                                 <span>Тип:</span>
-                                <span>${char.attributes.element}</span>
+                                <span>${
+                                  elementList[char.attributes.element]
+                                }</span>
                               </p>
                               <p>
                                 ${char.attributes.info.story}
