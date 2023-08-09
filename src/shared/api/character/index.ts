@@ -13,6 +13,17 @@ export class CharacterApi {
     });
   }
 
+  getCharactersListForRss() {
+    return apiReq.get<ApiCollectionResponse<CharacterExtend>>("characters", {
+      params: {
+        locale: "ru",
+        "populate[0]": "info",
+        "sort[0]": "name",
+        "populate[1]": "info.main_skill",
+      },
+    });
+  }
+
   getCharacter({ name, locale }: CharacterParams) {
     return apiReq.get<ApiCollectionResponse<CharacterExtend>>(
       `characters?filters[name][$eq]=${name}&populate[0]=info&populate[1]=info.main_skill,info.image,info.meta_img&populate[3]=info.main_skill.icon`,
