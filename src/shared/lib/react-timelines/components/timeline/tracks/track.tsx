@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Element } from "shared/lib/react-timelines/components/timeline/tracks/element";
 import { Tracks } from "shared/lib/react-timelines/components/timeline/tracks/index";
 import { CreateTimeReturn } from "shared/lib/react-timelines/utils/time";
