@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next";
 import { CharacterApi } from "shared/api/character";
 import { ApiCollectionResponse } from "shared/api/types";
 import { CharacterExtend } from "shared/api/character/type";
+import { checkImageFormat } from "shared/api/model";
 
 const DOMAIN_HOST = process.env.NEXT_PUBLIC_DOMAIN as string;
 const Api = new CharacterApi();
@@ -23,6 +24,18 @@ function generateRssFeed(
           <language>ru</language>
           ${charactersList.data
             .map((char) => {
+              const imageFormat = char.attributes.info?.image?.data?.attributes
+                ? checkImageFormat(
+                    char.attributes.info.image.data.attributes.formats,
+                  )
+                : "thumbnail";
+              const splashImage =
+                char.attributes.info?.image?.data?.attributes?.formats?.[
+                  imageFormat
+                ];
+
+              console.log(char);
+
               return `
               <item turbo="true">
                 <turbo:extendedHtml>true</turbo:extendedHtml>
@@ -36,8 +49,22 @@ function generateRssFeed(
                             <h1>${char.attributes.name}</h1>
                           </header>
                           <section class="mb-4 flex flex-col-reverse items-center justify-between gap-3 md:mb-8 md:flex-row">
-                            <div class="md:max-w-[50%]">
-                              <h1>${char.attributes.name}</h1>
+                            <div>
+                              <figure>
+                                <img src="${DOMAIN_HOST}${splashImage?.url}">
+                                <figcaption>${char.attributes.info?.image?.data?.attributes?.name}</figcaption>
+                              </figure> 
+                              <p>
+                                <span>Путь:</span>
+                                <span>${char.attributes.path}</span>
+                              </p>
+                              <p>
+                                <span>Тип:</span>
+                                <span>${char.attributes.element}</span>
+                              </p>
+                              <p>
+                                ${char.attributes.info.story}
+                              </p>
                             </div>
                           </section>
                       ]]> 
