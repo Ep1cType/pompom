@@ -24,7 +24,7 @@
       "widgets/*": ["src/widgets/*"],
       "atoms/*": ["src/atoms/*"],
       "molecules/*": ["src/molecules/*"],
-      "organisms/*": ["src/organisms/*"],
+      "organisms/*": ["src/organisms/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
