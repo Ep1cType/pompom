@@ -37,7 +37,9 @@ export const Header = ({ className }: Props) => {
             >
               {headerItems.map((item, index) => (
                 <li key={index}>
-                  <Link href={item.link}>{item.title}</Link>
+                  <Link prefetch={false} href={item.link}>
+                    {item.title}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -54,6 +56,7 @@ export const Header = ({ className }: Props) => {
             {headerItems.map((item, index) => (
               <li key={index}>
                 <Link
+                  prefetch={false}
                   className={clsx(
                     item.link === router.pathname && "bg-blue-950/60",
                   )}

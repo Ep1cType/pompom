@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       fontFamily: {
         outfit: ["var(--font-sans)", ...fontFamily.sans],
+        montserrat: ["var(--font-montserrat)", ...fontFamily.sans],
       },
       dropShadow: {
         eidolon: "0 0 0.75rem #2D3153",

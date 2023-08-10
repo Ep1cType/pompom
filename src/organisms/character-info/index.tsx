@@ -27,7 +27,7 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
     ];
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 font-montserrat">
       <section className="mb-4 flex flex-col-reverse items-center justify-between gap-3 md:mb-8 md:flex-row">
         <div className="md:max-w-[50%]">
           <h1 className="text-4xl">{characterInfo.attributes.name}</h1>

@@ -1,14 +1,9 @@
-import React, { useEffect } from "react";
-import { loadGuideListFx } from "shared/api/guide/request";
+import React from "react";
 import { PageTitle } from "shared/ui/page-title";
 import { NavigationCard } from "molecules/navigation-card/navigation-card";
 import Head from "next/head";
 
 export default function HomePage() {
-  useEffect(() => {
-    loadGuideListFx();
-  }, []);
-
   return (
     <>
       <Head>
