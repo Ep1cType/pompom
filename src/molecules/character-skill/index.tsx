@@ -19,7 +19,6 @@ export const CharacterSkill = ({ skill }: Props) => {
         className="flex-grow text-base/snug [&>span]:font-bold"
         dangerouslySetInnerHTML={{ __html: skillLevelList[initialSkill] }}
       />
-
       {skillLevelList.length > 1 && (
         <div className="mt-4">
           <span className="mr-2">Уровень: {initialSkill + 1}</span>
