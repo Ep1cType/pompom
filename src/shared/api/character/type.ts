@@ -23,7 +23,8 @@ export type CharacterElementList =
   | "lightning"
   | "wind"
   | "physical"
-  | "quantum";
+  | "quantum"
+  | "imaginary";
 
 export type CharacterSexList = "male" | "female";
 
@@ -41,6 +42,7 @@ export interface CharacterExtend extends Character {
     id: number;
     sex: CharacterSexList;
     main_skill: CharacterMainSkill[];
+    eidolon: CharacterEidolonItem[];
     image: {
       data: ResponseDataItem<ImageDataResponse>;
     };
@@ -58,4 +60,16 @@ export interface CharacterMainSkill {
   name: string;
   text_color: string;
   type: string;
+}
+
+export interface CharacterEidolonItem {
+  name: string;
+  description: {
+    [key: string]: string;
+  };
+  image: {
+    data: ResponseDataItem<ImageDataResponse>;
+  };
+  id: number;
+  number: number;
 }

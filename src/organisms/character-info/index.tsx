@@ -6,6 +6,7 @@ import { CharacterSkill } from "molecules/character-skill";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { checkImageFormat } from "shared/api/model";
+import { CharacterEidolon } from "molecules/character-eidolon";
 
 type Props = {
   characterInfo: ResponseDataItem<CharacterExtend>;
@@ -104,6 +105,15 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
       </section>
       <section>
         <h2 className="mb-4 text-2xl font-medium">Эйдолоны</h2>
+        <ul className="flex flex-col gap-4 lg:grid lg:grid-cols-2">
+          {characterInfo.attributes.info?.eidolon?.map((eidolon) => (
+            <CharacterEidolon
+              key={eidolon.id}
+              eidolon={eidolon}
+              element={characterInfo.attributes.element}
+            />
+          ))}
+        </ul>
       </section>
     </div>
   );

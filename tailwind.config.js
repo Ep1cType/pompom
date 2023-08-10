@@ -9,6 +9,9 @@ module.exports = {
       fontFamily: {
         outfit: ["var(--font-sans)", ...fontFamily.sans],
       },
+      dropShadow: {
+        eidolon: "0 0 0.75rem #2D3153",
+      },
       colors: {
         gold: "#D6AD76",
         violet: "#75459F",
@@ -24,6 +27,15 @@ module.exports = {
         five: {
           from: "#D0AA6E",
           to: "#A35D55",
+        },
+        elements: {
+          lightning: "#A952CF",
+          physical: "#BCBCBC",
+          quantum: "#504AB6",
+          fire: "#D43E35",
+          ice: "#4A91CE",
+          wind: "#6AC18E",
+          imaginary: "#ECE059",
         },
       },
     },
