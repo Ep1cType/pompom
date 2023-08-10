@@ -7,9 +7,6 @@ const nextConfig = {
     domains: ["localhost", "api.pom-pom.pro"],
   },
   i18n,
-  experimental: {
-    nextScriptWorkers: true,
-  },
 };
 
 module.exports = nextConfig;
