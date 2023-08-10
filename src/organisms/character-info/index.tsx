@@ -1,12 +1,19 @@
 import React from "react";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+
 import { ResponseDataItem } from "shared/api/types";
 import { CharacterExtend } from "shared/api/character/type";
 import { ImageWithDomain } from "shared/ui/image-with-domain";
-import { CharacterSkill } from "molecules/character-skill";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import { checkImageFormat } from "shared/api/model";
-import { CharacterEidolon } from "molecules/character-eidolon";
+
+const CharacterSkill = dynamic(() =>
+  import("molecules/character-skill").then((mod) => mod.CharacterSkill),
+);
+const CharacterEidolon = dynamic(() =>
+  import("molecules/character-eidolon").then((mod) => mod.CharacterEidolon),
+);
 
 type Props = {
   characterInfo: ResponseDataItem<CharacterExtend>;
