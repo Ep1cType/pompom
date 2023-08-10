@@ -21,7 +21,7 @@ export const YandexMetrika = () => {
       <Script
         id="yandex-metrika"
         type="text/javascript"
-        strategy="lazyOnload"
+        strategy="worker"
         dangerouslySetInnerHTML={{ __html: script }}
       />
       <noscript>
