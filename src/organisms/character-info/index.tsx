@@ -63,7 +63,10 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
               height={108}
               alt={`${characterInfo.attributes.path} icon`}
             />{" "}
-            <span className="opacity-80">
+            <span
+              data-tooltip-id={characterInfo.attributes.path}
+              className="cursor-pointer underline opacity-80"
+            >
               {t(`path.${characterInfo.attributes.path}`, { ns: "character" })}
             </span>
           </p>
@@ -79,7 +82,10 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
               height={256}
               alt={`${characterInfo.attributes.element} icon`}
             />{" "}
-            <span className="opacity-80">
+            <span
+              data-tooltip-id={characterInfo.attributes.element}
+              className="cursor-pointer underline opacity-80"
+            >
               {t(`element.${characterInfo.attributes.element}`, {
                 ns: "character",
               })}

@@ -29,6 +29,7 @@ module.exports = {
           from: "#D0AA6E",
           to: "#A35D55",
         },
+        orange: "#F29E38FF",
         elements: {
           lightning: "#A952CF",
           physical: "#BCBCBC",

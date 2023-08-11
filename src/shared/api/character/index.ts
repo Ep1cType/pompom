@@ -9,6 +9,7 @@ export class CharacterApi {
         populate: "icon",
         locale,
         "sort[0]": "name",
+        "pagination[pageSize]": 100,
       },
     });
   }

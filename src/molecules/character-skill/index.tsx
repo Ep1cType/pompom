@@ -14,7 +14,7 @@ export const CharacterSkill = ({ skill }: Props) => {
   return (
     <div className="flex flex-col rounded-2xl bg-blue-900 p-4">
       <h3 className="mb-1 text-base font-bold">{skill.name}</h3>
-      <p className="mb-2 text-sm font-medium text-orange-300">{skill.type}</p>
+      <p className="mb-2 text-sm font-medium text-orange">{skill.type}</p>
       <p
         className="flex-grow text-base/snug [&>span]:font-bold"
         dangerouslySetInnerHTML={{ __html: skillLevelList[initialSkill] }}
