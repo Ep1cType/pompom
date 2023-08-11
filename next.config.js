@@ -4,7 +4,7 @@ const nextConfig = {
   reactStrictMode: false,
   output: "standalone",
   images: {
-    domains: ["localhost", "api.pom-pom.pro"],
+    domains: ["localhost", "api.pom-pom.pro", "pom-pom.pro"],
   },
   i18n,
 };
