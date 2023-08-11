@@ -8,7 +8,6 @@ import { useRouter } from "next/router";
 import { CharacterCard } from "molecules/character-card";
 import Head from "next/head";
 import { PageTitle } from "shared/ui/page-title";
-import { Tooltip } from "react-tooltip";
 
 const CharactersPage = () => {
   const charactersList = useStore($charactersList);
