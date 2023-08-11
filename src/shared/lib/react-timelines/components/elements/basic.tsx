@@ -40,7 +40,7 @@ export const BasicElement = ({
   return (
     <div
       className={createClasses(
-        "rt-element group relative h-[40px] bg-orange-500 text-center leading-[40px] text-white",
+        "rt-element bg-orange-500 group relative h-[40px] text-center leading-[40px] text-white",
         classes,
       )}
       style={{
