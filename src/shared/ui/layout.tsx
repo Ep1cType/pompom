@@ -3,6 +3,8 @@ import { Header } from "shared/ui/header";
 import clsx from "clsx";
 import { Footer } from "shared/ui/footer";
 import { Tooltip } from "react-tooltip";
+import { skills } from "features/tooltips/model/skills";
+import { CharacterSkillList } from "shared/api/character/type";
 
 type Props = {
   children: ReactNode;
@@ -17,10 +19,16 @@ export const Layout = ({ children, className }: Props) => {
         {children}
       </main>
       <Footer className={className} />
+      <Tooltip id="tooltip-info" />
       <Tooltip
-        id="tooltip-info"
+        id="tooltip-skill"
         render={({ content }) => (
-          <div dangerouslySetInnerHTML={{ __html: content as string }}></div>
+          <p
+            className="max-w-[300px]"
+            dangerouslySetInnerHTML={{
+              __html: skills[content as CharacterSkillList],
+            }}
+          />
         )}
       />
     </div>

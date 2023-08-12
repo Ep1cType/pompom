@@ -37,6 +37,8 @@ export type CharacterPathList =
   | "nihility"
   | "preservation";
 
+export type CharacterSkillList = "baseChance" | "bonusAttack";
+
 export interface CharacterExtend extends Character {
   info: {
     id: number;

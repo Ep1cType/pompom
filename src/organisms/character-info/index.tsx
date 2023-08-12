@@ -67,7 +67,7 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
             />{" "}
             <span
               data-tooltip-id="tooltip-info"
-              data-tooltip-content={paths[characterInfo.attributes.path]}
+              data-tooltip-html={paths[characterInfo.attributes.path]}
               className="cursor-pointer underline opacity-80"
             >
               {t(`path.${characterInfo.attributes.path}`, { ns: "character" })}
@@ -87,7 +87,7 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
             />{" "}
             <span
               data-tooltip-id="tooltip-info"
-              data-tooltip-content={elements[characterInfo.attributes.element]}
+              data-tooltip-html={elements[characterInfo.attributes.element]}
               className="cursor-pointer underline opacity-80"
             >
               {t(`element.${characterInfo.attributes.element}`, {

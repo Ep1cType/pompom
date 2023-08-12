@@ -16,7 +16,7 @@ export const CharacterSkill = ({ skill }: Props) => {
       <h3 className="mb-1 text-base font-bold">{skill.name}</h3>
       <p className="mb-2 text-sm font-medium text-orange">{skill.type}</p>
       <p
-        className="flex-grow text-base/snug [&>span]:font-bold"
+        className="flex-grow text-base/snug [&>[data-tooltip-id='tooltip-skill']]:cursor-pointer [&>[data-tooltip-id='tooltip-skill']]:underline [&>span]:font-bold"
         dangerouslySetInnerHTML={{ __html: skillLevelList[initialSkill] }}
       />
       {skillLevelList.length > 1 && (

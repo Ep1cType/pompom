@@ -51,6 +51,13 @@ const CharactersPage = () => {
       </Head>
       <div className="container mx-auto px-4 py-8">
         <PageTitle className="mb-8 md:mb-16" text={"Персонажи"} />
+        <h2
+          data-tooltip-id="tooltip-skill"
+          data-tooltip-content="qqq"
+          className="w-fit"
+        >
+          Hello
+        </h2>
         <div className="grid grid-cols-4 gap-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-10">
           {charactersList.map((character) => (
             <CharacterCard
