@@ -7,6 +7,8 @@ import { CharacterExtend } from "shared/api/character/type";
 import { ImageWithDomain } from "shared/ui/image-with-domain";
 import { useTranslation } from "next-i18next";
 import { checkImageFormat } from "shared/api/model";
+import { elements } from "features/tooltips/model/elements";
+import { paths } from "features/tooltips/model/paths";
 
 const CharacterSkill = dynamic(() =>
   import("molecules/character-skill").then((mod) => mod.CharacterSkill),
@@ -64,7 +66,8 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
               alt={`${characterInfo.attributes.path} icon`}
             />{" "}
             <span
-              data-tooltip-id={characterInfo.attributes.path}
+              data-tooltip-id="tooltip-info"
+              data-tooltip-content={paths[characterInfo.attributes.path]}
               className="cursor-pointer underline opacity-80"
             >
               {t(`path.${characterInfo.attributes.path}`, { ns: "character" })}
@@ -83,7 +86,8 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
               alt={`${characterInfo.attributes.element} icon`}
             />{" "}
             <span
-              data-tooltip-id={characterInfo.attributes.element}
+              data-tooltip-id="tooltip-info"
+              data-tooltip-content={elements[characterInfo.attributes.element]}
               className="cursor-pointer underline opacity-80"
             >
               {t(`element.${characterInfo.attributes.element}`, {
