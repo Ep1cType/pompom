@@ -51,14 +51,30 @@ export const WarpBlock = ({ gachaType }: Props) => {
         <p>Прыжков до гаранта: {warpToEnsured(gachaType)}</p>
         <p className="opacity-70">Гарант на {countWarpToEnsured(gachaType)}</p>
       </div>
-      <div className="scrollBar flex max-h-[500px] flex-grow flex-col gap-2 overflow-y-auto px-2 py-2 shadow-xl">
-        {warpData[gachaType].map((warpItem, index) => (
-          <WarpCard
-            key={index}
-            warp={warpItem}
-            count={warpData[gachaType].length - index}
-          />
-        ))}
+      <div className="w-full">
+        <div className="scrollBar flex gap-2 overflow-x-auto">
+          {warpData[gachaType]
+            .filter((warpItem) => warpItem.rank_type === "5")
+            .map((warpItem, index) => {
+              return (
+                <WarpCard
+                  key={index}
+                  warp={warpItem}
+                  short
+                  count={warpData[gachaType].length - index}
+                />
+              );
+            })}
+        </div>
+        <div className="scrollBar flex max-h-[500px] flex-grow flex-col gap-2 overflow-y-auto px-2 py-2 shadow-xl">
+          {warpData[gachaType].map((warpItem, index) => (
+            <WarpCard
+              key={index}
+              warp={warpItem}
+              count={warpData[gachaType].length - index}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

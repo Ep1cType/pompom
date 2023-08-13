@@ -7,13 +7,15 @@ import Image from "next/image";
 type Props = {
   warp: WarpItem;
   count: number;
+  short?: boolean;
 };
 
-export const WarpCard = ({ warp, count }: Props) => {
+export const WarpCard = ({ warp, count, short }: Props) => {
   const [showImage, setShowImage] = useState(true);
 
   return (
     <Link
+      data-id={warp.item_id}
       href={warp.item_type === "Персонажи" ? `/characters/${warp.name}` : ""}
       className={clsx(
         "flex hover:opacity-80",
@@ -21,13 +23,14 @@ export const WarpCard = ({ warp, count }: Props) => {
         warp.rank_type === "3" && "text-three-from",
         warp.rank_type === "4" && "text-four-from",
         warp.rank_type === "5" && "text-five-from",
+        short && "w-fit flex-col",
       )}
     >
-      {count}
+      {!short && count}
       {showImage && (
         <Image
           className={clsx(
-            "aspect-square  w-12 ",
+            "aspect-square w-12 min-w-[48px]",
             warp.item_type === "Персонажи"
               ? "rounded-full object-cover"
               : "object-contain",
@@ -36,14 +39,16 @@ export const WarpCard = ({ warp, count }: Props) => {
           height={256}
           src={`/${
             warp.item_type === "Персонажи"
-              ? `characters/${warp.name}.webp`
+              ? `characters/${warp.item_id}.webp`
               : `cones/${warp.item_id}.webp`
           }`}
           onError={() => setShowImage(false)}
           alt={warp.name}
         />
       )}
-      <p className={clsx(" inline text-base")}>{warp.name}</p>
+      <p className={clsx("inline text-base", short && "whitespace-nowrap")}>
+        {warp.name}
+      </p>
     </Link>
   );
 };
