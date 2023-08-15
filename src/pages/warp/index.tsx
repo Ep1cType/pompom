@@ -66,7 +66,7 @@ const WarpPage = () => {
       </Head>
       <div className="container mx-auto px-4 py-8">
         <PageTitle text={"История прыжков"} className="mb-8 md:mb-16" />
-        <div className="mb-8 flex items-center gap-4 md:mb-16">
+        <div className="mb-8 flex flex-wrap items-center gap-4 md:mb-16">
           <button
             onClick={handleChangeHelp("PC")}
             className={clsx(
