@@ -242,7 +242,6 @@ const WarpPage = () => {
                   <span className="absolute -left-4 flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-blue-900 ring-4 ring-white dark:bg-gray-700 dark:ring-gray-900">
                     4
                   </span>
-                  {/*<h3 className="font-medium leading-tight">Confirmation</h3>*/}
                   <p className="text-sm">
                     Вернетесь в приложение. Если у вас iOS 10.3 и выше, вы
                     увидите всплывающее окно, которое запросит дополнительную
