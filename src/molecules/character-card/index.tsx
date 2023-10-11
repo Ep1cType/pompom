@@ -21,10 +21,7 @@ export const CharacterCard = ({
   className,
 }: Props) => {
   return (
-    <Link
-      href={`/characters/${name}`}
-      className={clsx("group card relative", className)}
-    >
+    <div className={clsx("group card relative", className)}>
       <div
         className={clsx(
           "aspect-square overflow-hidden",
@@ -51,10 +48,13 @@ export const CharacterCard = ({
           alt={`${element} icon`}
         />
       </div>
-
-      <h2 className="mt-1 text-center text-xs/none sm:text-sm md:text-base/tight">
+      <h2
+        title={name}
+        className="mt-1 text-center text-xs/none sm:text-sm md:text-base/tight"
+      >
         {name}
+        <Link className="absolute inset-0" href={`/characters/${name}`} />
       </h2>
-    </Link>
+    </div>
   );
 };

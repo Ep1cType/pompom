@@ -1,15 +1,22 @@
 import { apiReq } from "shared/api/config";
 import { ApiCollectionResponse } from "shared/api/types";
-import { Character, CharacterExtend } from "shared/api/character/type";
+import {
+  Character,
+  CharacterElementList,
+  CharacterExtend,
+  CharacterPathList,
+} from "shared/api/character/type";
 
 export class CharacterApi {
-  getCharactersList({ locale = "ru" }: Params) {
+  getCharactersList({ locale = "ru", paths = [], elements = [] }: Params) {
     return apiReq.get<ApiCollectionResponse<Character>>("characters", {
       params: {
         populate: "icon",
         locale,
         "sort[0]": "name",
         "pagination[pageSize]": 100,
+        "filters[path][$in]": paths,
+        "filters[element][$in]": elements,
       },
     });
   }
@@ -39,6 +46,8 @@ export class CharacterApi {
 
 interface Params {
   locale?: string;
+  paths?: CharacterPathList[];
+  elements?: CharacterElementList[];
 }
 
 interface CharacterParams extends Params {
