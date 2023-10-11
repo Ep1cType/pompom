@@ -7,6 +7,7 @@ export class EventApi {
     return apiReq.get<ApiCollectionResponse<EventItem>>("events", {
       params: {
         populate: "*",
+        "pagination[pageSize]": 100,
       },
     });
   }
