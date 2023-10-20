@@ -38,10 +38,9 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
   return (
     <div
       itemScope
-      itemType="https://schema.org/Person"
+      itemType="https://schema.org/Thing"
       className="container mx-auto px-4 py-8 font-montserrat"
     >
-      <meta itemProp="gender" content={characterInfo.attributes.info.sex} />
       <section className="mb-4 flex flex-col-reverse items-center justify-between gap-3 md:mb-8 md:flex-row">
         <div className="md:max-w-[50%]">
           <h1 itemProp="name" className="text-4xl">
@@ -106,13 +105,14 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
             </span>
           </p>
 
-          <p itemType="disambiguatingDescription" className="text-lg/tight">
+          <p itemType="description" className="text-lg/tight">
             {characterInfo.attributes.info?.story}
           </p>
         </div>
         {splashImage && (
           <div
             itemScope
+            itemProp="image"
             itemType="https://schema.org/ImageObject"
             className="md:max-w-[50%]"
           >
