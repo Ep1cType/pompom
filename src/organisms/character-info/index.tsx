@@ -36,12 +36,22 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
     ];
 
   return (
-    <div className="container mx-auto px-4 py-8 font-montserrat">
+    <div
+      itemScope
+      itemType="https://schema.org/Person"
+      className="container mx-auto px-4 py-8 font-montserrat"
+    >
+      <meta itemProp="gender" content={characterInfo.attributes.info.sex} />
       <section className="mb-4 flex flex-col-reverse items-center justify-between gap-3 md:mb-8 md:flex-row">
         <div className="md:max-w-[50%]">
-          <h1 className="text-4xl">{characterInfo.attributes.name}</h1>
+          <h1 itemProp="name" className="text-4xl">
+            {characterInfo.attributes.name}
+          </h1>
 
-          <p className="mb-8">
+          <p itemScope itemType="https://schema.org/Rating" className="mb-8">
+            <meta itemProp="worstRating" content="4" />
+            <meta itemProp="bestRating" content="5" />
+            <meta itemProp="ratingValue" content={String(starCount)} />
             {[...Array(starCount)].map((_, index) => (
               <Image
                 key={index}
@@ -96,20 +106,28 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
             </span>
           </p>
 
-          <p className="text-lg/tight">
+          <p itemType="description" className="text-lg/tight">
             {characterInfo.attributes.info?.story}
           </p>
         </div>
         {splashImage && (
-          <ImageWithDomain
+          <div
+            itemScope
+            itemType="https://schema.org/ImageObject"
             className="md:max-w-[50%]"
-            src={splashImage?.url}
-            width={splashImage?.width}
-            height={splashImage?.height}
-            quality={100}
-            priority
-            alt={characterInfo.attributes.info.image.data.attributes.name}
-          />
+          >
+            <meta itemProp="name" content={characterInfo.attributes.name} />
+            <meta />
+            <ImageWithDomain
+              src={splashImage?.url}
+              width={splashImage?.width}
+              height={splashImage?.height}
+              quality={100}
+              priority
+              itemProp="contentUrl"
+              alt={characterInfo.attributes.info.image.data.attributes.name}
+            />
+          </div>
         )}
       </section>
       <section className="mb-6">
