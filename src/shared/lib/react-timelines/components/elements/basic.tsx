@@ -52,6 +52,8 @@ export const BasicElement = ({
       <div
         className="rt-element__content text-ellipsis whitespace-nowrap px-[10px] text-start"
         aria-hidden="true"
+        itemScope
+        itemType="https://schema.org/Event"
       >
         <span
           style={{
@@ -62,9 +64,12 @@ export const BasicElement = ({
             } 1px 1px 4px,${style?.backgroundColor as string} 0 0 10px`,
           }}
           className="sticky left-[10px] z-10 whitespace-nowrap text-base font-bold md:text-lg"
+          itemProp="name"
         >
           {title}
         </span>
+        <meta itemProp="startDate" content={start.toISOString()} />
+        <meta itemProp="endDate" content={end.toISOString()} />
       </div>
       <div className="timeline_cell__image absolute bottom-0 right-0 top-0 w-[30%] max-w-[20%] overflow-hidden rounded-r-[13px]">
         {image && (
