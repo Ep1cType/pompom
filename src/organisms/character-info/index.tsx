@@ -38,7 +38,7 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
   return (
     <div
       itemScope
-      itemType="https://schema.org/Thing"
+      itemType="https://schema.org/Person"
       className="container mx-auto px-4 py-8 font-montserrat"
     >
       <section className="mb-4 flex flex-col-reverse items-center justify-between gap-3 md:mb-8 md:flex-row">

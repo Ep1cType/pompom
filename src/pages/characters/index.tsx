@@ -146,7 +146,11 @@ const CharactersPage = () => {
           </h2>
         )}
         {isLoading && <Loader />}
-        <section className="grid grid-cols-4 gap-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-10">
+        <section
+          itemScope
+          itemType="https://schema.org/ItemList"
+          className="grid grid-cols-4 gap-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-10"
+        >
           {!!charactersList.length &&
             !isLoading &&
             charactersList.map((character) => (

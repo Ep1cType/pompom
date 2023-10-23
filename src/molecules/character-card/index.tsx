@@ -21,8 +21,15 @@ export const CharacterCard = ({
   className,
 }: Props) => {
   return (
-    <div className={clsx("group card relative", className)}>
+    <div
+      itemProp="itemListElement"
+      itemScope
+      itemType="https://schema.org/ListItem"
+      className={clsx("group card relative", className)}
+    >
       <div
+        itemScope
+        itemType="https://schema.org/ImageObject"
         className={clsx(
           "aspect-square overflow-hidden",
           starCount === "four" &&
@@ -32,12 +39,14 @@ export const CharacterCard = ({
         )}
       >
         <Image
+          itemProp="contentUrl"
           className="h-auto w-full object-contain object-bottom transition-all duration-100 ease-linear group-hover:scale-105"
           src={`${process.env.NEXT_PUBLIC_API_URL}${img.url}`}
           width={img.width}
           height={img.height}
           alt={img.name}
         />
+        <meta itemProp="name" content={name} />
       </div>
       <div className="absolute right-0 top-0 flex aspect-square h-6 w-6 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-full bg-black">
         <Image
@@ -49,11 +58,16 @@ export const CharacterCard = ({
         />
       </div>
       <h2
+        itemProp="name"
         title={name}
         className="mt-1 text-center text-xs/none sm:text-sm md:text-base/tight"
       >
         {name}
-        <Link className="absolute inset-0" href={`/characters/${name}`} />
+        <Link
+          itemProp="url"
+          className="absolute inset-0"
+          href={`/characters/${name}`}
+        />
       </h2>
     </div>
   );
