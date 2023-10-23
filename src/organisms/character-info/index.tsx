@@ -105,7 +105,7 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
             </span>
           </p>
 
-          <p itemType="description" className="text-lg/tight">
+          <p itemProp="description" className="text-lg/tight">
             {characterInfo.attributes.info?.story}
           </p>
         </div>
