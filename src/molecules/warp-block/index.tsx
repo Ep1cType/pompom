@@ -9,7 +9,7 @@ type Props = {
   gachaType: keyof GachaType;
 };
 
-function countWarpToEnsured(type: keyof GachaType) {
+export function countWarpToEnsured(type: keyof GachaType) {
   if (type === "2") {
     return 50;
   }

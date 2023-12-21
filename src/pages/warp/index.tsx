@@ -13,7 +13,10 @@ import Head from "next/head";
 import { FilterWarps } from "features/filter-warps/ui";
 import { PageTitle } from "shared/ui/page-title";
 import Image from "next/image";
-
+const WarpStats = dynamic(
+  () => import("widgets/warp-stats/ui").then((mod) => mod.WarpStats),
+  { ssr: false },
+);
 const WarpInfo = dynamic(
   () => import("organisms/warp-info").then((mod) => mod.WarpInfo),
   { ssr: false },
@@ -419,6 +422,7 @@ const WarpPage = () => {
           <aside>
             <FilterWarps />
           </aside>
+          <WarpStats />
           <WarpInfo />
         </div>
       </div>
