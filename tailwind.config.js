@@ -39,6 +39,11 @@ module.exports = {
           wind: "#6AC18E",
           imaginary: "#ECE059",
         },
+        badge: {
+          yellow: "rgb(255, 255, 0)",
+          red: "rgb(255, 0, 0)",
+          green: "rgb(0, 255, 0)",
+        },
       },
     },
   },

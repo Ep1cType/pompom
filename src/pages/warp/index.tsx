@@ -13,6 +13,11 @@ import Head from "next/head";
 import { FilterWarps } from "features/filter-warps/ui";
 import { PageTitle } from "shared/ui/page-title";
 import Image from "next/image";
+
+const WarpFivestar = dynamic(
+  () => import("widgets/warp-fivestar/ui").then((mod) => mod.WarpFivestar),
+  { ssr: false },
+);
 const WarpStats = dynamic(
   () => import("widgets/warp-stats/ui").then((mod) => mod.WarpStats),
   { ssr: false },
@@ -423,6 +428,7 @@ const WarpPage = () => {
             <FilterWarps />
           </aside>
           <WarpStats />
+          <WarpFivestar />
           <WarpInfo />
         </div>
       </div>
