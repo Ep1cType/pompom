@@ -6,6 +6,13 @@ export interface LocaleParams {
   locale?: string;
 }
 
+export interface StrapiEntity {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
 export interface PaginationDataResponse {
   page: number;
   pageCount: number;
@@ -32,7 +39,7 @@ export interface CreateBody<T> {
   data: T;
 }
 
-export interface ImageDataResponse {
+export interface ImageDataResponse extends StrapiEntity {
   name: string;
   alternativeText: string;
   caption: null;
@@ -47,8 +54,6 @@ export interface ImageDataResponse {
   previewUrl: null | string;
   provider: string;
   provider_metadata: null;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export type ImageFormatList = {

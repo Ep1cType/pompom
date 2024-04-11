@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es2015",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -16,17 +20,48 @@
     "incremental": true,
     "baseUrl": "./",
     "paths": {
-      "pages/*": ["src/pages/*"],
-      "shared/*": ["src/shared/*"],
-      "styles/*": ["src/styles/*"],
-      "features/*": ["src/features/*"],
-      "entities/*": ["src/entities/*"],
-      "widgets/*": ["src/widgets/*"],
-      "atoms/*": ["src/atoms/*"],
-      "molecules/*": ["src/molecules/*"],
-      "organisms/*": ["src/organisms/*"]
-    }
+      "pages/*": [
+        "src/pages/*"
+      ],
+      "shared/*": [
+        "src/shared/*"
+      ],
+      "styles/*": [
+        "src/styles/*"
+      ],
+      "features/*": [
+        "src/features/*"
+      ],
+      "entities/*": [
+        "src/entities/*"
+      ],
+      "widgets/*": [
+        "src/widgets/*"
+      ],
+      "atoms/*": [
+        "src/atoms/*"
+      ],
+      "molecules/*": [
+        "src/molecules/*"
+      ],
+      "organisms/*": [
+        "src/organisms/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".yarn"
+  ]
 }
