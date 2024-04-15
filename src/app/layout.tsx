@@ -8,6 +8,7 @@ import "react-tooltip/dist/react-tooltip.css";
 import "styles/globals.css";
 
 import { Header } from "shared/ui/header";
+import { YandexMetrika } from "shared/ui/metrika";
 import { TooltipContainer } from "shared/ui/tooltip-container";
 
 const sans = Open_Sans({
@@ -50,6 +51,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className={clsx("flex h-full min-h-screen w-full flex-col text-white", sans.className, montserrat.className)}
       >
+        {process.env.NEXT_PUBLIC_ENV === "production" && <meta name="yandex-verification" content="f56ee53bed980370" />}
+        {process.env.NEXT_PUBLIC_ENV === "production" && <YandexMetrika />}
         <Header />
         <main className="flex-grow bg-blue-950 text-white">{children}</main>
       </body>

@@ -1,4 +1,7 @@
+"use client";
+
 import React from "react";
+
 import Script from "next/script";
 
 export const YandexMetrika = () => {
@@ -27,11 +30,7 @@ export const YandexMetrika = () => {
       <noscript>
         <div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://mc.yandex.ru/watch/93462991"
-            style={{ position: "absolute", left: "-9999px" }}
-            alt=""
-          />
+          <img src="https://mc.yandex.ru/watch/93462991" style={{ position: "absolute", left: "-9999px" }} alt="" />
         </div>
       </noscript>
     </>
