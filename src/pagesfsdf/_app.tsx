@@ -1,9 +1,11 @@
-import "styles/globals.css";
-import "react-tooltip/dist/react-tooltip.css";
 import type { AppProps } from "next/app";
-import { Layout } from "shared/ui/layout";
-import { Open_Sans, Montserrat } from "next/font/google";
+
 import { appWithTranslation } from "next-i18next";
+import { Montserrat, Open_Sans } from "next/font/google";
+import "react-tooltip/dist/react-tooltip.css";
+import "styles/globals.css";
+
+import { Layout } from "shared/ui/layout";
 import { YandexMetrika } from "shared/ui/metrika";
 
 const sans = Open_Sans({
@@ -23,9 +25,9 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       {process.env.NEXT_PUBLIC_ENV === "production" && <YandexMetrika />}
-      <Layout className={`${sans.variable} ${montserrat.variable}`}>
-        <Component {...pageProps} />
-      </Layout>
+      {/*<Layout className={`${sans.variable} ${montserrat.variable}`}>*/}
+      {/*  <Component {...pageProps} />*/}
+      {/*</Layout>*/}
     </>
   );
 }
