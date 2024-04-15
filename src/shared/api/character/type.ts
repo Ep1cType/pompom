@@ -52,9 +52,7 @@ export interface CharacterEidolonItem {
   description: {
     [key: string]: string;
   };
-  image: {
-    data: ResponseDataItem<ImageDataResponse>;
-  };
+  image: ImageDataResponse;
   id: number;
   number: number;
 }

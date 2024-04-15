@@ -11,11 +11,9 @@ interface Props {
 }
 
 export const CharacterEidolon = ({ eidolon, element }: Props) => {
-  const imageFormat = eidolon.image?.data?.attributes
-    ? checkImageFormat(eidolon.image.data.attributes.formats)
-    : "thumbnail";
-  const eidolonImage = eidolon?.image?.data?.attributes?.formats?.[imageFormat];
-  const eidolonImageAlt = eidolon?.image?.data?.attributes?.name;
+  const imageFormat = eidolon.image ? checkImageFormat(eidolon.image.formats) : "thumbnail";
+  const eidolonImage = eidolon?.image?.formats?.[imageFormat];
+  const eidolonImageAlt = eidolon?.image?.name;
 
   return (
     <li className="relative flex items-center self-start">
