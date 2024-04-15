@@ -3,13 +3,14 @@ import { apiReq } from "shared/api/config";
 import fetchApi from "shared/api/strapi";
 import { ApiCollectionResponse } from "shared/api/types";
 
-export const getCharactersList = () => {
+export const getCharactersList = ({ query }: { query?: Record<string, string> }) => {
   return fetchApi<Character[]>({
     endpoint: "characters",
     query: {
       populate: "icon",
       "sort[0]": "name",
       "pagination[pageSize]": "100",
+      ...query,
     },
     wrappedByKey: "data",
     options: {

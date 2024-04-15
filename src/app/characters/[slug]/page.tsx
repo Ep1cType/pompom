@@ -58,7 +58,7 @@ export async function generateMetadata({ params, searchParams }: Props, parent: 
 }
 
 export async function generateStaticParams() {
-  const response = await getCharactersList();
+  const response = await getCharactersList({});
   return response.map((el) => ({ id: el.slug }));
 }
 

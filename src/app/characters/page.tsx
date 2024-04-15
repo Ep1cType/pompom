@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 async function getData() {
-  return await getCharactersList();
+  return await getCharactersList({});
 }
 
 export default async function CharactersPage() {
