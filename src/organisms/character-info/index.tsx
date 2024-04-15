@@ -1,53 +1,36 @@
-import React from "react";
-import dynamic from "next/dynamic";
+"use client";
+
 import Image from "next/image";
 
-import { ResponseDataItem } from "shared/api/types";
-import { CharacterExtend } from "shared/api/character/type";
-import { ImageWithDomain } from "shared/ui/image-with-domain";
-import { useTranslation } from "next-i18next";
-import { checkImageFormat } from "shared/api/model";
 import { elements } from "features/tooltips/model/elements";
 import { paths } from "features/tooltips/model/paths";
 
-const CharacterSkill = dynamic(() =>
-  import("molecules/character-skill").then((mod) => mod.CharacterSkill),
-);
-const CharacterEidolon = dynamic(() =>
-  import("molecules/character-eidolon").then((mod) => mod.CharacterEidolon),
-);
+import { CharacterEidolon } from "molecules/character-eidolon";
+import { CharacterSkill } from "molecules/character-skill";
+
+import { CharacterExtend } from "shared/api/character/type";
+import { checkImageFormat } from "shared/api/model";
+import { ImageWithDomain } from "shared/ui/image-with-domain";
+import { elementDictionary, pathDictionary } from "shared/utils/dictionary";
 
 type Props = {
-  characterInfo: ResponseDataItem<CharacterExtend>;
+  characterInfo: CharacterExtend;
 };
 
 export const CharacterInfo = ({ characterInfo }: Props) => {
-  const { t } = useTranslation(["character"]);
-
-  const starCount = characterInfo.attributes.star === "five" ? 5 : 4;
-  const imageFormat = characterInfo.attributes.info?.image?.data?.attributes
-    ? checkImageFormat(
-        characterInfo.attributes.info.image.data.attributes.formats,
-      )
-    : "thumbnail";
-  const splashImage =
-    characterInfo.attributes.info?.image?.data?.attributes?.formats?.[
-      imageFormat
-    ];
+  const starCount = characterInfo.star === "five" ? 5 : 4;
+  const imageFormat = characterInfo.info?.image ? checkImageFormat(characterInfo.info.image.formats) : "thumbnail";
+  const splashImage = characterInfo.info?.image?.formats?.[imageFormat];
 
   return (
-    <div
-      itemScope
-      itemType="https://schema.org/Person"
-      className="container mx-auto px-4 py-8 font-montserrat"
-    >
-      <section className="mb-4 flex flex-col-reverse items-center justify-between gap-3 md:mb-8 md:flex-row">
+    <div itemScope itemType="https://schema.org/Person" className="container mx-auto px-4 py-8 font-montserrat">
+      <section className="mb-4 flex flex-col-reverse justify-between gap-3 md:mb-8 md:flex-row md:items-center">
         <div className="md:max-w-[50%]">
-          <h1 itemProp="name" className="text-4xl">
-            {characterInfo.attributes.name}
+          <h1 itemProp="name" className="mb-2 text-4xl">
+            {characterInfo.name}
           </h1>
 
-          <p itemScope itemType="https://schema.org/Rating" className="mb-8">
+          <p itemScope itemType="https://schema.org/Rating" className="mb-4">
             <meta itemProp="worstRating" content="4" />
             <meta itemProp="bestRating" content="5" />
             <meta itemProp="ratingValue" content={String(starCount)} />
@@ -58,65 +41,55 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
                 src={`/icons/common/level_star.png`}
                 width={42}
                 height={42}
-                alt={`${characterInfo.attributes.path} icon`}
+                alt={`${characterInfo.path} icon`}
               />
             ))}
           </p>
 
           <p className="mb-2 flex items-center">
-            <span className="mr-2 text-base font-medium">
-              {t("path.title", { ns: "character" })}:
-            </span>
+            <span className="mr-2 text-base font-medium">Путь:</span>
             <Image
               className="mr-2 inline h-5 w-5"
-              src={`/icons/paths/${characterInfo.attributes.path}.png`}
+              src={`/icons/paths/${characterInfo.path}.png`}
               width={108}
               height={108}
-              alt={`${characterInfo.attributes.path} icon`}
-            />{" "}
+              alt={`${characterInfo.path} icon`}
+            />
             <span
               data-tooltip-id="tooltip-info"
-              data-tooltip-html={paths[characterInfo.attributes.path]}
+              data-tooltip-html={paths[characterInfo.path]}
               className="cursor-pointer underline opacity-80"
             >
-              {t(`path.${characterInfo.attributes.path}`, { ns: "character" })}
+              {pathDictionary[characterInfo.path]}
             </span>
           </p>
 
           <p className="mb-2 flex items-center">
-            <span className="mr-2 text-base font-medium">
-              {t("element.title", { ns: "character" })}:
-            </span>
+            <span className="mr-2 text-base font-medium">Тип:</span>
             <Image
               className="mr-2 inline h-5 w-5"
-              src={`/icons/elements/${characterInfo.attributes.element}.webp`}
+              src={`/icons/elements/${characterInfo.element}.webp`}
               width={256}
               height={256}
-              alt={`${characterInfo.attributes.element} icon`}
-            />{" "}
+              alt={`${characterInfo.element} icon`}
+            />
             <span
               data-tooltip-id="tooltip-info"
-              data-tooltip-html={elements[characterInfo.attributes.element]}
+              data-tooltip-html={elements[characterInfo.element]}
               className="cursor-pointer underline opacity-80"
             >
-              {t(`element.${characterInfo.attributes.element}`, {
-                ns: "character",
-              })}
+              {elementDictionary[characterInfo.element]}
             </span>
           </p>
 
           <p itemProp="description" className="text-lg/tight">
-            {characterInfo.attributes.info?.story}
+            {characterInfo.info?.story}
           </p>
         </div>
+
         {splashImage && (
-          <div
-            itemScope
-            itemProp="image"
-            itemType="https://schema.org/ImageObject"
-            className="md:max-w-[50%]"
-          >
-            <meta itemProp="name" content={characterInfo.attributes.name} />
+          <div itemScope itemProp="image" itemType="https://schema.org/ImageObject" className="md:max-w-[50%]">
+            <meta itemProp="name" content={characterInfo.name} />
             <meta />
             <ImageWithDomain
               src={splashImage?.url}
@@ -125,31 +98,32 @@ export const CharacterInfo = ({ characterInfo }: Props) => {
               quality={100}
               priority
               itemProp="contentUrl"
-              alt={characterInfo.attributes.info.image.data.attributes.name}
+              alt={characterInfo.info.image.name}
             />
           </div>
         )}
       </section>
-      <section className="mb-6">
-        <h2 className="mb-4 text-2xl font-medium">Навыки</h2>
-        <div className="flex flex-col gap-4 lg:grid lg:grid-cols-2">
-          {characterInfo.attributes.info?.main_skill?.map((skill) => (
-            <CharacterSkill key={skill.id} skill={skill} />
-          ))}
-        </div>
-      </section>
-      <section>
-        <h2 className="mb-4 text-2xl font-medium">Эйдолоны</h2>
-        <ul className="flex flex-col gap-4 lg:grid lg:grid-cols-2">
-          {characterInfo.attributes.info?.eidolon?.map((eidolon) => (
-            <CharacterEidolon
-              key={eidolon.id}
-              eidolon={eidolon}
-              element={characterInfo.attributes.element}
-            />
-          ))}
-        </ul>
-      </section>
+      {characterInfo.info?.main_skill?.length > 0 && (
+        <section className="mb-6">
+          <h2 className="mb-4 text-2xl font-medium">Навыки</h2>
+          <div className="flex flex-col gap-4 lg:grid lg:grid-cols-2">
+            {characterInfo.info.main_skill.map((skill) => (
+              <CharacterSkill key={skill.id} skill={skill} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {characterInfo.info?.eidolon?.length > 0 && (
+        <section>
+          <h2 className="mb-4 text-2xl font-medium">Эйдолоны</h2>
+          <ul className="flex flex-col gap-4 lg:grid lg:grid-cols-2">
+            {characterInfo.info.eidolon.map((eidolon) => (
+              <CharacterEidolon key={eidolon.id} eidolon={eidolon} element={characterInfo.element} />
+            ))}
+          </ul>
+        </section>
+      )}
     </div>
   );
 };

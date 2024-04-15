@@ -1,14 +1,17 @@
 import { apiReq } from "shared/api/config";
-import { ApiCollectionResponse } from "shared/api/types";
 import { EventItem } from "shared/api/event/type";
+import fetchApi from "shared/api/strapi";
+import { ApiCollectionResponse } from "shared/api/types";
 
-export class EventApi {
-  getEventsList() {
-    return apiReq.get<ApiCollectionResponse<EventItem>>("events", {
-      params: {
-        populate: "*",
-        "pagination[pageSize]": 100,
-      },
-    });
-  }
-}
+export const getEventsList = () => {
+  return fetchApi<EventItem[]>({
+    endpoint: "events",
+    query: {
+      populate: "*",
+      "pagination[pageSize]": "100",
+    },
+    wrappedByKey: "data",
+  });
+};
+
+export class EventApi {}

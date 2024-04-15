@@ -1,11 +1,12 @@
+"use client";
+
 import React, { Fragment } from "react";
+
 import { Dialog, Transition } from "@headlessui/react";
 import { useUnit } from "effector-react";
-import {
-  $isTimelineModalOpen,
-  $timelineModalData,
-  setTimelineModalClose,
-} from "organisms/timeline-modal/model";
+
+import { $isTimelineModalOpen, $timelineModalData, setTimelineModalClose } from "organisms/timeline-modal/model";
+
 import { ImageWithDomain } from "shared/ui/image-with-domain";
 
 function getDate(value: Date) {
@@ -20,11 +21,7 @@ function getDate(value: Date) {
 }
 
 export const TimelineModal = () => {
-  const [isOpen, close, data] = useUnit([
-    $isTimelineModalOpen,
-    setTimelineModalClose,
-    $timelineModalData,
-  ]);
+  const [isOpen, close, data] = useUnit([$isTimelineModalOpen, setTimelineModalClose, $timelineModalData]);
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -62,10 +59,7 @@ export const TimelineModal = () => {
                     alt={data.image.name}
                   />
                 )}
-                <Dialog.Title
-                  as="h3"
-                  className="text-lg font-medium leading-6 text-white"
-                >
+                <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-white">
                   {data.title}
                 </Dialog.Title>
                 <div className="mt-2">
@@ -75,12 +69,7 @@ export const TimelineModal = () => {
                 </div>
 
                 <div className="mt-2">
-                  <a
-                    className="link text-white/50"
-                    href={data.link}
-                    target={"_blank"}
-                    rel={"nofollow"}
-                  >
+                  <a className="link text-white/50" href={data.link} target={"_blank"} rel={"nofollow"}>
                     {data.link}
                   </a>
                 </div>

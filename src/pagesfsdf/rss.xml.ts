@@ -1,8 +1,9 @@
 import { GetServerSideProps } from "next";
+
 import { CharacterApi } from "shared/api/character";
-import { ApiCollectionResponse } from "shared/api/types";
 import { CharacterExtend } from "shared/api/character/type";
 import { checkImageFormat } from "shared/api/model";
+import { ApiCollectionResponse } from "shared/api/types";
 
 const DOMAIN_HOST = process.env.NEXT_PUBLIC_DOMAIN as string;
 const SERVER_DOMAIN_HOST = process.env.NEXT_PUBLIC_API_URL as string;
@@ -29,9 +30,7 @@ const elementList = {
   physical: "Физический",
 };
 
-function generateRssFeed(
-  charactersList: ApiCollectionResponse<CharacterExtend>,
-) {
+function generateRssFeed(charactersList: ApiCollectionResponse<CharacterExtend>) {
   return `<?xml version="1.0" encoding="UTF-8"?>
     <rss
       xmlns:yandex="http://news.yandex.ru"
@@ -46,15 +45,10 @@ function generateRssFeed(
           <language>ru</language>
           ${charactersList.data
             .map((char) => {
-              const imageFormat = char.attributes.info?.image?.data?.attributes
-                ? checkImageFormat(
-                    char.attributes.info.image.data.attributes.formats,
-                  )
+              const imageFormat = char.attributes.info?.image
+                ? checkImageFormat(char.attributes.info.image.formats)
                 : "thumbnail";
-              const splashImage =
-                char.attributes.info?.image?.data?.attributes?.formats?.[
-                  imageFormat
-                ];
+              const splashImage = char.attributes.info?.image?.formats?.[imageFormat];
 
               return `
               <item turbo="true">
@@ -71,9 +65,7 @@ function generateRssFeed(
                           <section>
                             <div>
                               <figure>
-                                <img src="${SERVER_DOMAIN_HOST}${
-                splashImage?.url
-              }">
+                                <img src="${SERVER_DOMAIN_HOST}${splashImage?.url}">
                                 <figcaption>${char.attributes.name}</figcaption>
                               </figure> 
                               <p>
@@ -82,9 +74,7 @@ function generateRssFeed(
                               </p>
                               <p>
                                 <span>Тип:</span>
-                                <span>${
-                                  elementList[char.attributes.element]
-                                }</span>
+                                <span>${elementList[char.attributes.element]}</span>
                               </p>
                               <p>
                                 ${char.attributes.info.story}

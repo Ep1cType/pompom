@@ -4,9 +4,7 @@ import { TierList } from "shared/api/tier-list/types";
 import { TierListApi } from "shared/api/tier-list";
 import { CharacterCard } from "molecules/character-card";
 
-const TierListPage = ({
-  tierList,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+const TierListPage = ({ tierList }: InferGetStaticPropsType<typeof getStaticProps>) => {
   if (!tierList) {
     return <h2>Ошибка сервера</h2>;
   }
@@ -23,16 +21,16 @@ const TierListPage = ({
               {letter}
             </div>
             <div className="grid w-full grid-cols-3 gap-5 bg-blue-900 px-4 py-4 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-12">
-              {tierList[letter].data.map((tier) => (
-                <CharacterCard
-                  key={tier.id}
-                  className="w-16"
-                  name={tier.attributes.name}
-                  img={tier.attributes.icon.data.attributes}
-                  starCount={tier.attributes.star}
-                  element={tier.attributes.element}
-                />
-              ))}
+              {/*{tierList[letter].data.map((tier) => (*/}
+              {/*  // <CharacterCard*/}
+              {/*  //   key={tier.id}*/}
+              {/*  //   className="w-16"*/}
+              {/*  //   name={tier.attributes.name}*/}
+              {/*  //   img={tier.attributes.icon.data.attributes}*/}
+              {/*  //   starCount={tier.attributes.star}*/}
+              {/*  //   element={tier.attributes.element}*/}
+              {/*  // />*/}
+              {/*))}*/}
             </div>
           </div>
         ))}

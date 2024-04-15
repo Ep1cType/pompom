@@ -1,7 +1,8 @@
-import { ApiCollectionResponse } from "shared/api/types";
-import { Character } from "shared/api/character/type";
-import { CharacterApi } from "shared/api/character";
 import { GetServerSideProps } from "next";
+
+import { CharacterApi } from "shared/api/character";
+import { Character } from "shared/api/character/type";
+import { ApiCollectionResponse } from "shared/api/types";
 
 const DOMAIN_HOST = process.env.NEXT_PUBLIC_DOMAIN;
 const Api = new CharacterApi();
@@ -55,14 +56,15 @@ function SiteMap() {
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   // We make an API call to gather the URLs for our site
-  const charactersListRequest = await Api.getCharactersList({});
+  // const charactersListRequest = await Api.getCharactersList({});
+  // const charactersListRequest = [];
 
   // We generate the XML sitemap with the posts data
-  const sitemap = generateSiteMap(charactersListRequest.data);
+  // const sitemap = generateSiteMap(charactersListRequest.data);
 
   res.setHeader("Content-Type", "text/xml");
   // we send the XML to the browser
-  res.write(sitemap);
+  // res.write(sitemap);
   res.end();
 
   return {

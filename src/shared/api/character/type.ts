@@ -1,34 +1,21 @@
-import {
-  CreateBody,
-  ImageDataResponse,
-  ResponseDataItem,
-} from "shared/api/types";
+import { CreateBody, ImageDataResponse, ResponseDataItem, StrapiEntity } from "shared/api/types";
 
-export interface Character {
+export interface Character extends StrapiEntity {
   name: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  locale: string;
-  icon: CreateBody<ResponseDataItem<ImageDataResponse>>;
+  slug: string;
   star: "four" | "five";
-  element: CharacterElementList;
-  path: CharacterPathList;
+  element: CharacterElement;
+  path: CharacterPath;
   meta_desc: string;
+  locale: string;
+  icon: ImageDataResponse;
 }
 
-export type CharacterElementList =
-  | "fire"
-  | "ice"
-  | "lightning"
-  | "wind"
-  | "physical"
-  | "quantum"
-  | "imaginary";
+export type CharacterElement = "fire" | "ice" | "lightning" | "wind" | "physical" | "quantum" | "imaginary";
 
-export type CharacterSexList = "male" | "female";
+export type CharacterSex = "male" | "female";
 
-export type CharacterPathList =
+export type CharacterPath =
   | "abundance"
   | "destruction"
   | "erudition"
@@ -42,15 +29,11 @@ export type CharacterSkillList = "baseChance" | "bonusAttack";
 export interface CharacterExtend extends Character {
   info: {
     id: number;
-    sex: CharacterSexList;
+    sex: CharacterSex;
     main_skill: CharacterMainSkill[];
     eidolon: CharacterEidolonItem[];
-    image: {
-      data: ResponseDataItem<ImageDataResponse>;
-    };
-    meta_img: {
-      data: ResponseDataItem<ImageDataResponse>;
-    };
+    image: ImageDataResponse;
+    meta_img: ImageDataResponse;
     story: string;
   };
 }

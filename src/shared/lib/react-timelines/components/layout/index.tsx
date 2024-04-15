@@ -1,18 +1,13 @@
-import React, {
-  createRef,
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import React, { Dispatch, SetStateAction, createRef, useEffect, useState } from "react";
 
-import { raf } from "shared/lib/react-timelines/utils/raf";
-import { getNumericPropertyValue } from "shared/lib/react-timelines/utils/get-numeric-property-value";
-import { HandleLayoutChange } from "shared/lib/react-timelines";
-import { CreateTimeReturn } from "shared/lib/react-timelines/utils/time";
-import { TimeBarItem, TrackItem } from "shared/lib/react-timelines/types";
-import { TimelineMain } from "shared/lib/react-timelines/components/timeline";
 import clsx from "clsx";
+
+import { HandleLayoutChange } from "shared/lib/react-timelines";
+import { TimelineMain } from "shared/lib/react-timelines/components/timeline";
+import { TimeBarItem, TrackItem } from "shared/lib/react-timelines/types";
+import { getNumericPropertyValue } from "shared/lib/react-timelines/utils/get-numeric-property-value";
+import { raf } from "shared/lib/react-timelines/utils/raf";
+import { CreateTimeReturn } from "shared/lib/react-timelines/utils/time";
 
 type Props = {
   enableSticky: boolean;
@@ -80,21 +75,17 @@ export const Layout = ({
     }
 
     if (timelineRef.current) {
-      timelineRef.current.addEventListener("wheel", wheelEvent);
+      timelineRef.current.addEventListener("wheel", wheelEvent, { passive: true });
     }
 
     return () => {
-      timelineRef.current &&
-        timelineRef.current.removeEventListener("wheel", wheelEvent);
+      timelineRef.current && timelineRef.current.removeEventListener("wheel", wheelEvent);
     };
   }, [timelineRef]);
 
   function calculateSidebarWidth() {
     if (sidebarRef.current) {
-      return (
-        sidebarRef.current.offsetWidth +
-        getNumericPropertyValue(layoutRef.current as Element, "margin-left")
-      );
+      return sidebarRef.current.offsetWidth + getNumericPropertyValue(layoutRef.current as Element, "margin-left");
     }
   }
 
@@ -151,10 +142,7 @@ export const Layout = ({
     if (timelineRef.current) {
       const nextSidebarWidth = calculateSidebarWidth();
       const nextTimelineViewportWidth = calculateTimelineViewportWidth();
-      if (
-        nextSidebarWidth !== sidebarWidth ||
-        nextTimelineViewportWidth !== timelineViewportWidth
-      ) {
+      if (nextSidebarWidth !== sidebarWidth || nextTimelineViewportWidth !== timelineViewportWidth) {
         onLayoutChange({
           sidebarWidth: calculateSidebarWidth() as number,
           timelineViewportWidth: calculateTimelineViewportWidth() as number,

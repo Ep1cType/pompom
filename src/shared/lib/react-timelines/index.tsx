@@ -1,12 +1,13 @@
-import React, { Component, useEffect, useState } from "react";
-import { createTime } from "shared/lib/react-timelines/utils/time";
+import React, { useEffect, useState } from "react";
+
 import { Layout } from "shared/lib/react-timelines/components/layout";
+import { createTime } from "shared/lib/react-timelines/utils/time";
 
 const UNKNOWN_WIDTH = -1;
 
 export type Scale = {
-  start: Date; //PropTypes.instanceOf(Date)
-  end: Date; //PropTypes.instanceOf(Date)
+  start: Date;
+  end: Date;
   zoom: number;
   zoomMin: number;
   zoomMax: number;
@@ -34,22 +35,10 @@ export interface HandleLayoutChange {
   callback?: any;
 }
 
-export const TimeLine = ({
-  scale,
-  enableSticky,
-  now,
-  tracks,
-  timebar,
-  scrollToNow,
-  isOpen,
-  clickElement,
-}: Props) => {
-  const [timelineViewportWidth, setTimelineViewportWidth] =
-    useState(UNKNOWN_WIDTH);
+export const TimeLine = ({ scale, enableSticky, now, tracks, timebar, scrollToNow, isOpen, clickElement }: Props) => {
+  const [timelineViewportWidth, setTimelineViewportWidth] = useState(UNKNOWN_WIDTH);
   const [sidebarWidth, setSidebarWidth] = useState(UNKNOWN_WIDTH);
-  const [time, setTime] = useState(
-    createTime({ ...scale, viewportWidth: timelineViewportWidth }),
-  );
+  const [time, setTime] = useState(createTime({ ...scale, viewportWidth: timelineViewportWidth }));
 
   useEffect(() => {
     const newTime = createTime({
@@ -59,11 +48,7 @@ export const TimeLine = ({
     setTime(newTime);
   }, [scale, timelineViewportWidth]);
 
-  function handleLayoutChange({
-    timelineViewportWidth,
-    sidebarWidth,
-    callback,
-  }: HandleLayoutChange) {
+  function handleLayoutChange({ timelineViewportWidth, sidebarWidth, callback }: HandleLayoutChange) {
     const time = createTime({ ...scale, viewportWidth: timelineViewportWidth });
     setTime(time);
     setTimelineViewportWidth(timelineViewportWidth);

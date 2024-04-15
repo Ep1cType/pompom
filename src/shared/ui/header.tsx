@@ -1,69 +1,36 @@
 import React from "react";
+
 import Link from "next/link";
+
 import clsx from "clsx";
-import { useRouter } from "next/router";
+
+import { NavLink } from "shared/ui/navlink";
 
 type Props = {
   className?: string;
 };
 
 export const Header = ({ className }: Props) => {
-  const router = useRouter();
-
   return (
-    <header className={clsx("navbar bg-blue-900", className)}>
-      <div className="container mx-auto px-4">
-        <div className="navbar-start flex items-center">
-          <div className="dropdown">
-            <label tabIndex={0} className="btn-ghost btn lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
-            </label>
-            <ul
-              tabIndex={0}
-              className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 bg-blue-900 p-2 shadow"
-            >
-              {headerItems.map((item, index) => (
-                <li key={index}>
-                  <Link prefetch={false} href={item.link}>
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <Link
-            href={"/"}
-            className="btn-ghost btn text-lg normal-case md:text-xl"
-          >
+    <header className={clsx("flex min-h-16 items-center bg-blue-900", className)}>
+      <div className="container mx-auto hidden items-center px-4 md:flex">
+        <div className="flex w-1/2 items-center justify-start">
+          <Link href={"/"} className="btn-ghost btn text-lg normal-case md:text-xl">
             pom-pom.pro
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+        <div className="flex flex-shrink-0">
+          <ul className="inline-flex px-1">
             {headerItems.map((item, index) => (
-              <li key={index}>
-                <Link
+              <li key={index} className="">
+                <NavLink
+                  className="rounded-xl px-4 py-3 hover:bg-blue-950/30"
                   prefetch={false}
-                  className={clsx(
-                    item.link === router.pathname && "bg-blue-950/60",
-                  )}
+                  activeClassName="bg-blue-950/60"
                   href={item.link}
                 >
                   {item.title}
-                </Link>
+                </NavLink>
               </li>
             ))}
           </ul>
@@ -78,10 +45,6 @@ const headerItems = [
     title: "Персонажи",
     link: "/characters",
   },
-  // {
-  // 	title: 'Тир-лист',
-  // 	link: '/tier-list',
-  // },
   {
     title: "История прыжков",
     link: "/warp",

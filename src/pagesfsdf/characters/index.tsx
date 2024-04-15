@@ -1,5 +1,13 @@
 import React, { useEffect } from "react";
+
+import dynamic from "next/dynamic";
+import Head from "next/head";
+import Image from "next/image";
+import { useRouter } from "next/router";
+
+import clsx from "clsx";
 import { useStore } from "effector-react";
+
 import {
   $charactersList,
   $selectedCharacterFilterList,
@@ -8,28 +16,16 @@ import {
   selectElementFilter,
   selectPathFilter,
 } from "entities/character/model";
-import { useRouter } from "next/router";
-import Head from "next/head";
+
+import { CharacterElement, CharacterPath } from "shared/api/character/type";
 import { PageTitle } from "shared/ui/page-title";
-import {
-  CharacterElementList,
-  CharacterPathList,
-} from "shared/api/character/type";
-import clsx from "clsx";
-import Image from "next/image";
-import dynamic from "next/dynamic";
-const Loader = dynamic(
-  () => import("shared/ui/loader").then((mod) => mod.Loader),
-  {
-    ssr: false,
-  },
-);
-const CharacterCard = dynamic(
-  () => import("molecules/character-card").then((mod) => mod.CharacterCard),
-  {
-    ssr: false,
-  },
-);
+
+const Loader = dynamic(() => import("shared/ui/loader").then((mod) => mod.Loader), {
+  ssr: false,
+});
+const CharacterCard = dynamic(() => import("molecules/character-card").then((mod) => mod.CharacterCard), {
+  ssr: false,
+});
 
 const CharactersPage = () => {
   const charactersList = useStore($charactersList);
@@ -42,7 +38,7 @@ const CharactersPage = () => {
     fetchCharactersListFx({ locale: router.locale });
   }, [router.locale]);
 
-  const characterElementList: CharacterElementList[] = [
+  const characterElementList: CharacterElement[] = [
     "quantum",
     "fire",
     "ice",
@@ -52,7 +48,7 @@ const CharactersPage = () => {
     "wind",
   ];
 
-  const characterPathList: CharacterPathList[] = [
+  const characterPathList: CharacterPath[] = [
     "harmony",
     "hunt",
     "abundance",
@@ -65,31 +61,11 @@ const CharactersPage = () => {
   return (
     <>
       <Head>
-        <title>{`${
-          router.locale === "ru" ? "Персонажи" : "Characters"
-        } | pom-pom.pro`}</title>
-        <meta
-          property="og:title"
-          content={`${
-            router.locale === "ru" ? "Персонажи" : "Characters"
-          } | pom-pom.pro`}
-        />
-        <meta
-          property="og:description"
-          content={
-            router.locale === "ru" ? "Список персонажей" : "Characters List"
-          }
-        />
-        <meta
-          name="description"
-          content={
-            router.locale === "ru" ? "Список персонажей" : "Characters List"
-          }
-        />
-        <meta
-          property="og:url"
-          content={`${process.env.NEXT_PUBLIC_DOMAIN}/characters`}
-        />
+        <title>{`${router.locale === "ru" ? "Персонажи" : "Characters"} | pom-pom.pro`}</title>
+        <meta property="og:title" content={`${router.locale === "ru" ? "Персонажи" : "Characters"} | pom-pom.pro`} />
+        <meta property="og:description" content={router.locale === "ru" ? "Список персонажей" : "Characters List"} />
+        <meta name="description" content={router.locale === "ru" ? "Список персонажей" : "Characters List"} />
+        <meta property="og:url" content={`${process.env.NEXT_PUBLIC_DOMAIN}/characters`} />
         <meta property="og:type" content="list" />
         <meta property="og:locale" content={router.locale} />
       </Head>
@@ -100,8 +76,7 @@ const CharactersPage = () => {
           {characterElementList.map((element) => (
             <li
               className={clsx(
-                selectedCharacterFilterList.elements.includes(element) &&
-                  "bg-blue-800 text-orange",
+                selectedCharacterFilterList.elements.includes(element) && "bg-blue-800 text-orange",
                 "rounded-xl border border-blue-800 p-2 md:p-3",
               )}
               key={element}
@@ -121,8 +96,7 @@ const CharactersPage = () => {
           {characterPathList.map((path) => (
             <li
               className={clsx(
-                selectedCharacterFilterList.paths.includes(path) &&
-                  "bg-blue-800 text-orange",
+                selectedCharacterFilterList.paths.includes(path) && "bg-blue-800 text-orange",
                 "rounded-xl border border-blue-800 p-2 md:p-3",
               )}
               key={path}
@@ -141,9 +115,7 @@ const CharactersPage = () => {
         </ul>
 
         {!charactersList.length && !isLoading && (
-          <h2 className="col-span-4 md:col-span-5 lg:col-span-7 xl:col-span-10">
-            Ничего не найдено
-          </h2>
+          <h2 className="col-span-4 md:col-span-5 lg:col-span-7 xl:col-span-10">Ничего не найдено</h2>
         )}
         {isLoading && <Loader />}
         <section
@@ -151,17 +123,17 @@ const CharactersPage = () => {
           itemType="https://schema.org/ItemList"
           className="grid grid-cols-4 gap-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-10"
         >
-          {!!charactersList.length &&
-            !isLoading &&
-            charactersList.map((character) => (
-              <CharacterCard
-                key={character.id}
-                name={character.attributes.name}
-                img={character.attributes.icon.data.attributes}
-                starCount={character.attributes.star}
-                element={character.attributes.element}
-              />
-            ))}
+          {/*{!!charactersList.length &&*/}
+          {/*  !isLoading &&*/}
+          {/*  charactersList.map((character) => (*/}
+          {/*    <CharacterCard*/}
+          {/*      key={character.id}*/}
+          {/*      name={character.attributes.name}*/}
+          {/*      img={character.attributes.icon.data.attributes}*/}
+          {/*      starCount={character.attributes.star}*/}
+          {/*      element={character.attributes.element}*/}
+          {/*    />*/}
+          {/*  ))}*/}
         </section>
       </div>
       <CharacterGate />

@@ -1,26 +1,41 @@
+import { Character, CharacterElement, CharacterExtend, CharacterPath } from "shared/api/character/type";
 import { apiReq } from "shared/api/config";
+import fetchApi from "shared/api/strapi";
 import { ApiCollectionResponse } from "shared/api/types";
-import {
-  Character,
-  CharacterElementList,
-  CharacterExtend,
-  CharacterPathList,
-} from "shared/api/character/type";
+
+export const getCharactersList = () => {
+  return fetchApi<Character[]>({
+    endpoint: "characters",
+    query: {
+      populate: "icon",
+      "sort[0]": "name",
+      "pagination[pageSize]": "100",
+    },
+    wrappedByKey: "data",
+    options: {
+      tags: ["character"],
+    },
+  });
+};
+
+export const getCharacter = (slug: string) => {
+  return fetchApi<CharacterExtend>({
+    endpoint: "characters",
+    query: {
+      "filters[slug][$eq]": slug,
+      "populate[0]": "info",
+      "populate[1]": "info.main_skill,info.eidolon,info.eidolon.image,info.image,info.meta_img",
+      "populate[2]": "info.main_skill.icon",
+    },
+    wrappedByKey: "data",
+    wrappedByList: true,
+    options: {
+      tags: ["character"],
+    },
+  });
+};
 
 export class CharacterApi {
-  getCharactersList({ locale = "ru", paths = [], elements = [] }: Params) {
-    return apiReq.get<ApiCollectionResponse<Character>>("characters", {
-      params: {
-        populate: "icon",
-        locale,
-        "sort[0]": "name",
-        "pagination[pageSize]": 100,
-        "filters[path][$in]": paths,
-        "filters[element][$in]": elements,
-      },
-    });
-  }
-
   getCharactersListForRss() {
     return apiReq.get<ApiCollectionResponse<CharacterExtend>>("characters", {
       params: {
@@ -46,8 +61,8 @@ export class CharacterApi {
 
 interface Params {
   locale?: string;
-  paths?: CharacterPathList[];
-  elements?: CharacterElementList[];
+  paths?: CharacterPath[];
+  elements?: CharacterElement[];
 }
 
 interface CharacterParams extends Params {

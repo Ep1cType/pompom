@@ -1,8 +1,9 @@
 import React, { HTMLAttributes } from "react";
+
+import { ImageDataResponse } from "shared/api/types";
 import { BasicElement } from "shared/lib/react-timelines/components/elements/basic";
 import { TrackItem } from "shared/lib/react-timelines/types";
 import { CreateTimeReturn } from "shared/lib/react-timelines/utils/time";
-import { ImageDataResponse } from "shared/api/types";
 
 interface Props extends TrackItem {
   time: CreateTimeReturn;
@@ -15,19 +16,7 @@ interface Props extends TrackItem {
 }
 
 export const Element = (props: Props) => {
-  const {
-    time,
-    style,
-    title,
-    start,
-    end,
-    classes,
-    dataSet,
-    tooltip,
-    clickElement,
-    image,
-    link,
-  } = props;
+  const { time, style, title, start, end, classes, dataSet, tooltip, clickElement, image, link } = props;
   const handleClick = () => {
     if (clickElement) {
       clickElement(props);

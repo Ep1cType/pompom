@@ -1,23 +1,24 @@
 import React, { useState } from "react";
-import dynamic from "next/dynamic";
+
 import { GetStaticProps, InferGetStaticPropsType } from "next";
-import { ResponseDataItem } from "shared/api/types";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { EventApi } from "shared/api/event";
-import { EventItem } from "shared/api/event/type";
-import { TimelineModal } from "organisms/timeline-modal/timeline-modal";
-import { setTimelineModalData } from "organisms/timeline-modal/model";
-import { TrackElement } from "organisms/timeline-modal/type";
-import { PageTitle } from "shared/ui/page-title";
+import dynamic from "next/dynamic";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-const TimeLine = dynamic(
-  () => import("shared/lib/react-timelines").then((res) => res.TimeLine),
-  {
-    ssr: false,
-  },
-);
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
+import { setTimelineModalData } from "organisms/timeline-modal/model";
+import { TimelineModal } from "organisms/timeline-modal/timeline-modal";
+import { TrackElement } from "organisms/timeline-modal/type";
+
+import { EventApi } from "shared/api/event";
+import { EventItem } from "shared/api/event/type";
+import { ResponseDataItem } from "shared/api/types";
+import { PageTitle } from "shared/ui/page-title";
+
+const TimeLine = dynamic(() => import("shared/lib/react-timelines").then((res) => res.TimeLine), {
+  ssr: false,
+});
 
 const MONTH_NAMES = [
   "Январь",
@@ -49,35 +50,31 @@ const clickElement = (element: TrackElement) => {
 };
 
 function createTask(eventList: ResponseDataItem<EventItem>[]) {
-  return [...new Set(eventList.map((event) => event.attributes.type))].map(
-    (item, index) => ({
-      id: `track-${index + 1}`,
-      title: item,
-      elements: eventList
-        .filter((s) => s.attributes.type === item)
-        .map((t, ind) => ({
-          id: `t-${index + 1}-el-${ind + 1}`,
-          title: t.attributes.name,
-          start: new Date(t.attributes.start_date),
-          end: new Date(t.attributes.end_date),
-          style: {
-            backgroundColor: t.attributes.color,
-            borderRadius: "13px",
-            boxShadow: "1px 1px 0px rgba(0, 0, 0, 0.25)",
-            color: "#000000",
-            textTransform: "capitalize",
-          },
-          image: t.attributes.image.data?.attributes,
-          link: t.attributes.link,
-        })),
-      isOpen: false,
-    }),
-  );
+  return [...new Set(eventList.map((event) => event.attributes.type))].map((item, index) => ({
+    id: `track-${index + 1}`,
+    title: item,
+    elements: eventList
+      .filter((s) => s.attributes.type === item)
+      .map((t, ind) => ({
+        id: `t-${index + 1}-el-${ind + 1}`,
+        title: t.attributes.name,
+        start: new Date(t.attributes.start_date),
+        end: new Date(t.attributes.end_date),
+        style: {
+          backgroundColor: t.attributes.color,
+          borderRadius: "13px",
+          boxShadow: "1px 1px 0px rgba(0, 0, 0, 0.25)",
+          color: "#000000",
+          textTransform: "capitalize",
+        },
+        image: t.attributes.image,
+        link: t.attributes.link,
+      })),
+    isOpen: false,
+  }));
 }
 
-const LinePage = ({
-  eventList,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+const LinePage = ({ eventList }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [open, setOpen] = useState(false);
   const [zoom] = useState(30);
   const [tracks, setTracks] = useState(createTask(eventList));
@@ -125,13 +122,7 @@ const LinePage = ({
     }
 
     return datesList
-      .filter(
-        (value, index, self) =>
-          index ===
-          self.findIndex(
-            (t) => t.year === value.year && t.month === value.month,
-          ),
-      )
+      .filter((value, index, self) => index === self.findIndex((t) => t.year === value.year && t.month === value.month))
       .map((item) => new Date(item.year, item.month));
   }
 
@@ -169,12 +160,7 @@ const LinePage = ({
         id: `d${item.getMonth()}${index}`,
         title: item.getDate(),
         start: item,
-        end: new Date(
-          item.getFullYear(),
-          item.getMonth(),
-          item.getDate() + 1,
-          0,
-        ),
+        end: new Date(item.getFullYear(), item.getMonth(), item.getDate() + 1, 0),
       };
     });
   };
@@ -201,18 +187,9 @@ const LinePage = ({
       <Head>
         <title>Лента событий | pom-pom.pro</title>
         <meta property="og:title" content={`Лента событий | pom-pom.pro`} />
-        <meta
-          property="og:description"
-          content={"Здесь вы можете посмотреть ленту игровых событий."}
-        />
-        <meta
-          name="description"
-          content={"Здесь вы можете посмотреть ленту игровых событий."}
-        />
-        <meta
-          property="og:url"
-          content={`${process.env.NEXT_PUBLIC_DOMAIN}/timeline`}
-        />
+        <meta property="og:description" content={"Здесь вы можете посмотреть ленту игровых событий."} />
+        <meta name="description" content={"Здесь вы можете посмотреть ленту игровых событий."} />
+        <meta property="og:url" content={`${process.env.NEXT_PUBLIC_DOMAIN}/timeline`} />
         <meta property="og:type" content="list" />
         <meta property="og:locale" content={router.locale} />
       </Head>
@@ -249,11 +226,9 @@ export const getStaticProps: GetStaticProps<{
   const locale = context.locale as string;
 
   try {
-    const response = await Api.getEventsList();
-
     return {
       props: {
-        eventList: response.data.data,
+        eventList: [],
         ...(await serverSideTranslations(locale, ["common"])),
       },
       revalidate: 60,

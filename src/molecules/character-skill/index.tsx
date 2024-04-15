@@ -1,4 +1,7 @@
+"use client";
+
 import React, { useState } from "react";
+
 import { CharacterMainSkill } from "shared/api/character/type";
 
 interface Props {

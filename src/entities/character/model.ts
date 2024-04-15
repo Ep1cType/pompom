@@ -1,27 +1,24 @@
 import { createEffect, createEvent, createStore } from "effector";
-import { CharacterApi } from "shared/api/character";
-import { LocaleParams, ResponseDataItem } from "shared/api/types";
-import {
-  Character,
-  CharacterElementList,
-  CharacterPathList,
-} from "shared/api/character/type";
 import { createGate } from "effector-react";
+
+import { CharacterApi } from "shared/api/character";
+import { Character, CharacterElement, CharacterPath } from "shared/api/character/type";
+import { LocaleParams, ResponseDataItem } from "shared/api/types";
 
 const Api = new CharacterApi();
 
-export const selectElementFilter = createEvent<CharacterElementList>();
-export const selectPathFilter = createEvent<CharacterPathList>();
+export const selectElementFilter = createEvent<CharacterElement>();
+export const selectPathFilter = createEvent<CharacterPath>();
 
 export const fetchCharactersListFx = createEffect(
   async ({ locale, paths, elements }: LocaleParams & CharacterListParams) => {
-    return await Api.getCharactersList({ locale, paths, elements });
+    // return await Api.getCharactersList({ locale, paths, elements });
   },
 );
 
 export const $selectedCharacterFilterList = createStore<{
-  elements: CharacterElementList[];
-  paths: CharacterPathList[];
+  elements: CharacterElement[];
+  paths: CharacterPath[];
 }>({
   elements: [],
   paths: [],
@@ -53,11 +50,12 @@ export const $selectedCharacterFilterList = createStore<{
     }
   });
 
-export const $charactersList = createStore<ResponseDataItem<Character>[]>(
-  [],
-).on(fetchCharactersListFx.doneData, (_, payload) => {
-  return payload.data.data;
-});
+export const $charactersList = createStore<ResponseDataItem<Character>[]>([]).on(
+  fetchCharactersListFx.doneData,
+  (_, payload) => {
+    // return payload.data.data;
+  },
+);
 
 $selectedCharacterFilterList.watch((state) => {
   fetchCharactersListFx({ elements: state.elements, paths: state.paths });
@@ -69,6 +67,6 @@ $selectedCharacterFilterList.reset(CharacterGate.close);
 $charactersList.reset(CharacterGate.close);
 
 interface CharacterListParams {
-  paths?: CharacterPathList[];
-  elements?: CharacterElementList[];
+  paths?: CharacterPath[];
+  elements?: CharacterElement[];
 }

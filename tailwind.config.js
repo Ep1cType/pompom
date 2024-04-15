@@ -44,21 +44,15 @@ module.exports = {
           red: "rgb(255, 0, 0)",
           green: "rgb(0, 255, 0)",
         },
+        blue: {
+          950: "rgb(23 37 84)",
+          900: "rgb(30 58 138)",
+        },
       },
     },
   },
   future: {
     hoverOnlyWhenSupported: true,
   },
-  plugins: [require("daisyui"), require("@tailwindcss/typography")],
-  daisyui: {
-    themes: [
-      "dark",
-      {
-        main: {
-          accent: "#002554",
-        },
-      },
-    ],
-  },
+  plugins: [require("@tailwindcss/typography")],
 };
