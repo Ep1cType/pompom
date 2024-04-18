@@ -165,7 +165,7 @@ export const WarpContainer = () => {
       ],
     },
     {
-      title: "Получение ссылки с информацией о прыжках",
+      title: "Получение ссылки с\u00A0информацией о\u00A0прыжках",
       content: [
         {
           text: <>Запустите Honkai: Star Rail и&nbsp;перейдите на&nbsp;окно прыжков.</>,

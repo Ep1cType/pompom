@@ -22,22 +22,16 @@ export async function generateMetadata({ params, searchParams }: Props, parent: 
       title: data.name,
       description: data.info?.story,
       images: [
-        {
-          url: `${process.env.NEXT_PUBLIC_API_URL}${data.info?.image.url}`,
-          width: data.info?.image.width,
-          height: data.info?.image.height,
+        data.info?.image.formats.small && {
+          url: `${process.env.NEXT_PUBLIC_API_URL}${data.info.image.formats.small.url}`,
+          width: data.info.image.formats.small.width,
+          height: data.info.image.formats.small.height,
           alt: data.name,
         },
         data.info?.image.formats.thumbnail && {
           url: `${process.env.NEXT_PUBLIC_API_URL}${data.info.image.formats.thumbnail.url}`,
           width: data.info.image.formats.thumbnail.width,
           height: data.info.image.formats.thumbnail.height,
-          alt: data.name,
-        },
-        data.info?.image.formats.small && {
-          url: `${process.env.NEXT_PUBLIC_API_URL}${data.info.image.formats.small.url}`,
-          width: data.info.image.formats.small.width,
-          height: data.info.image.formats.small.height,
           alt: data.name,
         },
         data.info?.image.formats.medium && {
@@ -50,6 +44,12 @@ export async function generateMetadata({ params, searchParams }: Props, parent: 
           url: `${process.env.NEXT_PUBLIC_API_URL}${data.info.image.formats.large.url}`,
           width: data.info.image.formats.large.width,
           height: data.info.image.formats.large.height,
+          alt: data.name,
+        },
+        {
+          url: `${process.env.NEXT_PUBLIC_API_URL}${data.info?.image.url}`,
+          width: data.info?.image.width,
+          height: data.info?.image.height,
           alt: data.name,
         },
       ],

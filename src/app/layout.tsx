@@ -7,6 +7,7 @@ import { Montserrat, Open_Sans } from "next/font/google";
 import "react-tooltip/dist/react-tooltip.css";
 import "styles/globals.css";
 
+import { Footer } from "shared/ui/footer";
 import { Header } from "shared/ui/header";
 import { YandexMetrika } from "shared/ui/metrika";
 import { TooltipContainer } from "shared/ui/tooltip-container";
@@ -55,6 +56,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {process.env.NEXT_PUBLIC_ENV === "production" && <YandexMetrika />}
         <Header />
         <main className="flex-grow bg-blue-950 text-white">{children}</main>
+        <Footer />
       </body>
       <TooltipContainer />
     </html>
