@@ -26,8 +26,8 @@ export default async function TimelinePage() {
   const eventList = await getData();
   return (
     <>
-      <div className="container mx-auto px-4 py-8 ">
-        <PageTitle className="mb-8 md:mb-16" text="Лента событий" />
+      <div className="container mx-auto py-8 md:px-4 ">
+        <PageTitle className="mb-8 px-4 md:mb-16 md:px-0" text="Лента событий" />
         <TimelineContainer eventList={eventList} />
         <TimelineModal />
       </div>
