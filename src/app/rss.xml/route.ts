@@ -7,7 +7,6 @@ export const dynamic = "force-dynamic";
 
 const DOMAIN_HOST = process.env.NEXT_PUBLIC_DOMAIN as string;
 const SERVER_DOMAIN_HOST = process.env.NEXT_PUBLIC_API_URL as string;
-const Api = new CharacterApi();
 
 const pathList = {
   destruction: "Разрушение",

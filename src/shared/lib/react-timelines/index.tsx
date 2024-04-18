@@ -57,7 +57,7 @@ export const TimeLine = ({ scale, enableSticky, now, tracks, timebar, scrollToNo
   }
 
   return (
-    <div className="relative z-[1] text-four-from">
+    <div className="relative z-[1]">
       <Layout
         enableSticky={enableSticky}
         now={now}

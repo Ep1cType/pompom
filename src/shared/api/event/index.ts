@@ -9,6 +9,7 @@ export const getEventsList = () => {
     query: {
       populate: "*",
       "pagination[pageSize]": "100",
+      "sort[0]": "type",
     },
     wrappedByKey: "data",
   });
