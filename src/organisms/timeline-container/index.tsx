@@ -147,6 +147,7 @@ export const TimelineContainer = ({ eventList }: Props) => {
   };
 
   const currentDate = new Date();
+
   const startDate = subtractMonths(currentDate, 3);
   const endDate = subtractMonths(currentDate, -3);
   const firstDayOfMonth = getFirstDayOfMonth(subtractMonths(currentDate, 3));
